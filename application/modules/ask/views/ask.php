@@ -2,28 +2,21 @@
 	<div class="container">
 		<br><br><br>
 		<div class="row col-md-10 col-md-offset-1">
-
 			<h2>Quản lý các ASK</h2>
-
-
 		</div>
-
 	</div>
 </div>
 <hr>
 <div class="container">
 	<div class="row">
+		<?php echo form_open("ask/create_ask");?>
 		<div class="col-md-3">
 			<h5>Tên ASK</h5>
-			<form>
-				<input type="text" class="form-control" id="askname" placeholder="Tên ASK">
-			</form>
+			<input type="text" class="form-control" name="ask_name" placeholder="Tên ASK">
 		</div>
 		<div class="col-md-3">
 			<h5>Mô tả</h5>
-			<form>
-				<textarea class="form-control" rows="2"  id="askmota"placeholder="Mô tả ASK"></textarea>
-			</form>
+			<textarea class="form-control" rows="2" name="ask_description" placeholder="Mô tả ASK"></textarea>
 		</div>
 		<div class="col-md-3">
 			<h5>Danh mục cha</h5>
@@ -38,6 +31,7 @@
 			<br>
 			<input type="submit" value="Thêm ASK" class="btn btn-primary btn-block">
 		</div>
+		</form>
 	</div>
 	<hr>
 	<div class="row">

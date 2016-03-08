@@ -5,6 +5,7 @@ class Ask extends MX_Controller{
 		parent::__construct();
         $this->load->helper(array("url"));
         $this->load->library(array('ion_auth','form_validation'));
+        $this->load->model(array("mask"));
 
        	// layout template
 		if (!$this->ion_auth->logged_in())
@@ -26,8 +27,14 @@ class Ask extends MX_Controller{
 	}
 
 	public function index() {
-		$this->template->write("title", "Giới thiệu về Pro5Job");
+		$this->template->write("title", "Quản lý các ASK");
         $this->template->write_view("content", "ask");
         $this->template->render();
+	}
+
+	public function create_ask() {
+		$ask_data['ask_name'] = $this->input->post('ask_name');
+		$ask_data['ask_description'] = $this->input->post('ask_description');
+		$this->mask->create_ask($ask_data);
 	}
 }
