@@ -13,21 +13,19 @@
 <hr>
 <div class="container">
 	<div class="row">
+		<?php echo form_open("askcat/create");?>
 		<div class="col-md-3">
 			<h5>Tên danh mục ASK</h5>
-			<form>
-				<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
-			</form>
+			<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
 		</div>
 		<div class="col-md-3">
 			<h5>Mô tả</h5>
-			<form>
-				<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
-			</form>
+			<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
 		</div>
 		<div class="col-md-3">
 			<h5>Danh mục ASK cha</h5>
 			<select class="form-control" name="ask_cat_parent">
+				<option value="0"></option>
 				<?php
 					foreach($list_cats as $cat) {
 						echo '<option value="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</option>';
@@ -39,6 +37,7 @@
 			<br>
 			<input type="submit" value="Thêm danh mục ASK" class="btn btn-primary btn-block">
 		</div>
+		</form>
 	</div>
 	<hr>
 	<div class="row">
@@ -69,8 +68,8 @@
 						.'<td>'.$cat['ask_cat_id'].'</td>'
 						.'<td>'.$cat['ask_cat_name'].'</td>'
 						.'<td>'.$cat['description'].'</td>'
-						.'<td>'.$cat['ask_cat_parent'].'</td>'
-						.'<td>'.$cat['ask_cat_parent'].'</td>'
+						.'<td>'.$cat['parent_cat'].'</td>'
+						.'<td>'.$cat['count_asks'].'</td>'
 					.'</tr>';
 				}
 			?>

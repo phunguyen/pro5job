@@ -9,7 +9,7 @@
 <hr>
 <div class="container">
 	<div class="row">
-		<?php echo form_open("ask/create_ask");?>
+		<?php echo form_open("ask/create");?>
 		<div class="col-md-3">
 			<h5>Tên ASK</h5>
 			<input type="text" class="form-control" name="ask_name" placeholder="Tên ASK">
@@ -20,11 +20,12 @@
 		</div>
 		<div class="col-md-3">
 			<h5>Danh mục cha</h5>
-			<select class="form-control" id="catparent">
-				<option>Kỹ năng</option>
-				<option>Kỹ năng mềm</option>
-				<option>Kỹ năng nghề nghiệp</option>
-				<option>Kỹ năng xã hội</option>
+			<select class="form-control" name="cat_parent">
+				<?php
+					foreach($list_cats as $cat) {
+						echo '<option value="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</option>';
+					}
+				?>
 			</select>
 		</div>
 		<div class="col-md-3">
@@ -50,57 +51,23 @@
 	<div class="row">
 		<table class="table table-condensed table-bordered">
 			<thead>
-				<th>
-					#
-				</th>
-				<th>
-					Tên ASK
-				</th>
-				<th>
-					Mô tả ASK
-				</th>
-				<th>
-					Danh mục cha
-				</th>
-				<th>
-					Xác nhận ASK
-				</th>
+				<th>#</th>
+				<th>Tên ASK</th>
+				<th>Mô tả ASK</th>
+				<th>Danh mục cha</th>
+				<th>Xác nhận ASK</th>
 			</thead>
-			<tr>
-				<td>
-					1
-				</td>
-				<td>
-					Lập trình PHP trên Lavarel
-				</td>
-				<td>
-					Đây là kỹ năng lập trình web bằng ngôn ngữ PHP trên nền tảng Lavarel.
-				</td>
-				<td>
-					Lập trình trên nền Web
-				</td>
-				<td>
-					15
-				</td>
-			</tr>
-			<tr>
-				<td>
-					2
-				</td>
-				<td>
-					Kỹ năng thuyết trình
-				</td>
-				<td>
-					Đây là những kỹ năng trình bày về một chủ đề nào đó trước cuộc họp hoặc đám đông, nhằm truyền tải thuyết phục người nghe.
-				</td>
-				<td>
-					Kỹ năng mềm
-				</td>
-				<td>
-					7
-				</td>
-			</tr>
-
+			<?php
+				foreach($list_asks as $ask) {
+					echo '<tr>'
+						.'<td>'.$ask['ask_id'].'</td>'
+						.'<td>'.$ask['ask_name'].'</td>'
+						.'<td>'.$ask['description'].'</td>'
+						.'<td>'.$ask['ask_cat_name'].'</td>'
+						.'<td>'.$ask['ask_id'].'</td>'
+					.'</tr>';
+				}
+			?>
 		</table>
 	</div>
 </div>

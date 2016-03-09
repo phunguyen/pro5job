@@ -7,11 +7,20 @@ class MAsk extends CI_Model{
 		$this->load->database();
 	}
 
-	public function listall(){
-		return $this->db->get($this->_table)->result_array();
+	public function list_cats() {
+		$query = "SELECT * FROM asks_cats";
+		$result = $this->db->query($query);
+		return $result->result_array();
 	}
 
-	public function create_ask($data) {
+	public function list_asks() {
+		$query = "SELECT a.*, c.ask_cat_name FROM asks a
+			LEFT JOIN asks_cats c ON c.ask_cat_id = a.ask_cat_id";
+		$result = $this->db->query($query);
+		return $result->result_array();
+	}
+
+	public function create($data) {
 		$this->db->insert($this->_table, $data);
         return $this->db->insert_id();
 	}

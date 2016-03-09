@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50539
-Source Host           : :3306
+Source Host           : localhost:3306
 Source Database       : pro5job
 
 Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2016-03-09 16:19:13
+Date: 2016-03-09 23:21:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,12 +27,14 @@ CREATE TABLE `asks` (
   PRIMARY KEY (`ask_id`),
   KEY `ask_cat_id` (`ask_cat_id`),
   CONSTRAINT `asks_ibfk_1` FOREIGN KEY (`ask_cat_id`) REFERENCES `asks_cats` (`ask_cat_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of asks
 -- ----------------------------
 INSERT INTO `asks` VALUES ('1', 'ASK 1', '1', 'Ask 1 desc');
+INSERT INTO `asks` VALUES ('2', 'ASK 11', '1', 'd d d d');
+INSERT INTO `asks` VALUES ('3', 'ASK 2', '2', '22222');
 
 -- ----------------------------
 -- Table structure for asks_cats
@@ -44,7 +46,7 @@ CREATE TABLE `asks_cats` (
   `description` text,
   `ask_cat_parent` int(10) DEFAULT '0',
   PRIMARY KEY (`ask_cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of asks_cats
@@ -52,6 +54,7 @@ CREATE TABLE `asks_cats` (
 INSERT INTO `asks_cats` VALUES ('1', 'CAT 1', 'Cat 1 desc', '0');
 INSERT INTO `asks_cats` VALUES ('2', 'CAT 2', 'Cat 2 desc', '0');
 INSERT INTO `asks_cats` VALUES ('3', 'CAT 11', 'Cat 11 desc', '1');
+INSERT INTO `asks_cats` VALUES ('4', 'CAT 12', 'cat cat 1212', '1');
 
 -- ----------------------------
 -- Table structure for groups
@@ -114,7 +117,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457495649', '1', 'Admin', 'istrator', 'ADMIN', '1112223333');
+INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457535729', '1', 'Admin', 'istrator', 'ADMIN', '1112223333');
 INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$naanZ2wwA//KZDIaP5D1peMBhputZXDbayBkUUFnMDe3mrkqKH.2G', null, 'phului@gmail.com', null, null, null, null, '1453985671', '1454516299', '1', 'Phu', 'Nguyen', 'Citigo', '0985819644');
 INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$BORkXZt1UOkfO.xeV7b0x.CFwWcy0/untWNcIclt1cnow3/7PHyp6', null, 'tgold@boruapps.com', null, null, null, null, '1457017959', null, '1', 'Travis', 'Gold', 'Boru', '');
 
