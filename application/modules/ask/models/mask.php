@@ -24,4 +24,20 @@ class MAsk extends CI_Model{
 		$this->db->insert($this->_table, $data);
         return $this->db->insert_id();
 	}
+
+	public function read($id) {
+		$query = "SELECT * FROM asks WHERE ask_id = '$id'";
+		$result = $this->db->query($query);
+		return $result->row_array();
+	}
+
+	public function update($id, $data) {
+		$this->db->where('ask_id', $id);
+		$this->db->update($this->_table, $data);
+	}
+
+	public function delete($id) {
+		$this->db->where('ask_id', $id);
+		$this->db->delete($this->_table);
+	}
 }

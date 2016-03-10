@@ -15,6 +15,6 @@
             <?php echo lang('edit_group_desc_label', 'description');?> <br />
             <?php echo form_input($group_description, '', 'class="form-control"');?>
         </div>
-        <?php echo form_submit('submit', lang('edit_group_submit_btn'), 'class="btn btn-default"');?>
+        <?php echo form_submit('submit', lang('edit_group_submit_btn'), 'class="btn btn-primary"');?>
 	<?php echo form_close();?>
 </div>

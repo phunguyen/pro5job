@@ -41,6 +41,6 @@
             <?php echo lang('create_user_password_confirm_label', 'password_confirm');?>
             <?php echo form_input($password_confirm, '', 'class="form-control"');?>
         </div>
-        <?php echo form_submit('submit', lang('create_user_submit_btn'), 'class="btn btn-default"');?>
+        <?php echo form_submit('submit', lang('create_user_submit_btn'), 'class="btn btn-primary"');?>
     <?php echo form_close();?>
 </div>

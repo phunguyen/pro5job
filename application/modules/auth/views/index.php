@@ -6,15 +6,15 @@
 	<div class="alert alert-success" role="alert" id="infoMessage"><?php echo $message;?></div>
 	<?php } ?>
 
-	<table cellpadding=0 cellspacing=10 class="table table-striped">
-		<tr>
+	<table cellpadding=0 cellspacing=10 class="table table-condensed table-bordered">
+		<thead>
 			<th><?php echo lang('index_fname_th');?></th>
 			<th><?php echo lang('index_lname_th');?></th>
 			<th><?php echo lang('index_email_th');?></th>
 			<th><?php echo lang('index_groups_th');?></th>
 			<th><?php echo lang('index_status_th');?></th>
 			<th><?php echo lang('index_action_th');?></th>
-		</tr>
+		</thead>
 		<?php foreach ($users as $user):?>
 			<tr>
 	            <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>

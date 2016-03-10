@@ -53,12 +53,21 @@ class MX_Controller
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
 
+		/* permission */
+		$this->check_permmission($class);
+	}
+
+	public function __get($class) {
+		return CI::$APP->$class;
+	}
+
+	public function check_permmission($current_class) {
 		// check user permission
 		$this->load->library(array('ion_auth'));
 		$user_datea['current_user'] = $this->ion_auth->user()->row();
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in() && !in_array($current_class, array('Home', 'Aboutus')))
 		{
-			// redirect them to the login page
+			// redirect to home page
 			redirect('auth/login', 'refresh');
 		}
 		elseif ($this->ion_auth->is_admin())
@@ -90,9 +99,5 @@ class MX_Controller
 			$this->template->write_view('header', 'header');
         	$this->template->write_view('footer', 'footer');
         }
-	}
-
-	public function __get($class) {
-		return CI::$APP->$class;
 	}
 }
