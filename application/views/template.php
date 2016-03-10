@@ -30,18 +30,8 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/animate.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/page.css">
 
-	<!-- <script async="" src="<?php echo base_url();?>public/js/fbevents.js"></script> -->
-	<script src="<?php echo base_url();?>public/js/jquery-1.11.2.min.js"></script>
-	<script src="<?php echo base_url();?>public/js/bootstrap.js"></script>
-
-	<script src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 	<style type="text/css"></style>
 </head>
-<script>
-$(function () {
-	$('[data-toggle="popover"]').popover();
-})
-</script>
 <body>
 	<div id="fb-root"></div>
 	<?php echo $header ?>
@@ -50,6 +40,17 @@ $(function () {
 	</div>
 	<br><br>
 	<?php echo $footer; ?>
+
+	<!-- <script async="" src="<?php echo base_url();?>public/js/fbevents.js"></script> -->
+	<script src="<?php echo base_url();?>public/js/jquery-1.11.2.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/bootstrap.js"></script>
+	<script src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+	<script>
+		$(function () {
+			$('[data-toggle="popover"]').popover();
+		    $(".dropdown-toggle").dropdown();
+		});
+	</script>
 </body>
 
 </html>

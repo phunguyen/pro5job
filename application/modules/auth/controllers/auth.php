@@ -14,22 +14,42 @@ class Auth extends CI_Controller {
 
 		$this->lang->load('auth');
 
-		// layout template
+		// check user permission
+		$this->load->library(array('ion_auth'));
+		$user_datea['current_user'] = $this->ion_auth->user()->row();
 		if (!$this->ion_auth->logged_in())
 		{
-	        $this->template->write_view("header", "header");
-	        $this->template->write_view("footer", "footer");
+			$this->template->write_view('header', 'header');
+        	$this->template->write_view('footer', 'footer');
 		}
-		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		elseif ($this->ion_auth->is_admin())
 		{
-			$this->template->write_view("header", "header");
-        	$this->template->write_view("footer", "footer");
+			// admin user
+			$this->template->write_view('header', 'admin/header', $user_datea);
+        	$this->template->write_view('footer', 'admin/footer');
+		}
+		elseif ($this->ion_auth->in_group('editor'))
+		{
+			// editor user
+			$this->template->write_view('header', 'editor/header', $user_datea);
+        	$this->template->write_view('footer', 'editor/footer');
+		}
+		elseif ($this->ion_auth->in_group('job'))
+		{
+			// job user
+			$this->template->write_view('header', 'job/header', $user_datea);
+        	$this->template->write_view('footer', 'job/footer');
+		}
+		elseif ($this->ion_auth->in_group('profile'))
+		{
+			// profile user
+			$this->template->write_view('header', 'profile/header', $user_datea);
+        	$this->template->write_view('footer', 'profile/footer');
 		}
 		else
 		{
-			// admin user
-			$this->template->write_view("header", "admin/header");
-        	$this->template->write_view("footer", "admin/footer");
+			$this->template->write_view('header', 'header');
+        	$this->template->write_view('footer', 'footer');
         }
 	}
 
@@ -601,8 +621,6 @@ class Auth extends CI_Controller {
 					$data['password'] = $this->input->post('password');
 				}
 
-
-
 				// Only allow updating groups if user is admin
 				if ($this->ion_auth->is_admin())
 				{
@@ -620,7 +638,7 @@ class Auth extends CI_Controller {
 					}
 				}
 
-			// check to see if we are updating the user
+				// check to see if we are updating the user
 			   if($this->ion_auth->update($user->id, $data))
 			    {
 			    	// redirect them back to the admin page if admin, or to the base url if non admin

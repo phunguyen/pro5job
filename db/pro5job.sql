@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50539
-Source Host           : localhost:3306
+Source Host           : :3306
 Source Database       : pro5job
 
 Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2016-03-09 23:21:11
+Date: 2016-03-10 14:33:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,13 +65,15 @@ CREATE TABLE `groups` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groups
 -- ----------------------------
 INSERT INTO `groups` VALUES ('1', 'admin', 'Administrator');
-INSERT INTO `groups` VALUES ('2', 'members', 'General User');
+INSERT INTO `groups` VALUES ('2', 'editor', 'Editor');
+INSERT INTO `groups` VALUES ('3', 'job', 'Job');
+INSERT INTO `groups` VALUES ('4', 'profile', 'Profile');
 
 -- ----------------------------
 -- Table structure for login_attempts
@@ -112,14 +114,15 @@ CREATE TABLE `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457535729', '1', 'Admin', 'istrator', 'ADMIN', '1112223333');
-INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$naanZ2wwA//KZDIaP5D1peMBhputZXDbayBkUUFnMDe3mrkqKH.2G', null, 'phului@gmail.com', null, null, null, null, '1453985671', '1454516299', '1', 'Phu', 'Nguyen', 'Citigo', '0985819644');
-INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$BORkXZt1UOkfO.xeV7b0x.CFwWcy0/untWNcIclt1cnow3/7PHyp6', null, 'tgold@boruapps.com', null, null, null, null, '1457017959', null, '1', 'Travis', 'Gold', 'Boru', '');
+INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457594535', '1', 'User', 'Admin', 'ADMIN', '1112223333');
+INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$SsBpg.wXD3ASR00dIYehP.JU6du8ekOCTq7.kbZd1gKOYTPmGDPLe', null, 'editor@editor.com', null, null, null, null, '1453985671', '1457593366', '1', 'User', 'Editor', 'Citigo', '0985819644');
+INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$naYuAJIH42C.l.Pm45omh.r9VoKGoVN0xauHf4s1xvWZ85HLA.t/2', null, 'job@job.com', null, null, null, null, '1457017959', null, '1', 'User', 'Job', 'Boru', '111');
+INSERT INTO `users` VALUES ('4', '0.0.0.0', null, '$2y$08$4h1FhAvj2wKRaKBOzURV.em15IWg1MzIfOero07TdAGEqUI3BTq/u', null, 'profile@profile.com', null, null, null, null, '1457595123', '1457595144', '1', 'User', 'Profile', 'UP', '222');
 
 -- ----------------------------
 -- Table structure for users_groups
@@ -135,12 +138,12 @@ CREATE TABLE `users_groups` (
   KEY `fk_users_groups_groups1_idx` (`group_id`),
   CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users_groups
 -- ----------------------------
-INSERT INTO `users_groups` VALUES ('4', '1', '1');
-INSERT INTO `users_groups` VALUES ('5', '1', '2');
-INSERT INTO `users_groups` VALUES ('3', '2', '2');
-INSERT INTO `users_groups` VALUES ('6', '3', '2');
+INSERT INTO `users_groups` VALUES ('9', '1', '1');
+INSERT INTO `users_groups` VALUES ('10', '2', '2');
+INSERT INTO `users_groups` VALUES ('11', '3', '3');
+INSERT INTO `users_groups` VALUES ('12', '4', '4');

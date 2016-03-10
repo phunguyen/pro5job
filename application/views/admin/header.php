@@ -22,7 +22,16 @@ $baseUrl = base_url();
 					<li><a href="locjob.html"><span class="glyphicon glyphicon-filter"></span> Profiles</a></li>
 					<li><a href="thongke.html"><span class="glyphicon glyphicon-stats"></span> Jobs</a></li>
 					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-bullhorn"></span> Users</a></li>
-					<li><a href="taoprofile.html"><span class="glyphicon glyphicon-user"></span> admin@gmail.com</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-user"></span> <?php echo $current_user->email; ?><span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="<?php echo $baseUrl.'auth/edit_user/'.$current_user->user_id; ?>">Edit Info</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="<?php echo $baseUrl;?>auth/logout">Log Out</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
