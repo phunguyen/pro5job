@@ -3,7 +3,6 @@
 ?>
 <div class="heading">
 	<div class="container">
-		<br><br><br>
 		<div class="row col-md-10 col-md-offset-1">
 			<!-- <h2>Quản lý danh mục các ASK</h2> -->
 			<h2><?php echo lang('askcat_title'); ?></h2>

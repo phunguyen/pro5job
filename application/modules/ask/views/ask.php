@@ -1,6 +1,5 @@
 <div class="heading">
 	<div class="container">
-		<br><br><br>
 		<div class="row col-md-10 col-md-offset-1">
 			<h2><?php echo lang('lbl_manage_asks'); ?></h2>
 		</div>
