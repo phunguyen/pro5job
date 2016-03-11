@@ -36,7 +36,7 @@
 	<div class="header-top">
 	<div class="container">
 		
-		<span class="glyphicon glyphicon-envelope"></span> pro5job.com@gmail.com &nbsp; &nbsp; 
+		<span class="glyphicon glyphicon-envelope"></span> pro5job.com@gmail.com &nbsp;  
 		<span class="glyphicon glyphicon-phone"></span> 0905 673 613 
 		<div class="header-top-right">
 			<img src="<?php echo base_url();?>public/images/vi.png"> <a href="#">Tiếng Việt</a> | 
