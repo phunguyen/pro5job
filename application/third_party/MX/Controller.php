@@ -65,7 +65,7 @@ class MX_Controller
 		// check user permission
 		$this->load->library(array('ion_auth'));
 		$user_datea['current_user'] = $this->ion_auth->user()->row();
-		if (!$this->ion_auth->logged_in() && !in_array($current_class, array('Home', 'Aboutus')))
+		if (!$this->ion_auth->logged_in() && !in_array($current_class, array('Home', 'Aboutus', 'Report')))
 		{
 			// redirect to home page
 			redirect('auth/login', 'refresh');
