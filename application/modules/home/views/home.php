@@ -1,7 +1,6 @@
 <div class="heading">
 	<div class="container">
 		<div class="row col-md-8 col-md-offset-2">
-		<br><br>
 			<h1>Có 1.200 Công việc đang tuyển và<br>450.237 Hồ Sơ ứng viên</h1>
 		</div>
 	</div>

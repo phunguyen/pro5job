@@ -1,7 +1,7 @@
 <div class="heading">
 	<div class="container">
 		<div class="row col-md-6 col-md-offset-3">
-		<br><br>
+		
 			<h1>Giới thiệu về Pro5Job</h1>
 		</div>
 	</div>
