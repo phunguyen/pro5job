@@ -37,7 +37,7 @@
 			<hr>
 			<p style="font-size: 14px">
 				Thông tin liên hệ<br>
-				Email: <a href="mailto:pro5job@gmail.com">pro5job@gmail.com</a><br>
+				Email: <a href="mailto:pro5job@gmail.com">pro5job.com@gmail.com</a><br>
 				Điện thoại: <a href="tel:0905673613">0905 673 613</a>
 			</p>
 			<br>
