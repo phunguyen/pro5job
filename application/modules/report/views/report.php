@@ -1,7 +1,6 @@
 <div class="heading">
 	<div class="container">
 		<div class="row col-md-8 col-md-offset-2">
-		<br><br>
 			<h1>Thống kê các Thái độ, Kỹ Năng, Kiến thức xuất hiện nhiều nhất trong các Công việc đang tuyển</h1>
 		</div>
 	</div>
