@@ -17,10 +17,6 @@ $baseUrl = base_url();
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?php echo $baseUrl;?>askcat"><span class="glyphicon glyphicon-home"></span> Danh mục ASK</a></li>
-					<li><a href="<?php echo $baseUrl;?>ask"><span class="glyphicon glyphicon-bullhorn"></span> Quản lý ASK</a></li>
-					<li><a href="locjob.html"><span class="glyphicon glyphicon-filter"></span> Profiles</a></li>
-					<li><a href="thongke.html"><span class="glyphicon glyphicon-stats"></span> Jobs</a></li>
 					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-bullhorn"></span> Users</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
