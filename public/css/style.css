@@ -26,6 +26,8 @@ c:hover{color:#ff0000;}
 .modal-content{border-radius:0;}
 .alert{border-radius:0;}
 .no-border{border:none;}
+.header-top{background-color: #F7F7F7;	border-bottom: 1px solid #EDEDED; margin-left: auto;margin-right: auto;padding: 9px 0;}
+.header-top-right{float: right;margin-right: auto;}
 
 #main{min-height:300px;}
 footer{
