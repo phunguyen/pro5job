@@ -17,7 +17,6 @@
 	<meta name="og:title" content="Pro5Job.com | Tuyển dụng, Tìm việc, Đào tạo">
 	<meta name="og:description" content="Pro5Job là công cụ trực tuyến giúp Nhà tuyển dụng, Người tìm việc tìm được nhau một cách nhanh chóng.">
 	<meta name="og:site_name" content="Pro5Job">
-	<meta property="og:image" content="http://www.topcv.vn/images/cover.jpg">
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -34,6 +33,17 @@
 </head>
 <body>
 	<div id="fb-root"></div>
+	<div class="header-top">
+	<div class="container">
+		
+		<span class="glyphicon glyphicon-envelope"></span> pro5job.com@gmail.com &nbsp; &nbsp; 
+		<span class="glyphicon glyphicon-phone"></span> 0905 673 613 
+		<div class="header-top-right">
+			<img src="<?php echo base_url();?>public/images/vi.png"> <a href="#">Tiếng Việt</a> | 
+			<img src="<?php echo base_url();?>public/images/en.png"> <a href="#">English</a>
+		</div>
+	</div>
+	</div>
 	<?php echo $header ?>
 	<div id="main">
 		<?php echo $content; ?>
