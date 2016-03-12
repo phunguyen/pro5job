@@ -17,6 +17,8 @@
 	<meta name="og:title" content="Pro5Job.com | Tuyển dụng, Tìm việc, Đào tạo">
 	<meta name="og:description" content="Pro5Job là công cụ trực tuyến giúp Nhà tuyển dụng, Người tìm việc tìm được nhau một cách nhanh chóng.">
 	<meta name="og:site_name" content="Pro5Job">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -59,7 +61,6 @@
 	<!-- <script async="" src="<?php echo base_url();?>public/js/fbevents.js"></script> -->
 	<script src="<?php echo base_url();?>public/js/jquery-1.11.2.min.js"></script>
 	<script src="<?php echo base_url();?>public/js/bootstrap.js"></script>
-	<script src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 	<script>
 		$(function () {
 			$('[data-toggle="popover"]').popover();
