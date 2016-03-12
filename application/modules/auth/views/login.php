@@ -16,8 +16,12 @@
 							</label>
 						</p>
 						<p>
-							<div class="col-md-12">
-								<input type="submit" value="Đăng nhập" class="btn btn-danger btn-block">
+							<div class="col-md-6">
+								<input type="submit" value="Đăng nhập" class="btn btn-info btn-block">
+							</div>
+							<div class="col-md-2"></div>
+							<div class="col-md-6">
+								<input type="submit" value="Lấy lại Mật khẩu" class="btn btn-danger btn-block">
 							</div>
 						</p>
 					</form>
