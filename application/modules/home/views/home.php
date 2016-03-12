@@ -24,11 +24,11 @@
 							</label>
 						</p>
 						<p>
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<input type="submit" value="Đăng nhập" class="btn btn-info btn-block">
 							</div>
 							<div class="col-md-2"></div>
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<input type="submit" value="Lấy lại Mật khẩu" class="btn btn-danger btn-block">
 							</div>
 						</p>
@@ -53,11 +53,11 @@
 						</p>
 
 						<p>
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<input type="submit" value="Đăng ký là Nhà tuyển dụng" class="btn btn-primary btn-block">
 							</div>
 							<div class="col-md-2"></div>
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<input type="submit" value="Đăng ký là Người tìm việc" class="btn btn-success btn-block">
 							</div>
 						</p>
