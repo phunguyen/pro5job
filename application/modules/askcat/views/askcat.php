@@ -13,15 +13,23 @@
 <div class="container">
 	<div class="row">
 		<?php echo form_open("askcat/create");?>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<h5>Tên danh mục ASK</h5>
 			<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<h5>Mô tả</h5>
 			<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
+			<h5>ASK Cat Name</h5>
+			<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
+		</div>
+		<div class="col-md-2">
+			<h5>ASK Cat Description</h5>
+			<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
+		</div>
+		<div class="col-md-2">
 			<h5>Danh mục ASK cha</h5>
 			<select class="form-control" name="ask_cat_parent">
 				<option value="0"></option>
@@ -32,7 +40,7 @@
 				?>
 			</select>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<br>
 			<input type="submit" value="Thêm danh mục ASK" class="btn btn-primary btn-block">
 		</div>
@@ -55,16 +63,22 @@
 	<div class="row">
 		<table class="table table-condensed table-bordered">
 			<thead>
-				<th>#</th>
+				<th><input type="checkbox"></th>
+				<th>Tác vụ</th>
 				<th>Tên danh mục ASK</th>
 				<th>Mô tả danh mục ASK</th>
+				<th>ASK Cat Name</th>
+				<th>ASK Cat Description</th>
 				<th>Danh mục cha</th>
 				<th>Tổng số ASK</th>
 			</thead>
 			<?php
 				foreach($list_cats as $cat) {
 					echo '<tr>'
-						.'<td>'.$cat['ask_cat_id'].'</td>'
+						.'<td><input type="checkbox"></td>'
+						.'<td><a href="#">Sửa <a>|<a href="#"> Xóa<a></td>'
+						.'<td>'.$cat['ask_cat_name'].'</td>'
+						.'<td>'.$cat['description'].'</td>'
 						.'<td>'.$cat['ask_cat_name'].'</td>'
 						.'<td>'.$cat['description'].'</td>'
 						.'<td>'.$cat['parent_cat'].'</td>'

@@ -18,6 +18,14 @@
             <label><?php echo lang('lbl_description'); ?></label>
             <input class="form-control" name="ask_description" value="<?php echo $ask['description']; ?>">
 	    </div>
+		<div class="form-group">
+            <label>ASK Name</label>
+            <input class="form-control" name="ask_name" value="<?php echo $ask['ask_name']; ?>">
+	    </div>
+	    <div class="form-group">
+            <label>ASK Description</label>
+            <input class="form-control" name="ask_description" value="<?php echo $ask['description']; ?>">
+	    </div>
 	    <div class="form-group">
             <label><?php echo lang('lbl_parent_cats'); ?></label>
             <select class="form-control" name="cat_parent">

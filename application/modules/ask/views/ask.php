@@ -9,15 +9,23 @@
 <div class="container">
 	<div class="row">
 		<?php echo form_open("ask/create");?>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<h5><?php echo lang('lbl_ask_name'); ?></h5>
 			<input type="text" class="form-control" name="ask_name" placeholder="<?php echo lang('lbl_ask_name'); ?>">
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<h5><?php echo lang('lbl_description'); ?></h5>
 			<textarea class="form-control" rows="2" name="ask_description" placeholder="<?php echo lang('lbl_description'); ?>"></textarea>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
+			<h5><?php echo lang('lbl_ask_name'); ?></h5>
+			<input type="text" class="form-control" name="ask_name" placeholder="<?php echo lang('lbl_ask_name'); ?>">
+		</div>
+		<div class="col-md-2">
+			<h5><?php echo lang('lbl_description'); ?></h5>
+			<textarea class="form-control" rows="2" name="ask_description" placeholder="<?php echo lang('lbl_description'); ?>"></textarea>
+		</div>
+		<div class="col-md-2">
 			<h5><?php echo lang('lbl_parent_cats'); ?></h5>
 			<select class="form-control" name="cat_parent">
 				<?php
@@ -27,7 +35,7 @@
 				?>
 			</select>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<br>
 			<input type="submit" value="<?php echo lang('lbl_add_ask'); ?>" class="btn btn-primary btn-block">
 		</div>
@@ -39,6 +47,7 @@
 			<select name="action" class="form-control" id="bulk-action-selector-top">
 				<option value="-1" selected="selected"><?php echo lang('lbl_action'); ?></option>
 				<option value="delete"><?php echo lang('lbl_delete'); ?></option>
+				<option value="delete">Duyệt ASK</option>
 			</select>
 		</div>
 		<div class="col-md-2">
@@ -50,22 +59,26 @@
 	<div class="row">
 		<table class="table table-condensed table-bordered">
 			<thead>
-				<th>#</th>
+				<th><input type="checkbox"></th>
+				<th>Action</th>
 				<th><?php echo lang('lbl_ask_name'); ?></th>
 				<th><?php echo lang('lbl_description'); ?></th>
+				<th>ASK Name</th>
+				<th>ASK Description</th>
 				<th><?php echo lang('lbl_parent_cats'); ?></th>
-				<th>Xác nhận ASK</th>
-				<th>Action</th>
+				
 			</thead>
 			<?php
 				foreach($list_asks as $ask) {
 					echo '<tr>'
-						.'<td>'.$ask['ask_id'].'</td>'
+						.'<td><input type="checkbox"></td>'
+						.'<td>'.anchor('ask/edit/'.$ask['ask_id'], 'Edit').' | '.anchor('ask/delete/'.$ask['ask_id'], 'Delete').' | <a href="#">Duyệt<a></td>'
+						.'<td>'.$ask['ask_name'].'</td>'
+						.'<td>'.$ask['description'].'</td>'
 						.'<td>'.$ask['ask_name'].'</td>'
 						.'<td>'.$ask['description'].'</td>'
 						.'<td>'.$ask['ask_cat_name'].'</td>'
-						.'<td>'.$ask['ask_id'].'</td>'
-						.'<td>'.anchor('ask/edit/'.$ask['ask_id'], 'Edit').' | '.anchor('ask/delete/'.$ask['ask_id'], 'Delete').'</td>'
+					
 					.'</tr>';
 				}
 			?>
