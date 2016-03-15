@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row col-md-10 col-md-offset-1">
 			<!-- <h2>Quản lý danh mục các ASK</h2> -->
-			<h2><?php echo lang('askcat_title'); ?></h2>
+			<h2><?php echo lang('lbl_manage_askcats'); ?></h2>
 		</div>
 	</div>
 </div>
@@ -14,23 +14,23 @@
 	<div class="row">
 		<?php echo form_open("askcat/create");?>
 		<div class="col-md-2">
-			<h5>Tên danh mục ASK</h5>
-			<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
+			<h5><?php echo lang('lbl_askcat_name'); ?></h5>
+			<input type="text" class="form-control" name="ask_cat_name" placeholder="<?php echo lang('lbl_askcat_name'); ?>">
 		</div>
 		<div class="col-md-2">
-			<h5>Mô tả</h5>
-			<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
+			<h5><?php echo lang('lbl_description'); ?></h5>
+			<textarea class="form-control" rows="2" name="description" placeholder="<?php echo lang('lbl_description'); ?>"></textarea>
 		</div>
 		<div class="col-md-2">
-			<h5>ASK Cat Name</h5>
-			<input type="text" class="form-control" name="ask_cat_name" placeholder="Tên danh mục ASK">
+			<h5><?php echo lang('lbl_askcat_name_en'); ?></h5>
+			<input type="text" class="form-control" name="ask_cat_name_en" placeholder="<?php echo lang('lbl_askcat_name_en'); ?>">
 		</div>
 		<div class="col-md-2">
-			<h5>ASK Cat Description</h5>
-			<textarea class="form-control" rows="2" name="description" placeholder="Mô tả danh mục ASK"></textarea>
+			<h5><?php echo lang('lbl_description_en'); ?></h5>
+			<textarea class="form-control" rows="2" name="description_en" placeholder="<?php echo lang('lbl_description_en'); ?>"></textarea>
 		</div>
 		<div class="col-md-2">
-			<h5>Danh mục ASK cha</h5>
+			<h5><?php echo lang('lbl_parent_cats'); ?></h5>
 			<select class="form-control" name="ask_cat_parent">
 				<option value="0"></option>
 				<?php
@@ -42,7 +42,7 @@
 		</div>
 		<div class="col-md-2">
 			<br>
-			<input type="submit" value="Thêm danh mục ASK" class="btn btn-primary btn-block">
+			<input type="submit" value="<?php echo lang('lbl_add_askcat'); ?>" class="btn btn-primary btn-block">
 		</div>
 		</form>
 	</div>
@@ -50,7 +50,7 @@
 	<div class="row">
 		<div class="col-md-2">
 			<select name="action" class="form-control" id="bulk-action-selector-top">
-				<option value="-1" selected="selected">Tác vụ</option>
+				<option value="-1" selected="selected"><?php echo lang('lbl_action'); ?></option>
 				<option value="delete">Xóa</option>
 			</select>
 		</div>
@@ -64,23 +64,23 @@
 		<table class="table table-condensed table-bordered">
 			<thead>
 				<th><input type="checkbox"></th>
-				<th>Tác vụ</th>
-				<th>Tên danh mục ASK</th>
-				<th>Mô tả danh mục ASK</th>
-				<th>ASK Cat Name</th>
-				<th>ASK Cat Description</th>
-				<th>Danh mục cha</th>
-				<th>Tổng số ASK</th>
+				<th><?php echo lang('lbl_action'); ?></th>
+				<th><?php echo lang('lbl_askcat_name'); ?></th>
+				<th><?php echo lang('lbl_description'); ?></th>
+				<th><?php echo lang('lbl_askcat_name_en'); ?></th>
+				<th><?php echo lang('lbl_description_en'); ?></th>
+				<th><?php echo lang('lbl_parent_cats'); ?></th>
+				<th><?php echo lang('lbl_count_asks'); ?></th>
 			</thead>
 			<?php
 				foreach($list_cats as $cat) {
 					echo '<tr>'
 						.'<td><input type="checkbox"></td>'
-						.'<td><a href="#">Sửa <a>|<a href="#"> Xóa<a></td>'
+						.'<td>'.anchor('askcat/edit/'.$cat['ask_cat_id'], lang('lbl_edit')).' | <a href="javascript: void(0);" onclick="confirmDelete(\''.base_url().'askcat/delete/'.$cat['ask_cat_id'].'\');">'.lang('lbl_delete').'</a> | '.anchor('askcat/approve/'.$cat['ask_cat_id'], lang('lbl_approve')).'</td>'
 						.'<td>'.$cat['ask_cat_name'].'</td>'
 						.'<td>'.$cat['description'].'</td>'
-						.'<td>'.$cat['ask_cat_name'].'</td>'
-						.'<td>'.$cat['description'].'</td>'
+						.'<td>'.$cat['ask_cat_name_en'].'</td>'
+						.'<td>'.$cat['description_en'].'</td>'
 						.'<td>'.$cat['parent_cat'].'</td>'
 						.'<td>'.$cat['count_asks'].'</td>'
 					.'</tr>';

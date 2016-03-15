@@ -225,7 +225,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'thaianhnguyen';
+$config['encryption_key'] = 'pro5job';
 
 /*
 |--------------------------------------------------------------------------

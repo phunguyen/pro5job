@@ -15,7 +15,7 @@ class Ask extends MX_Controller {
 		$data['list_asks'] = $this->mask->list_asks();
 
 		// view
-		$this->template->write("title", $this->lang->line("ask_manage_asks"));
+		$this->template->write("title", $this->lang->line("lbl_manage_asks"));
         $this->template->write_view("content", "ask", $data);
         $this->template->render();
 	}
@@ -23,6 +23,8 @@ class Ask extends MX_Controller {
 	public function create() {
 		$ask_data['ask_name'] = $this->input->post('ask_name');
 		$ask_data['description'] = $this->input->post('ask_description');
+		$ask_data['ask_name_en'] = $this->input->post('ask_name_en');
+		$ask_data['description_en'] = $this->input->post('ask_description_en');
 		$ask_data['ask_cat_id'] = $this->input->post('cat_parent');
 		$this->mask->create($ask_data);
 		redirect('ask', 'refresh');
@@ -38,7 +40,9 @@ class Ask extends MX_Controller {
 		if (isset($_POST) && !empty($_POST)) {
 			$ask_data['ask_name'] = $this->input->post('ask_name');
 			$ask_data['description'] = $this->input->post('ask_description');
-			$ask_data['ask_cat_id'] = $this->input->post('cat_parent');
+			$ask_data['ask_name_en'] = $this->input->post('ask_name_en');
+			$ask_data['description_en'] = $this->input->post('ask_description_en');
+			$ask_data['ask_cat_id'] = $this->input->post('cat_parent');echo '<pre>';print_r($ask_data);echo '</pre>';exit;
 			$this->mask->update($id, $ask_data);
 			redirect('ask','refresh');
 		}
@@ -49,7 +53,7 @@ class Ask extends MX_Controller {
 		$data['message'] = '';
 
 		// view
-		$this->template->write("title", $this->lang->line("ask_manage_asks"));
+		$this->template->write("title", $this->lang->line("lbl_edit_ask"));
         $this->template->write_view("content", "edit_ask", $data);
         $this->template->render();
 	}

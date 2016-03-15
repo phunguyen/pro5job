@@ -16,15 +16,15 @@
 	    </div>
 	    <div class="form-group">
             <label><?php echo lang('lbl_description'); ?></label>
-            <input class="form-control" name="ask_description" value="<?php echo $ask['description']; ?>">
+            <textarea class="form-control" name="ask_description"><?php echo $ask['description']; ?></textarea>
 	    </div>
 		<div class="form-group">
-            <label>ASK Name</label>
-            <input class="form-control" name="ask_name" value="<?php echo $ask['ask_name']; ?>">
+            <label><?php echo lang('lbl_ask_name_en'); ?></label>
+            <input class="form-control" name="ask_name_en" value="<?php echo $ask['ask_name_en']; ?>">
 	    </div>
 	    <div class="form-group">
-            <label>ASK Description</label>
-            <input class="form-control" name="ask_description" value="<?php echo $ask['description']; ?>">
+            <label><?php echo lang('lbl_description_en'); ?></label>
+            <textarea class="form-control" name="ask_description_en"><?php echo $ask['description_en']; ?></textarea>
 	    </div>
 	    <div class="form-group">
             <label><?php echo lang('lbl_parent_cats'); ?></label>
@@ -38,6 +38,6 @@
             	?>
             </select>
 	    </div>
-        <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary"');?>
+        <?php echo form_submit('submit', lang('lbl_edit_ask'), 'class="btn btn-primary"');?>
 	<?php echo form_close();?>
 </div>
