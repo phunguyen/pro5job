@@ -42,7 +42,7 @@ class Ask extends MX_Controller {
 			$ask_data['description'] = $this->input->post('ask_description');
 			$ask_data['ask_name_en'] = $this->input->post('ask_name_en');
 			$ask_data['description_en'] = $this->input->post('ask_description_en');
-			$ask_data['ask_cat_id'] = $this->input->post('cat_parent');echo '<pre>';print_r($ask_data);echo '</pre>';exit;
+			$ask_data['ask_cat_id'] = $this->input->post('cat_parent');
 			$this->mask->update($id, $ask_data);
 			redirect('ask','refresh');
 		}

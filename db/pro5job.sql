@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : localhost
 Source Server Version : 50539
-Source Host           : localhost:3306
+Source Host           : :3306
 Source Database       : pro5job
 
 Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2016-03-16 00:07:35
+Date: 2016-03-16 10:09:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,9 +21,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `asks`;
 CREATE TABLE `asks` (
   `ask_id` int(20) NOT NULL AUTO_INCREMENT,
-  `ask_name` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `ask_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ask_cat_id` int(10) DEFAULT NULL,
-  `description` text CHARACTER SET latin1,
+  `description` text COLLATE utf8_unicode_ci,
   `ask_name_en` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `description_en` text CHARACTER SET latin1,
   PRIMARY KEY (`ask_id`),
@@ -36,7 +36,7 @@ CREATE TABLE `asks` (
 -- ----------------------------
 INSERT INTO `asks` VALUES ('1', 'ASK 1', '1', 'Ask 1 desc 1111', 'ASK EN 1', 'ask en en');
 INSERT INTO `asks` VALUES ('3', 'ASK 2', '2', '22222', 'ee22', 'eeeeee 2222222222');
-INSERT INTO `asks` VALUES ('4', 'Tên ti?ng vi?t', '3', 'Mô t?', 'Tên ti?ng anh', 'Mô t? ti?ng anh');
+INSERT INTO `asks` VALUES ('4', 'T�n ti?ng vi?t', '3', 'M� t?', 'Eng name', 'Eng desc');
 
 -- ----------------------------
 -- Table structure for asks_cats
@@ -44,13 +44,13 @@ INSERT INTO `asks` VALUES ('4', 'Tên ti?ng vi?t', '3', 'Mô t?', 'Tên ti?ng an
 DROP TABLE IF EXISTS `asks_cats`;
 CREATE TABLE `asks_cats` (
   `ask_cat_id` int(10) NOT NULL AUTO_INCREMENT,
-  `ask_cat_name` varchar(255) NOT NULL,
-  `description` text,
+  `ask_cat_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `ask_cat_parent` int(10) DEFAULT '0',
   `ask_cat_name_en` varchar(255) DEFAULT NULL,
   `description_en` text,
   PRIMARY KEY (`ask_cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of asks_cats
@@ -58,6 +58,7 @@ CREATE TABLE `asks_cats` (
 INSERT INTO `asks_cats` VALUES ('1', 'CAT 1', 'CAT 1 desc', '0', 'ce1', 'ddddddddd eeeeeeeee 11111111');
 INSERT INTO `asks_cats` VALUES ('2', 'CAT 2', 'Cat 2 desc', '0', null, null);
 INSERT INTO `asks_cats` VALUES ('3', 'CAT 11', 'Cat 11 desc', '1', null, null);
+INSERT INTO `asks_cats` VALUES ('5', 'Danh m?c vi?t', 'M� t? vi?t', '0', 'cat EN', 'desc EN');
 
 -- ----------------------------
 -- Table structure for groups
@@ -123,9 +124,9 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457706193', '1', 'User', 'Admin', 'ADMIN', '1112223333');
-INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', null, 'editor@editor.com', null, null, null, null, '1453985671', '1458060632', '1', 'User', 'Editor', 'Citigo', '0985819644');
-INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', null, 'job@job.com', null, null, null, null, '1457017959', '1457706237', '1', 'User', 'Job', 'Boru', '111');
-INSERT INTO `users` VALUES ('4', '0.0.0.0', null, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', null, 'profile@profile.com', null, null, null, null, '1457595123', '1457706261', '1', 'User', 'Profile', 'UP', '222');
+INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', null, 'editor@editor.com', null, null, null, null, '1453985671', '1458096763', '1', 'User', 'Editor', 'Citigo', '0985819644');
+INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', null, 'job@job.com', null, null, null, null, '1457017959', '1458095359', '1', 'User', 'Job', 'Boru', '111');
+INSERT INTO `users` VALUES ('4', '0.0.0.0', null, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', null, 'profile@profile.com', null, null, null, null, '1457595123', '1458095533', '1', 'User', 'Profile', 'UP', '222');
 
 -- ----------------------------
 -- Table structure for users_groups
