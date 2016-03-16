@@ -1,5 +1,5 @@
 function confirmDelete(url) {
-	if(confirm("Do you want to delete this?")) {
+	if(confirm("Are you sure you want to delete?")) {
 		window.location = url;
 	}
 

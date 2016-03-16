@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2016-03-16 10:09:26
+Date: 2016-03-16 14:02:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,9 @@ CREATE TABLE `asks` (
   `description` text COLLATE utf8_unicode_ci,
   `ask_name_en` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `description_en` text CHARACTER SET latin1,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `ask_status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ask_id`),
   KEY `ask_cat_id` (`ask_cat_id`),
   CONSTRAINT `asks_ibfk_1` FOREIGN KEY (`ask_cat_id`) REFERENCES `asks_cats` (`ask_cat_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -34,9 +37,9 @@ CREATE TABLE `asks` (
 -- ----------------------------
 -- Records of asks
 -- ----------------------------
-INSERT INTO `asks` VALUES ('1', 'ASK 1', '1', 'Ask 1 desc 1111', 'ASK EN 1', 'ask en en');
-INSERT INTO `asks` VALUES ('3', 'ASK 2', '2', '22222', 'ee22', 'eeeeee 2222222222');
-INSERT INTO `asks` VALUES ('4', 'T�n ti?ng vi?t', '3', 'M� t?', 'Eng name', 'Eng desc');
+INSERT INTO `asks` VALUES ('1', 'ASK 1', '1', 'Ask 1 desc 1111', 'ASK EN 1', 'ask en en', null, null, null);
+INSERT INTO `asks` VALUES ('3', 'ASK 2', '2', '22222', 'ee22', 'eeeeee 2222222222', null, null, null);
+INSERT INTO `asks` VALUES ('4', 'T�n ti?ng vi?t', '3', 'M� t?', 'Eng name', 'Eng desc', null, null, null);
 
 -- ----------------------------
 -- Table structure for asks_cats
@@ -49,16 +52,18 @@ CREATE TABLE `asks_cats` (
   `ask_cat_parent` int(10) DEFAULT '0',
   `ask_cat_name_en` varchar(255) DEFAULT NULL,
   `description_en` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`ask_cat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of asks_cats
 -- ----------------------------
-INSERT INTO `asks_cats` VALUES ('1', 'CAT 1', 'CAT 1 desc', '0', 'ce1', 'ddddddddd eeeeeeeee 11111111');
-INSERT INTO `asks_cats` VALUES ('2', 'CAT 2', 'Cat 2 desc', '0', null, null);
-INSERT INTO `asks_cats` VALUES ('3', 'CAT 11', 'Cat 11 desc', '1', null, null);
-INSERT INTO `asks_cats` VALUES ('5', 'Danh m?c vi?t', 'M� t? vi?t', '0', 'cat EN', 'desc EN');
+INSERT INTO `asks_cats` VALUES ('1', 'CAT 1', 'CAT 1 desc', '0', 'ce1', 'ddddddddd eeeeeeeee 11111111', null, null);
+INSERT INTO `asks_cats` VALUES ('2', 'CAT 2', 'Cat 2 desc', '0', null, null, null, null);
+INSERT INTO `asks_cats` VALUES ('3', 'CAT 11', 'Cat 11 desc', '1', null, null, null, null);
+INSERT INTO `asks_cats` VALUES ('5', 'Danh m?c vi?t', 'M� t? vi?t', '0', 'cat EN', 'desc EN', null, null);
 
 -- ----------------------------
 -- Table structure for groups
@@ -124,7 +129,7 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq', '', 'admin@admin.com', '', null, null, null, '1268889823', '1457706193', '1', 'User', 'Admin', 'ADMIN', '1112223333');
-INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', null, 'editor@editor.com', null, null, null, null, '1453985671', '1458096763', '1', 'User', 'Editor', 'Citigo', '0985819644');
+INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', null, 'editor@editor.com', null, null, null, null, '1453985671', '1458103949', '1', 'User', 'Editor', 'Citigo', '0985819644');
 INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', null, 'job@job.com', null, null, null, null, '1457017959', '1458095359', '1', 'User', 'Job', 'Boru', '111');
 INSERT INTO `users` VALUES ('4', '0.0.0.0', null, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', null, 'profile@profile.com', null, null, null, null, '1457595123', '1458095533', '1', 'User', 'Profile', 'UP', '222');
 
