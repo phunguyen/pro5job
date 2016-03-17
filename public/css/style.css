@@ -34,7 +34,15 @@ footer{
 background-color:#3a5795;
 
 color:#fff;padding:30px 0px;}
-
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-top: 1px solid #eee;}
+h1, .h1, h2, .h2, h3, .h3 {
+margin-top: 10px;
+margin-bottom: 10px;
+}
 footer a{color:#fff;}
 footer a:hover,footer a:focus,footer a:active{color:#fff;}
 footer ul{list-style:none;padding:0;margin:0;}
