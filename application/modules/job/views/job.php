@@ -17,6 +17,7 @@
 						<input type="submit" value="Tạo mới Job" class="btn btn-success">
 				</div>
 			</div>
+			<hr>
 			<div class="row">
 			<div class="col">
 				<h2>Tạo/Sửa Job</h2>
