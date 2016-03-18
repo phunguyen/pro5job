@@ -11,4 +11,16 @@ class Filter extends MX_Controller{
         $this->template->write_view("content", "filter");
         $this->template->render();
 	}
+
+	public function jobs() {
+		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+        $this->template->write_view("content", "filter_jobs");
+        $this->template->render();
+	}
+
+	public function profiles() {
+		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+        $this->template->write_view("content", "filter_profiles");
+        $this->template->render();
+	}
 }

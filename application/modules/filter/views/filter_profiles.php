@@ -3,13 +3,13 @@
 			<hr>
 			<div class="row">
 				<div class="col-md-4">
-				<h4>Chọn Profile để lọc</h4>
+				<h4>Chọn Job để lọc</h4>
 				</div>
 				<div class="col-md-8">
-				<select class="form-control" id="profiles">
-											<option>Nguyễn Văn A</option>
-											<option>Trần Văn B</option>
-											<option>Lê Thị C</option>
+				<select class="form-control" id="jobs">
+											<option>Trường phòng nhân sự</option>
+											<option>Giám đốc kỹ thuật</option>
+											<option>Nhân viên kinh doanh</option>
 										</select>
 				</div>
 
@@ -17,11 +17,10 @@
 			<hr>
 			<div class="row">
 				<div class="col">
-				<h2>Lọc ra Jobs phù hợp với Profile đã chọn</h2>
+				<h2>Lọc ra Profiles phù hợp với Job đã chọn</h2>
 				<hr>
-				<h4>Chọn các tiêu chí trong Bộ lọc Công việc ở Cột trái. Các công việc phù hợp hiển thị ở Cột giữa</h4>
-				<h4>Xem chi tiết từng Công việc ở Cột giữa. Chọn Công việc phù hợp nhất. Hiển thị ở Cột phải</h4>
-				<h4>Nếu bạn chọn, Hệ thống sẽ tự động gửi thư thông báo về Hồ sơ của bạn tới những Nhà tuyển dụng có Công việc mà bạn đã chọn ở Cột phải</h4>
+				<h4>Chọn các tiêu chí trong Bộ lọc Profile ở Cột 1. Các công việc phù hợp hiển thị ở Cột 2</h4>
+				<h4>Xem chi tiết từng Công việc ở Cột 2. Chọn Công việc phù hợp nhất. Hiển thị ở Cột 3</h4>
 				</div>
 			</div>
 
@@ -33,7 +32,7 @@
 			<div class="col-md-2">
 
 					<div >
-						<h3 style="text-align: left">Lọc Công việc</h3>
+						<h3 style="text-align: left">Lọc Profiles</h3>
 						<hr>
 						<h5 style="text-align: left">Độ phù hợp</h5>
 
@@ -43,7 +42,7 @@
 									60%
 								</div>
 							</div>
-							<h5>Địa điểm làm việc</h5>
+							<h5>Địa điểm muốn làm việc</h5>
 									<select class="form-control" id="jobkinhnghiem">
 										<option>Tỉnh/Thành</option>
 										<option>Hà Nội</option>
@@ -63,13 +62,14 @@
 									</select>
 
 
-										<h5>Yêu cầu giới tính</h5>
+										<h5>Giới tính</h5>
 										<select class="form-control" id="jobkinhnghiem">
 
-											<option>Nam hoặc Ko yêu cầu</option>
-											<option>Nữ hoặc Ko yêu cầu</option>
+											<option>Không yêu cầu</option>
+											<option>Nam</option>
+											<option>Nữ</option>
 										</select>
-										<h5>Bằng cấp tối thiểu</h5>
+										<h5>Bằng cấp cao nhất</h5>
 										<select class="form-control" id="jobkinhnghiem">
 											<option>Không yêu cầu</option>
 											<option>Tốt nghiệp THCS</option>
@@ -80,7 +80,7 @@
 											<option>Thạc sỹ</option>
 											<option>Tiến sỹ</option>
 										</select>
-										<h5>Mức lương dự kiến</h5>
+										<h5>Mức lương yêu cầu</h5>
 										<select class="form-control" id="jobkinhnghiem">
 											<option>Thỏa thuận</option>
 											<option>1-3 triệu</option>
@@ -99,18 +99,18 @@
 			<div class="col-md-4">
 				<div>
 						<h3>
-							Công việc phù hợp đã lọc
+							Profiles phù hợp đã lọc
 						</h3>
 						<hr>
 							<ul>
 								<li>
 									<h5>
-										<a title="Phó giám đốc kỹ thuật" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật</a> | <c>Chọn</c>
+										<a title="Nguyễn Văn A" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A</a> | <c>Chọn</c>
 									</h5>
 								</li>
 								<li>
 									<h5>
-										<a title="Trưởng phòng kinh doanh" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Trưởng phòng kinh doanh">Trưởng phòng kinh doanh</a> | <c>Chọn</c>
+										<a title="Trần Văn B" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Trần Văn B">Trần Văn B</a> | <c>Chọn</c>
 									</h5>
 								</li>
 							</ul>
@@ -122,7 +122,7 @@
 			<div class="col-md-3">
 
 				<div>
-						<h3 style="text-align: left">Công việc đã chọn</h3>
+						<h3 style="text-align: left">Profiles đã chọn</h3>
 						<hr>
 
 							<ul>
@@ -130,8 +130,8 @@
 								<li>
 									<h5>
 									<c>X</c> |
-										<a title="Phó giám đốc kỹ thuật" data-toggle="popover"
-										data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật </a>
+										<a title="Nguyễn Văn A" data-toggle="popover"
+										data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A </a>
 									</h5>
 
 								</li>
@@ -146,7 +146,7 @@
 			<div class="col-md-3">
 			<h3 style="text-align: left">Tác vụ</h3>
 						<hr>
-						<h5>Gửi thông báo về các Công việc mới phù hợp Bộ lọc này vào email của tôi</h5>
+						<h5>Gửi thông báo về các Ứng viên mới phù hợp Bộ lọc này vào email của tôi</h5>
 					<form>
 						<div class="radio">
 							<label>
@@ -177,7 +177,7 @@
 						<input type="submit" value="Lưu bộ lọc" class="btn btn-primary btn-block">
 						<br>
 				<form>
-					<input type="submit" value="Gửi thư Nhà tuyển dụng" class="btn btn-primary btn-block">
+					<input type="submit" value="Gửi thư Các ứng viên" class="btn btn-primary btn-block">
 				</form>
 			</div>
 		</div>
