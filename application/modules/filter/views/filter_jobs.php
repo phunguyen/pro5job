@@ -19,9 +19,8 @@
 				<div class="col">
 				<h2>Lọc ra Jobs phù hợp với Profile đã chọn</h2>
 				<hr>
-				<h4>Chọn các tiêu chí trong Bộ lọc Công việc ở Cột trái. Các công việc phù hợp hiển thị ở Cột giữa</h4>
-				<h4>Xem chi tiết từng Công việc ở Cột giữa. Chọn Công việc phù hợp nhất. Hiển thị ở Cột phải</h4>
-				<h4>Nếu bạn chọn, Hệ thống sẽ tự động gửi thư thông báo về Hồ sơ của bạn tới những Nhà tuyển dụng có Công việc mà bạn đã chọn ở Cột phải</h4>
+				<h4>Chọn các tiêu chí trong Bộ lọc Công việc ở Cột 1. Các công việc phù hợp hiển thị ở Cột 2</h4>
+				<h4>Xem chi tiết từng Công việc ở Cột 2, chọn Công việc phù hợp nhất. Hiển thị ở Cột 3</h4>
 				</div>
 			</div>
 
