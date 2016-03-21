@@ -1,3 +1,22 @@
+<?php
+function buildAskCats($ask_cats) {
+	foreach ($ask_cats as $cat) {
+		if($cat['ask_cat_parent'] == 0) {
+			echo '<div><h4 style="text-align: left">'.$cat['ask_cat_name'].'</h4>';
+	        buildChildCats($ask_cats, $cat['ask_cat_id'], 0);
+	        echo '</div>';
+	    }
+	}
+}
+function buildChildCats($ask_cats, $cat_id, $level) {
+	foreach ($ask_cats as $cat) {
+		if($cat['ask_cat_parent'] == $cat_id) {
+			echo '<h5 style="text-align: left;padding-left: '.(10 * $level).'px;">'.$cat['ask_cat_name'].'</h5>';
+	        buildChildCats($ask_cats, $cat['ask_cat_id'], $level + 1);
+	    }
+	}
+}
+?>
 <div class="heading">
 		<div class="container">
 			<hr>
@@ -7,10 +26,10 @@
 				</div>
 				<div class="col-md-6">
 				<select class="form-control" id="profiles">
-											<option>Nguyễn Văn A</option>
-											<option>Trần Văn B</option>
-											<option>Lê Thị C</option>
-										</select>
+					<option>Nguyễn Văn A</option>
+					<option>Trần Văn B</option>
+					<option>Lê Thị C</option>
+				</select>
 				</div>
 				<div class="col-md-3">
 				<input type="submit" value="Sửa Profile" class="btn btn-primary"> &nbsp;&nbsp;
@@ -33,45 +52,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2">
-
-					<div >
-						<h3 style="text-align: left">Danh mục ASK</h3>
-						<hr>
-						<h4 style="text-align: left">Thái độ</h4>
-
-							<h5 style="text-align: left">Với Công việc</h5>
-							<h5 style="text-align: left">Với Đồng nghiệp</h5>
-							<h5 style="text-align: left">Với Đối tác</h5>
-							<h5 style="text-align: left">Với Cộng đồng</h5>
-					</div>
-					<div >
-						<h4 style="text-align: left">Kỹ năng</h4>
-
-							<h5 class="active">Kỹ năng mềm</h5>
-								<ul class="nav">
-									<li>Thuyết trình</li>
-									<li>Giao tiếp</li>
-									<li>Đàm phán</li>
-								</ul>
-							<h5 style="text-align: left">Kỹ năng nghề</h5>
-								<ul class="nav">
-									<li>Lập trình</li>
-									<li>Dạy học</li>
-									<li>Thiết kế</li>
-								</ul>
-							<h5 style="text-align: left">Bán hàng</h5>
-							<h5 style="text-align: left">Nông nghiệp</h5>
-					</div>
-					<div>
-						<h4 style="text-align: left">Kiến thức</h4>
-
-							<h5 style="text-align: left">Phổ thông</h5>
-							<h5 style="text-align: left">Khoa học cơ bản</h5>
-							<h5 style="text-align: left">Nghề nghiệp</h5>
-							<h5 style="text-align: left">Xã hội</h5>
-					</div>
-
-
+				<div >
+					<h3 style="text-align: left">Danh mục ASK</h3>
+					<hr>
+				</div>
+				<?php buildAskCats($ask_cats); ?>
 			</div>
 			<div class="col-md-3">
 				<div>
@@ -84,11 +69,11 @@
 								<h5>
 
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span></font> |
 									<a title="Kỹ năng lập trình Web PHP" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng lập trình PHP">Lập trình PHP</a>
 								</h5>
 								</li>
@@ -96,34 +81,34 @@
 								<h5>
 
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												<a title="Kỹ năng Cắt PSD thành HTML" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng Cắt PSD thành HTML">Cắt PSD thành HTML</a>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span></font> |
+									<a title="Kỹ năng Cắt PSD thành HTML" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng Cắt PSD thành HTML">Cắt PSD thành HTML</a>
 								</h5>
 								</li>
 								<li>
 								<h5>
 
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> | Thiết kế Web
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span></font> | Thiết kế Web
 								</h5>
 								</li>
 								<li>
 								<h5>
 
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> | Lập trình ASP.net
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span>
+									<span class="glyphicon glyphicon-star-empty"></span></font> | Lập trình ASP.net
 								</h5>
 								</li>
 							</ul>
@@ -147,25 +132,25 @@
 									<h5>
 									<a>X</a> |
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Nhiệt tình
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span></font> |
+										Nhiệt tình
 									</h5>
 									</li>
 									<li>
 									<h5>
 									<a>X</a> |
 									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												<a title="Chăm chỉ" data-toggle="popover"
-												data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Thái độ chăm chỉ">Chăm chỉ</a>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span></font> |
+										<a title="Chăm chỉ" data-toggle="popover"
+										data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Thái độ chăm chỉ">Chăm chỉ</a>
 									</h5>
 									</li>
 								</ul>

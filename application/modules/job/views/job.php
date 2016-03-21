@@ -25,15 +25,17 @@ function buildChildCats($ask_cats, $cat_id, $level) {
                 <h4>Danh sách Jobs</h4>
             </div>
             <div class="col-md-6">
-                <select class="form-control" id="profiles">
-                    <option>Giám đốc điều hành</option>
-                    <option>Nhân viên kinh doanh</option>
-                    <option>Trưởng phòng nhân sự</option>
+                <select class="form-control" id="list_jobs">
+                    <?php
+                        foreach($list_jobs as $job) {
+                            echo '<option value="'.$job['job_id'].'">'.$job['job_name'].'</option>';
+                        }
+                    ?>
                 </select>
             </div>
             <div class="col-md-3">
-                <input type="submit" value="Sửa Job" class="btn btn-primary"> &nbsp;&nbsp;
-                <input type="submit" value="Tạo mới Job" class="btn btn-success">
+                <input type="button" value="Sửa Job" class="btn btn-primary"> &nbsp;&nbsp;
+                <input type="button" value="Tạo mới Job" class="btn btn-success">
             </div>
         </div>
         <hr>
@@ -308,19 +310,16 @@ function buildChildCats($ask_cats, $cat_id, $level) {
             </div>
         </div>
         <div class="col-md-3">
-            <h3>Thông tin Job
-            </h3>
-            <hr>
-            <form>
-                <button type="button" class="btn btn-primary">Lưu Job</button>
+            <?php echo form_open("job/create");?>
+                <h3>Thông tin Job
+                </h3>
+                <hr>
+                <button type="submit" class="btn btn-primary">Lưu Job</button>
                 <button type="button" class="btn btn-success">Xem Job</button>
-            </form>
-            <br>
-            <form>
-                <input type="text" class="form-control" id="jobname" placeholder="Tên Công việc">
+                <br><br>
+                <input type="text" class="form-control" name="job_name" placeholder="Tên Công việc">
                 <br>
-                <textarea class="form-control" rows="4" id="jobcontact" placeholder="Thông tin liên lạc Bộ phận tuyển dụng"></textarea>
-            <form>
+                <textarea class="form-control" rows="4" name="job_contact" placeholder="Thông tin liên lạc Bộ phận tuyển dụng"></textarea>
                 <br>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
@@ -332,72 +331,71 @@ function buildChildCats($ask_cats, $cat_id, $level) {
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-            <form>
-            <h4>Địa điểm làm việc</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>Chọn Tỉnh/Thành</option>
-            <option>Hà Nội</option>
-            <option>Tp HCM</option>
-            <option>Đà Nẵng</option>
-            <option>An Giang</option>
-            <option>Bắc Ninh</option>
-            </select>
-            <h4>Số năm kinh nghiệm</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>Không yêu cầu</option>
-            <option>1 năm</option>
-            <option>2 năm</option>
-            <option>3 năm</option>
-            <option>4 năm</option>
-            <option>5 năm trở lên</option>
-            </select>
-            <h4>Yêu cầu giới tính</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>Không yêu cầu</option>
-            <option>Nam</option>
-            <option>Nữ</option>
-            </select>
-            <h4>Bằng cấp tối thiểu</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>Không yêu cầu</option>
-            <option>Tốt nghiệp THCS</option>
-            <option>Tốt nghiệp THPT</option>
-            <option>Trung cấp</option>
-            <option>Cao đẳng</option>
-            <option>Đại học</option>
-            <option>Thạc sỹ</option>
-            <option>Tiến sỹ</option>
-            </select>
-            <h4>Mức lương dự kiến</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>Thỏa thuận</option>
-            <option>1-3 triệu</option>
-            <option>3-5 triệu</option>
-            <option>5-8 triệu</option>
-            <option>8-12 triệu</option>
-            <option>12-17 triệu</option>
-            <option>17-25 triệu</option>
-            <option>Trên 25 triệu</option>
-            </select>
-            <h4>Thời gian đăng tin tuyển dụng</h4>
-            <select class="form-control" id="jobkinhnghiem">
-            <option>1 tuần</option>
-            <option>2 tuần</option>
-            <option>1 tháng</option>
-            <option>2 tháng</option>
-            <option>3 tháng</option>
-            <option>Thường xuyên tuyển</option>
-            </select>
-            <br>
-            <textarea class="form-control" rows="7" id="jobmota" placeholder="Mô tả thêm về Công việc"></textarea>
-            <br>
-            <textarea class="form-control" rows="7" id="jobphucloi" placeholder="Quyền lợi được hưởng"></textarea>
-            <br>
-            <textarea class="form-control" rows="7" id="jobkhac" placeholder="Thông tin bổ sung khác"></textarea>
+                            <h4>Địa điểm làm việc</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Chọn Tỉnh/Thành</option>
+                                <option>Hà Nội</option>
+                                <option>Tp HCM</option>
+                                <option>Đà Nẵng</option>
+                                <option>An Giang</option>
+                                <option>Bắc Ninh</option>
+                            </select>
+                            <h4>Số năm kinh nghiệm</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Không yêu cầu</option>
+                                <option>1 năm</option>
+                                <option>2 năm</option>
+                                <option>3 năm</option>
+                                <option>4 năm</option>
+                                <option>5 năm trở lên</option>
+                            </select>
+                            <h4>Yêu cầu giới tính</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Không yêu cầu</option>
+                                <option>Nam</option>
+                                <option>Nữ</option>
+                            </select>
+                            <h4>Bằng cấp tối thiểu</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Không yêu cầu</option>
+                                <option>Tốt nghiệp THCS</option>
+                                <option>Tốt nghiệp THPT</option>
+                                <option>Trung cấp</option>
+                                <option>Cao đẳng</option>
+                                <option>Đại học</option>
+                                <option>Thạc sỹ</option>
+                                <option>Tiến sỹ</option>
+                            </select>
+                            <h4>Mức lương dự kiến</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Thỏa thuận</option>
+                                <option>1-3 triệu</option>
+                                <option>3-5 triệu</option>
+                                <option>5-8 triệu</option>
+                                <option>8-12 triệu</option>
+                                <option>12-17 triệu</option>
+                                <option>17-25 triệu</option>
+                                <option>Trên 25 triệu</option>
+                            </select>
+                            <h4>Thời gian đăng tin tuyển dụng</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>1 tuần</option>
+                                <option>2 tuần</option>
+                                <option>1 tháng</option>
+                                <option>2 tháng</option>
+                                <option>3 tháng</option>
+                                <option>Thường xuyên tuyển</option>
+                            </select>
+                            <br>
+                            <textarea class="form-control" rows="7" id="jobmota" placeholder="Mô tả thêm về Công việc"></textarea>
+                            <br>
+                            <textarea class="form-control" rows="7" id="jobphucloi" placeholder="Quyền lợi được hưởng"></textarea>
+                            <br>
+                            <textarea class="form-control" rows="7" id="jobkhac" placeholder="Thông tin bổ sung khác"></textarea>
+                        </div>
+                    </div>
+                </div>
             </form>
-            </div>
-            </div>
-            </div>
         </div>
     </div>
 </div>
