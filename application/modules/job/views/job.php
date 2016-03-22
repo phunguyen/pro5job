@@ -28,13 +28,15 @@ function buildChildCats($ask_cats, $cat_id, $level) {
                 <select class="form-control" id="list_jobs">
                     <?php
                         foreach($list_jobs as $job) {
-                            echo '<option value="'.$job['job_id'].'">'.$job['job_name'].'</option>';
+                            echo '<option value="'.$job['job_id'].'"';
+                            if(isset($job_data['job_id']) && $job_data['job_id'] == $job['job_id']) echo ' selected="true"';
+                            echo '>'.$job['job_name'].'</option>';
                         }
                     ?>
                 </select>
             </div>
             <div class="col-md-3">
-                <input type="button" value="Sửa Job" class="btn btn-primary"> &nbsp;&nbsp;
+                <input type="button" value="Sửa Job" class="btn btn-primary" onclick="job_editJob();"> &nbsp;&nbsp;
                 <input type="button" value="Tạo mới Job" class="btn btn-success">
             </div>
         </div>
@@ -310,16 +312,22 @@ function buildChildCats($ask_cats, $cat_id, $level) {
             </div>
         </div>
         <div class="col-md-3">
-            <?php echo form_open("job/create");?>
+            <?php
+                if(isset($job_data['job_id']) && $job_data['job_id'] != '') {
+                    echo form_open("job/edit/".$job_data['job_id']);
+                } else {
+                    echo form_open("job/create");
+                }
+            ?>
                 <h3>Thông tin Job
                 </h3>
                 <hr>
                 <button type="submit" class="btn btn-primary">Lưu Job</button>
                 <button type="button" class="btn btn-success">Xem Job</button>
                 <br><br>
-                <input type="text" class="form-control" name="job_name" placeholder="Tên Công việc">
+                <input type="text" class="form-control" name="job_name" placeholder="Tên Công việc" value="<?php echo(isset($job_data['job_name']) ? $job_data['job_name'] : ''); ?>">
                 <br>
-                <textarea class="form-control" rows="4" name="job_contact" placeholder="Thông tin liên lạc Bộ phận tuyển dụng"></textarea>
+                <textarea class="form-control" rows="4" name="job_contact" placeholder="Thông tin liên lạc Bộ phận tuyển dụng"><?php echo(isset($job_data['job_contact']) ? $job_data['job_contact'] : ''); ?></textarea>
                 <br>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">

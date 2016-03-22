@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2016-03-21 17:01:39
+Date: 2016-03-22 15:07:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,7 +119,7 @@ CREATE TABLE `jobs` (
 -- ----------------------------
 -- Records of jobs
 -- ----------------------------
-INSERT INTO `jobs` VALUES ('1', 'aaa', 'bbb', '3');
+INSERT INTO `jobs` VALUES ('1', 'Team Leader', 'Team Leader', '3');
 INSERT INTO `jobs` VALUES ('2', 'Gi�m ??c ?i?u h�nh', 'Gi�m ??c ?i?u h�nh', '3');
 INSERT INTO `jobs` VALUES ('3', 'Nh�n vi�n kinh doanh', 'Nh�n vi�n kinh doanh', '3');
 INSERT INTO `jobs` VALUES ('4', 'Tr??ng ph�ng nh�n s?', 'Tr??ng ph�ng nh�n s?', '3');
@@ -170,7 +170,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', '127.0.0.1', 'administrator', '$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq', '', 'admin@admin.com', '', null, null, null, '1268889823', '1458117749', '1', 'User', 'Admin', 'ADMIN', '1112223333');
 INSERT INTO `users` VALUES ('2', '0.0.0.0', null, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', null, 'editor@editor.com', null, null, null, null, '1453985671', '1458287426', '1', 'User', 'Editor', 'Citigo', '0985819644');
-INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', null, 'job@job.com', null, null, null, null, '1457017959', '1458552596', '1', 'User', 'Job', 'Boru', '111');
+INSERT INTO `users` VALUES ('3', '0.0.0.0', null, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', null, 'job@job.com', null, null, null, null, '1457017959', '1458630929', '1', 'User', 'Job', 'Boru', '111');
 INSERT INTO `users` VALUES ('4', '0.0.0.0', null, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', null, 'profile@profile.com', null, null, null, null, '1457595123', '1458552145', '1', 'User', 'Profile', 'UP', '222');
 
 -- ----------------------------

@@ -31,6 +31,9 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/page.css">
 
 	<style type="text/css"></style>
+	<script type="text/javascript">
+		var site_url = '<?php echo base_url();?>';
+	</script>
 </head>
 <body>
 	<div id="fb-root"></div>
