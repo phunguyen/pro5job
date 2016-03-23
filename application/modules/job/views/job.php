@@ -21,7 +21,7 @@ function buildAsksInCats($ask_cats, $list_asks) {
         echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
         foreach ($list_asks as $ask) {
             if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
-                echo '<li>
+                echo '<li class="job-ask">
                             <h5>
                                 <c>Bắt buộc</c>
                                 |
@@ -51,6 +51,23 @@ function getCatNavigation($ask_cats, $cat_id) {
         }
     }
     return rtrim($cat_nav, ' | ');
+}
+function buildSelectedCats($ask_cats) {
+	foreach ($ask_cats as $cat) {
+		if($cat['ask_cat_parent'] == 0) {
+			echo '<div><h4 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="0">'.$cat['ask_cat_name'].'</h4>';
+	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], 0);
+	        echo '</div>';
+	    }
+	}
+}
+function buildSelectedChildCats($ask_cats, $cat_id, $level) {
+	foreach ($ask_cats as $cat) {
+		if($cat['ask_cat_parent'] == $cat_id) {
+			echo '<h5 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;padding-left: '.(10 * $level).'px;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="'.($level + 1).'">'.$cat['ask_cat_name'].'</h5><ul class="nav"><li><ul></ul></li></ul>';
+	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], $level + 1);
+	    }
+	}
 }
 ?>
 <div class="heading">
@@ -135,36 +152,41 @@ function getCatNavigation($ask_cats, $cat_id) {
         <div class="col-md-4">
             <h3>ASK đã chọn</h3>
             <hr>
+            <?php buildSelectedCats($ask_cats); ?>
+            <!--
             <div>
                 <h4 style="text-align: left">Thái độ</h4>
                 <h5 style="text-align: left">Với Công việc</h5>
                 <ul class="nav">
-                <ul>
-                    <li>
-                        <h5>
-                            <a>X</a> |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> |
-                            Nhiệt tình
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>
-                            <a>X</a> |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> |
-                            <a title="Chăm chỉ" data-toggle="popover"
-                                data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Thái độ chăm chỉ">Chăm chỉ</a>
-                        </h5>
-                    </li>
+                <li>
+	                <ul>
+	                    <li>
+	                        <h5>
+	                            <a>X</a> |
+	                            <font color="#ffd700">
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+	                            Nhiệt tình
+	                        </h5>
+	                    </li>
+	                    <li>
+	                        <h5>
+	                            <a>X</a> |
+	                            <font color="#ffd700">
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+	                            <a title="Chăm chỉ" data-toggle="popover"
+	                                data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Thái độ chăm chỉ">Chăm chỉ</a>
+	                        </h5>
+	                    </li>
+	                </ul>
+                </li>
                 </ul>
             </div>
             <div>
@@ -296,6 +318,7 @@ function getCatNavigation($ask_cats, $cat_id) {
             <div>
                 <h4 style="text-align: left">Kiến thức</h4>
             </div>
+            -->
         </div>
         <div class="col-md-3">
             <?php

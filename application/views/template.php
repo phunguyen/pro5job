@@ -67,8 +67,8 @@
 	<script src="<?php echo base_url();?>public/js/common.js"></script>
 	<script>
 		$(function () {
-			$('[data-toggle="popover"]').popover();console.log($('[data-toggle="popover"]'));
-		    $(".dropdown-toggle").dropdown();
+			// $('[data-toggle="popover"]').popover();
+		    // $(".dropdown-toggle").dropdown();
 		});
 	</script>
 </body>
