@@ -12,6 +12,12 @@ class Mjob extends CI_Model{
 		return $res->result_array();
 	}
 
+	public function get_asks() {
+		$query = "SELECT * FROM asks";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
+
 	public function list_jobs($user_id) {
 		$query = "SELECT * FROM {$this->_table} WHERE user_id = $user_id";
 		$res = $this->db->query($query);

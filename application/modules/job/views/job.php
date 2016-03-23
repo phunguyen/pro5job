@@ -2,7 +2,7 @@
 function buildAskCats($ask_cats) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == 0) {
-			echo '<div><h4 style="text-align: left">'.$cat['ask_cat_name'].'</h4>';
+			echo '<div><h4 style="text-align: left" class="job-cat" data-cat-id="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</h4>';
 	        buildChildCats($ask_cats, $cat['ask_cat_id'], 0);
 	        echo '</div>';
 	    }
@@ -11,10 +11,46 @@ function buildAskCats($ask_cats) {
 function buildChildCats($ask_cats, $cat_id, $level) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == $cat_id) {
-			echo '<h5 style="text-align: left;padding-left: '.(10 * $level).'px;">'.$cat['ask_cat_name'].'</h5>';
+			echo '<h5 style="text-align: left;padding-left: '.(10 * $level).'px;" class="job-cat" data-cat-id="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</h5>';
 	        buildChildCats($ask_cats, $cat['ask_cat_id'], $level + 1);
 	    }
 	}
+}
+function buildAsksInCats($ask_cats, $list_asks) {
+    foreach ($ask_cats as $cat) {
+        echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
+        foreach ($list_asks as $ask) {
+            if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
+                echo '<li>
+                            <h5>
+                                <c>Bắt buộc</c>
+                                |
+                                <font color="#ffd700">
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span></font> |
+                                <a title="'.$ask['ask_name'].'" data-toggle="popover" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
+                            </h5>
+                        </li>';
+            }
+        }
+        echo '</ul></div>';
+    }
+}
+function getCatNavigation($ask_cats, $cat_id) {
+    $cat_nav = '';
+    while($cat_id > 0) {
+        foreach ($ask_cats as $cat) {
+            if($cat['ask_cat_id'] == $cat_id) {
+                $cat_nav = $cat['ask_cat_name'].' | '.$cat_nav;
+                $cat_id = $cat['ask_cat_parent'];
+                break;
+            }
+        }
+    }
+    return rtrim($cat_nav, ' | ');
 }
 ?>
 <div class="heading">
@@ -60,7 +96,7 @@ function buildChildCats($ask_cats, $cat_id, $level) {
                 <h3>Danh mục ASK</h3>
                 <hr>
             </div>
-        	<?php buildAskCats($ask_cats); ?>
+            <?php buildAskCats($ask_cats); ?>
         </div>
         <div class="col-md-3">
             <div>
@@ -68,60 +104,10 @@ function buildChildCats($ask_cats, $cat_id, $level) {
                     ASK trong Danh mục
                 </h3>
                 <hr>
-                <h4>
-                    Kỹ năng nghề | Lập trình
-                </h4>
-                <hr>
-                <ul>
-                    <li>
-                        <h5>
-                            <c>Bắt buộc</c>
-                            |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> |
-                            <a title="Kỹ năng lập trình Web PHP" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng lập trình PHP">Lập trình PHP</a>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>
-                            Bắt buộc |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> |
-                            <a title="Kỹ năng Cắt PSD thành HTML" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng Cắt PSD thành HTML">Cắt PSD thành HTML</a>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>
-                            <c>Bắt buộc</c>
-                            |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> | Thiết kế Web
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>
-                            Bắt buộc |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> | Lập trình ASP.net
-                        </h5>
-                    </li>
-                </ul>
+
+                <!-- list asks in selected cat -->
+                <?php buildAsksInCats($ask_cats, $list_asks); ?>
+
                 <hr>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">

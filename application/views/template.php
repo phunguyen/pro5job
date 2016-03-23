@@ -31,6 +31,9 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/page.css">
 
 	<style type="text/css"></style>
+
+	<script src="<?php echo base_url();?>public/js/jquery-1.11.2.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		var site_url = '<?php echo base_url();?>';
 	</script>
@@ -61,12 +64,10 @@
 	<?php echo $footer; ?>
 
 	<!-- <script async="" src="<?php echo base_url();?>public/js/fbevents.js"></script> -->
-	<script src="<?php echo base_url();?>public/js/jquery-1.11.2.min.js"></script>
-	<script src="<?php echo base_url();?>public/js/bootstrap.js"></script>
 	<script src="<?php echo base_url();?>public/js/common.js"></script>
 	<script>
 		$(function () {
-			$('[data-toggle="popover"]').popover();
+			$('[data-toggle="popover"]').popover();console.log($('[data-toggle="popover"]'));
 		    $(".dropdown-toggle").dropdown();
 		});
 	</script>

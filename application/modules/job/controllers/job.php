@@ -10,6 +10,7 @@ class Job extends MX_Controller{
 
 	public function index() {
 		$data['ask_cats'] = $this->mjob->get_ask_cats();
+		$data['list_asks'] = $this->mjob->get_asks();
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);

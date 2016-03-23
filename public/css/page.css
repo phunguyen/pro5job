@@ -208,6 +208,14 @@ img.screenshot {
 }
 
 .container {
-	
 	width: auto;
 }
+
+/* job start */
+.job-cat {
+    cursor: pointer;
+}
+.job-cat:hover {
+    color: #428bca;
+}
+/* job end */
