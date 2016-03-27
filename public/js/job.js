@@ -1,6 +1,7 @@
 $(function() {
 	job_registerSelectCat();
 	job_registerSelectAsk();
+	job_registerRemoveSelectedAsk();
 });
 
 function job_registerSelectCat() {
@@ -18,11 +19,13 @@ function job_registerSelectCat() {
 
 function job_registerSelectAsk() {
 	$('.job-ask').on('click', function() {
+		var ask_id = $(this).closest('.job-ask').data('ask-id');
+		$('#selected_ask_' + ask_id).show();
+
 		var cat_id = $(this).closest('.job-cat-asks').data('cat-id');
 		var selected_cat = $('#selected_cat_' + cat_id);
 		var current_level = selected_cat.data('level');
 		current_level--;
-		selected_cat.next().find('li ul').append('<li>' + $(this).html() + '</li>');
 		selected_cat.show();
 		selected_cat.prevAll('.job-selected-cat').each(function() {
 			if($(this).data('level') == current_level) {
@@ -30,6 +33,13 @@ function job_registerSelectAsk() {
 				current_level--;
 			}
 		});
+	});
+}
+
+function job_registerRemoveSelectedAsk() {
+	$('.remove-selected-ask').on('click', function() {
+		var ask_id = $(this).closest('.selected-ask').data('ask-id');
+		$(this).closest('.selected-ask').hide();
 	});
 }
 

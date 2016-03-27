@@ -17,23 +17,29 @@ function buildChildCats($ask_cats, $cat_id, $level) {
 	}
 }
 function buildAsksInCats($ask_cats, $list_asks) {
+	$displayCat = false;
     foreach ($ask_cats as $cat) {
-        echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
+    	if(!$displayCat && $cat['ask_cat_parent'] > 0) {
+        	echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
+        	$displayCat = true;
+        } else {
+        	echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
+        }
         foreach ($list_asks as $ask) {
             if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
-                echo '<li class="job-ask">
-                            <h5>
-                                <c>Bắt buộc</c>
-                                |
-                                <font color="#ffd700">
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span></font> |
-                                <a title="'.$ask['ask_name'].'" data-toggle="popover" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
-                            </h5>
-                        </li>';
+                echo '<li class="job-ask" data-ask-id="'.$ask['ask_id'].'">
+                        <h5>
+                            <c>Bắt buộc</c>
+                            |
+                            <font color="#ffd700">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+                            <a title="'.$ask['ask_name'].'" data-toggle="popover" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
+                        </h5>
+                    </li>';
             }
         }
         echo '</ul></div>';
@@ -52,20 +58,37 @@ function getCatNavigation($ask_cats, $cat_id) {
     }
     return rtrim($cat_nav, ' | ');
 }
-function buildSelectedCats($ask_cats) {
+function buildSelectedCats($ask_cats, $list_asks) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == 0) {
 			echo '<div><h4 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="0">'.$cat['ask_cat_name'].'</h4>';
-	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], 0);
+	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], 0, $list_asks);
 	        echo '</div>';
 	    }
 	}
 }
-function buildSelectedChildCats($ask_cats, $cat_id, $level) {
+function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == $cat_id) {
-			echo '<h5 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;padding-left: '.(10 * $level).'px;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="'.($level + 1).'">'.$cat['ask_cat_name'].'</h5><ul class="nav"><li><ul></ul></li></ul>';
-	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], $level + 1);
+			echo '<h5 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;padding-left: '.(10 * $level).'px;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="'.($level + 1).'">'.$cat['ask_cat_name'].'</h5><ul class="nav"><li><ul>';
+			foreach ($list_asks as $ask) {
+	            if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
+	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
+	                        <h5>
+	                            <a class="remove-selected-ask">X</a> |
+	                            <font color="#ffd700">
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+	                            '.$ask['ask_name'].'
+	                        </h5>
+	                    </li>';
+	            }
+	        }
+			echo '</ul></li></ul>';
+	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], $level + 1, $list_asks);
 	    }
 	}
 }
@@ -152,7 +175,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level) {
         <div class="col-md-4">
             <h3>ASK đã chọn</h3>
             <hr>
-            <?php buildSelectedCats($ask_cats); ?>
+            <?php buildSelectedCats($ask_cats, $list_asks); ?>
             <!--
             <div>
                 <h4 style="text-align: left">Thái độ</h4>
