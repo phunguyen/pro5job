@@ -159,10 +159,11 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form>
+                            <?php echo form_open("job/add_ask/".$job_data['job_id']); ?>
+                                <input type="hidden" id="selected_cat_id" name="selected_cat_id" value="">
                                 <input type="text" class="form-control" id="askname" placeholder="Tên ASK">
                                 <br>
-                                <textarea class="form-control" rows="7"  id="askmota"placeholder="Mô tả ASK"></textarea>
+                                <textarea class="form-control" rows="7" id="askmota"placeholder="Mô tả ASK"></textarea>
                                 <br>
                                 <button type="button" class="btn btn-primary">Thêm ASK</button>
                             </form>

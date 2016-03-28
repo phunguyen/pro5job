@@ -65,4 +65,15 @@ class Job extends MX_Controller{
         $this->template->write_view("content", "job", $data);
         $this->template->render();
 	}
+
+	public function add_ask() {
+		echo '<pre>';print_r($_POST);exit;
+		$data['job_name'] = $this->input->post('job_name');
+		$data['job_contact'] = $this->input->post('job_contact');
+		$data['user_id'] = $this->ion_auth->get_user_id();
+		if($data['job_name'] != '') {
+			$this->mjob->create($data);
+		}
+		redirect('job', 'refresh');
+	}
 }
