@@ -218,4 +218,9 @@ img.screenshot {
 .job-cat:hover {
     color: #428bca;
 }
+.star-rating1 {
+  line-height:32px;
+  font-size:1.25em;
+  cursor: pointer;
+}
 /* job end */

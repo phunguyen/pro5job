@@ -89,6 +89,16 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 ?>
 <div class="heading">
     <div class="container">
+        <font color="#ffd700">
+        <div class="star-rating"> 
+            <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
+            <span class="glyphicon glyphicon-star-empty" data-rating="2"></span>
+            <span class="glyphicon glyphicon-star-empty" data-rating="3"></span>
+            <span class="glyphicon glyphicon-star-empty" data-rating="4"></span>
+            <span class="glyphicon glyphicon-star-empty" data-rating="5"></span>
+            <input type="hidden" name="whatever" class="rating-value" value="3">
+        </div>
+        </font>
         <hr>
         <div class="row">
             <div class="col-md-3">

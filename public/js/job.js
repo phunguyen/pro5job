@@ -5,6 +5,25 @@ function job_registerEvents() {
 
 	//
 	$('.job-cat:first').trigger('click');
+
+	//
+	var $star_rating = $('.star-rating .glyphicon');
+
+var SetRatingStar = function() {
+  return $star_rating.each(function() {
+    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+    } else {
+      return $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+    }
+  });
+};
+
+$star_rating.on('click', function() {
+  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  return SetRatingStar();
+});
+SetRatingStar();
 }
 
 function job_registerSelectCat() {
