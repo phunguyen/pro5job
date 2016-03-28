@@ -21,12 +21,12 @@ class Ask extends MX_Controller {
 	}
 
 	public function create() {
-		$ask_data['ask_name'] = $this->input->post('ask_name');
-		$ask_data['description'] = $this->input->post('ask_description');
-		$ask_data['ask_name_en'] = $this->input->post('ask_name_en');
-		$ask_data['description_en'] = $this->input->post('ask_description_en');
-		$ask_data['ask_cat_id'] = $this->input->post('cat_parent');
-		$this->mask->create($ask_data);
+		$data['ask_name'] = $this->input->post('ask_name');
+		$data['description'] = $this->input->post('ask_description');
+		$data['ask_name_en'] = $this->input->post('ask_name_en');
+		$data['description_en'] = $this->input->post('ask_description_en');
+		$data['ask_cat_id'] = $this->input->post('cat_parent');
+		$this->mask->create($data);
 		redirect('ask', 'refresh');
 	}
 
@@ -66,5 +66,14 @@ class Ask extends MX_Controller {
 
 		$this->mask->delete($id);
 		redirect('ask','refresh');
+	}
+
+	public function job_add_ask($params) {
+		$data['ask_name'] = $params['ask_name'];
+		$data['description'] = $params['ask_desc'];
+		$ask_data['ask_name_en'] = '';
+		$ask_data['description_en'] = '';
+		$data['ask_cat_id'] = $params['selected_cat_id'];
+		$this->mask->create($data);
 	}
 }

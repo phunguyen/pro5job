@@ -2,7 +2,7 @@
 function buildAskCats($ask_cats) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == 0) {
-			echo '<div><h4 style="text-align: left" class="job-cat" data-cat-id="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</h4>';
+			echo '<div><h4 style="text-align: left" class="job-cat-parent" data-cat-id="'.$cat['ask_cat_id'].'">'.$cat['ask_cat_name'].'</h4>';
 	        buildChildCats($ask_cats, $cat['ask_cat_id'], 0);
 	        echo '</div>';
 	    }
@@ -17,14 +17,8 @@ function buildChildCats($ask_cats, $cat_id, $level) {
 	}
 }
 function buildAsksInCats($ask_cats, $list_asks) {
-	$displayCat = false;
     foreach ($ask_cats as $cat) {
-    	if(!$displayCat && $cat['ask_cat_parent'] > 0) {
-        	echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
-        	$displayCat = true;
-        } else {
-        	echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
-        }
+    	echo '<div class="job-cat-asks" data-cat-id="'.$cat['ask_cat_id'].'" style="display: none;"><h4>'.getCatNavigation($ask_cats, $cat['ask_cat_id']).'</h4><hr><ul>';
         foreach ($list_asks as $ask) {
             if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
                 echo '<li class="job-ask" data-ask-id="'.$ask['ask_id'].'" id="ask_'.$ask['ask_id'].'">
@@ -159,13 +153,13 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <?php echo form_open("job/add_ask/".$job_data['job_id']); ?>
+                            <?php echo form_open("job/add_ask"); ?>
                                 <input type="hidden" id="selected_cat_id" name="selected_cat_id" value="">
-                                <input type="text" class="form-control" id="askname" placeholder="Tên ASK">
+                                <input type="text" class="form-control" name="ask_name" placeholder="Tên ASK">
                                 <br>
-                                <textarea class="form-control" rows="7" id="askmota"placeholder="Mô tả ASK"></textarea>
+                                <textarea class="form-control" rows="7" name="ask_desc" placeholder="Mô tả ASK"></textarea>
                                 <br>
-                                <button type="button" class="btn btn-primary">Thêm ASK</button>
+                                <button type="submit" class="btn btn-primary">Thêm ASK</button>
                             </form>
                         </div>
                     </div>
@@ -282,6 +276,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 $(function() {
     job_registerEvents();
     <?php
+    	if(isset($linked_asks))
         foreach($linked_asks as $ask_id) {
             echo '$("#ask_'.$ask_id.'").trigger("click");';
         }
