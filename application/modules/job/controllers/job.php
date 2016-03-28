@@ -35,10 +35,18 @@ class Job extends MX_Controller{
 
 		// save
 		if (isset($_POST) && !empty($_POST)) {
+			// save job
 			$data['job_name'] = $this->input->post('job_name');
 			$data['job_contact'] = $this->input->post('job_contact');
 			$data['user_id'] = $this->ion_auth->get_user_id();
 			$this->mjob->update($id, $data);
+
+			// link ask
+			$selected_asks = $this->input->post('selected_asks');
+			$selected_asks = explode(';', $selected_asks);
+			$this->mjob->link_job_ask($id, $selected_asks);
+
+			// redirect
 			redirect('job', 'refresh');
 		}
 
@@ -47,6 +55,12 @@ class Job extends MX_Controller{
 		$data['list_asks'] = $this->mjob->get_asks();
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
 		$data['job_data'] = $this->mjob->read($id);
+		$linked_asks = $this->mjob->get_linked_asks($id);
+		$a_linked_asks = array();
+		foreach($linked_asks as $val) {
+			$a_linked_asks[] = $val['ask_id'];
+		}
+		$data['linked_asks'] = $a_linked_asks;
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);
         $this->template->render();
