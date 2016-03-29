@@ -140,6 +140,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 <h3>Danh mục ASK</h3>
                 <hr>
             </div>
+			
             <?php buildAskCats($ask_cats); ?>
         </div>
         <div class="col-md-3">
@@ -148,7 +149,10 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                     ASK trong Danh mục
                 </h3>
                 <hr>
-
+				Click vào 1 trong 5 ngôi sao để chọn ASK<br>
+				<strong>1 sao:</strong> chỉ biết; <strong>2 sao:</strong> làm được; <strong>3 sao:</strong> thành thạo; 
+				<strong>4 sao:</strong> dạy lại; <strong>5 sao:</strong> sáng tạo
+				<hr>
                 <!-- list asks in selected cat -->
                 <?php buildAsksInCats($ask_cats, $list_asks); ?>
 
