@@ -25,12 +25,13 @@ function buildAsksInCats($ask_cats, $list_asks) {
                         <h5>
                             <c>Bắt buộc</c>
                             |
-                            <font color="#ffd700">
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+                            <font color="#ffd700" class="star-rating">
+                            <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
+                            <span class="glyphicon glyphicon-star-empty" data-rating="2"></span>
+                            <span class="glyphicon glyphicon-star-empty" data-rating="3"></span>
+                            <span class="glyphicon glyphicon-star-empty" data-rating="4"></span>
+                            <span class="glyphicon glyphicon-star-empty" data-rating="5"></span>
+                            </font> |
                             <a title="'.$ask['ask_name'].'" data-toggle="popover" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
                         </h5>
                     </li>';
@@ -71,11 +72,15 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	                        <h5>
 	                            <a class="remove-selected-ask">X</a> | <font color="#ff0000">Bắt buộc</font> |
 	                            <font color="#ffd700">
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star-empty"></span>
-	                            <span class="glyphicon glyphicon-star-empty"></span></font> |
+	                            <span class="star-rating">
+                                    <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
+                                    <span class="glyphicon glyphicon-star-empty" data-rating="2"></span>
+                                    <span class="glyphicon glyphicon-star-empty" data-rating="3"></span>
+                                    <span class="glyphicon glyphicon-star-empty" data-rating="4"></span>
+                                    <span class="glyphicon glyphicon-star-empty" data-rating="5"></span>
+                                    <input type="hidden" name="whatever" class="rating-value" value="3">
+                                </span>
+                                </font> |
 	                            '.$ask['ask_name'].'
 	                        </h5>
 	                    </li>';
@@ -89,16 +94,6 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 ?>
 <div class="heading">
     <div class="container">
-        <font color="#ffd700">
-        <div class="star-rating"> 
-            <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
-            <span class="glyphicon glyphicon-star-empty" data-rating="2"></span>
-            <span class="glyphicon glyphicon-star-empty" data-rating="3"></span>
-            <span class="glyphicon glyphicon-star-empty" data-rating="4"></span>
-            <span class="glyphicon glyphicon-star-empty" data-rating="5"></span>
-            <input type="hidden" name="whatever" class="rating-value" value="3">
-        </div>
-        </font>
         <hr>
         <div class="row">
             <div class="col-md-3">

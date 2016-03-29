@@ -3,27 +3,29 @@ function job_registerEvents() {
 	job_registerSelectAsk();
 	job_registerRemoveSelectedAsk();
 
-	//
+	// display first ASK Category
 	$('.job-cat:first').trigger('click');
+}
 
-	//
-	var $star_rating = $('.star-rating .glyphicon');
+function job_registerStarRating($objParent, curRating) {
+	$objParent.find('.star-rating .glyphicon').on('click', function() {
+		var selRating = $(this).data('rating');
+		$objParent.find('input.rating-value').val(selRating);
+		$objParent.find('.star-rating .glyphicon').each(function() {
+	        if (parseInt(selRating) >= parseInt($(this).data('rating'))) {
+	            return $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+	        } else {
+	            return $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+	        }
+	    });
+	});
 
-var SetRatingStar = function() {
-  return $star_rating.each(function() {
-    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-    } else {
-      return $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-    }
-  });
-};
-
-$star_rating.on('click', function() {
-  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-  return SetRatingStar();
-});
-SetRatingStar();
+	// set selected star rating
+	$objParent.find('.star-rating .glyphicon').each(function() {
+		if (parseInt(curRating) == parseInt($(this).data('rating'))) {
+			$(this).trigger('click');
+		}
+	});
 }
 
 function job_registerSelectCat() {
@@ -41,10 +43,11 @@ function job_registerSelectCat() {
 }
 
 function job_registerSelectAsk() {
-	$('.job-ask').on('click', function() {
+	$('.job-ask .glyphicon').on('click', function() {
 		var ask_id = $(this).closest('.job-ask').data('ask-id');
 		$('#selected_ask_' + ask_id).show();
 		job_updateSelectedAsksField(ask_id, 'add');
+		job_registerStarRating($('#selected_ask_' + ask_id), $(this).data('rating'));
 
 		var cat_id = $(this).closest('.job-cat-asks').data('cat-id');
 		var selected_cat = $('#selected_cat_' + cat_id);
