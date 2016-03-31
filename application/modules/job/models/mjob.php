@@ -45,19 +45,19 @@ class Mjob extends CI_Model{
 		$this->db->delete($this->_table);
 	}
 
-	public function link_job_ask($job_id, $a_asks) {
+	public function link_job_ask($job_id, $a_asks, $a_requires, $a_ratings) {
 		$query = "DELETE FROM job_ask_rel WHERE job_id = $job_id";
 		$this->db->query($query);
-		foreach ($a_asks as $ask_id) {
+		foreach ($a_asks as $i => $ask_id) {
 			if($ask_id != '') {
-				$query = "INSERT INTO job_ask_rel VALUES ($job_id, $ask_id)";
+				$query = "INSERT INTO job_ask_rel VALUES ($job_id, $ask_id, {$a_requires[$i]}, {$a_ratings[$i]})";
 				$this->db->query($query);
 			}
 		}
 	}
 
 	function get_linked_asks($job_id) {
-		$query = "SELECT ask_id FROM job_ask_rel WHERE job_id = $job_id";
+		$query = "SELECT * FROM job_ask_rel WHERE job_id = $job_id";
 		return $this->db->query($query)->result_array();
 	}
 }

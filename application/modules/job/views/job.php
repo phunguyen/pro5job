@@ -23,7 +23,7 @@ function buildAsksInCats($ask_cats, $list_asks) {
             if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
                 echo '<li class="job-ask" data-ask-id="'.$ask['ask_id'].'" id="ask_'.$ask['ask_id'].'">
                         <h5>
-                            <c>Bắt buộc</c>
+                            <c class="job-ask-require" data-require="1">Bắt buộc</c>
                             |
                             <font color="#ffd700" class="star-rating">
                             <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
@@ -70,7 +70,8 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	            if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
 	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
 	                        <h5>
-	                            <a class="remove-selected-ask">X</a> | <font color="#ff0000">Bắt buộc</font> |
+	                            <a class="remove-selected-ask">X</a> |
+                                <span class="selected-ask-require"><font color="#ff0000">Bắt buộc</font> |</span>
 	                            <font color="#ffd700">
 	                            <span class="star-rating">
                                     <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
@@ -135,7 +136,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 <h3>Danh mục ASK</h3>
                 <hr>
             </div>
-			
+
             <?php buildAskCats($ask_cats); ?>
         </div>
         <div class="col-md-3">
@@ -145,7 +146,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 </h3>
                 <hr>
 				Click vào 1 trong 5 ngôi sao để chọn ASK<br>
-				<strong>1 sao:</strong> chỉ biết; <strong>2 sao:</strong> làm được; <strong>3 sao:</strong> thành thạo; 
+				<strong>1 sao:</strong> chỉ biết; <strong>2 sao:</strong> làm được; <strong>3 sao:</strong> thành thạo;
 				<strong>4 sao:</strong> dạy lại; <strong>5 sao:</strong> sáng tạo
 				<hr>
                 <!-- list asks in selected cat -->
@@ -191,6 +192,8 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             ?>
                 <!-- HIDDEN FIELDS -->
                 <input type="hidden" id="selected_asks" name="selected_asks" value="">
+                <input type="hidden" id="selected_asks_require" name="selected_asks_require" value="">
+                <input type="hidden" id="selected_asks_rating" name="selected_asks_rating" value="">
 
                 <!-- FORM -->
                 <h3>Thông tin Job

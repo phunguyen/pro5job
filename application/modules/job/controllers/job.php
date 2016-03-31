@@ -44,7 +44,11 @@ class Job extends MX_Controller{
 			// link ask
 			$selected_asks = $this->input->post('selected_asks');
 			$selected_asks = explode(';', $selected_asks);
-			$this->mjob->link_job_ask($id, $selected_asks);
+			$selected_asks_require = $this->input->post('selected_asks_require');
+			$selected_asks_require = explode(';', $selected_asks_require);
+			$selected_asks_rating = $this->input->post('selected_asks_rating');
+			$selected_asks_rating = explode(';', $selected_asks_rating);
+			$this->mjob->link_job_ask($id, $selected_asks, $selected_asks_require, $selected_asks_rating);
 
 			// redirect
 			redirect('job', 'refresh');
@@ -56,11 +60,12 @@ class Job extends MX_Controller{
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
 		$data['job_data'] = $this->mjob->read($id);
 		$linked_asks = $this->mjob->get_linked_asks($id);
-		$a_linked_asks = array();
+		$linked_ask_ids = array();
 		foreach($linked_asks as $val) {
-			$a_linked_asks[] = $val['ask_id'];
+			$linked_ask_ids[] = $val['ask_id'];
 		}
-		$data['linked_asks'] = $a_linked_asks;
+		$data['linked_asks'] = $linked_asks;
+		$data['linked_ask_ids'] = $linked_ask_ids;
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);
         $this->template->render();
