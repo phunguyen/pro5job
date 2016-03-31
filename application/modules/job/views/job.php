@@ -287,11 +287,5 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 <script>
 $(function() {
     job_registerEvents();
-    <?php
-    	if(isset($linked_asks))
-        foreach($linked_asks as $ask_id) {
-            echo '$("#ask_'.$ask_id.'").trigger("click");';
-        }
-    ?>
 });
 </script>
