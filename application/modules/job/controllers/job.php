@@ -59,20 +59,14 @@ class Job extends MX_Controller{
 		$data['list_asks'] = $this->mjob->get_asks();
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
 		$data['job_data'] = $this->mjob->read($id);
-		$linked_asks = $this->mjob->get_linked_asks($id);
-		$linked_ask_ids = array();
-		foreach($linked_asks as $val) {
-			$linked_ask_ids[] = $val['ask_id'];
-		}
-		$data['linked_asks'] = $linked_asks;
-		$data['linked_ask_ids'] = $linked_ask_ids;
+		$data['linked_asks'] = $this->mjob->get_linked_asks($id);
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);
         $this->template->render();
 	}
 
 	public function add_ask() {
-		// echo '<pre>';print_r($_POST);echo '</pre>';
-		Modules::run('ask/job_add_ask', $_POST);
+		echo '<pre>';print_r($_REQUEST);echo '</pre>';
+		// Modules::run('ask/job_add_ask', $_POST);
 	}
 }

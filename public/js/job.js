@@ -3,6 +3,7 @@ function job_registerEvents() {
 	job_registerSelectAsk();
 	job_registerRemoveSelectedAsk();
 	job_registerAskRequire();
+	job_registerAddAsk();
 
 	// display first ASK Category
 	$('.job-cat:first').trigger('click');
@@ -12,10 +13,10 @@ function job_registerAskRequire() {
 	$('.job-ask-require').on('click', function() {
 		if($(this).data('require') == 1) {
 			$(this).data('require', 0);
-			$(this).css('color', 'gray');
+			$(this).css('color', 'gray').css('text-decoration', 'line-through');
 		} else {
 			$(this).data('require', 1);
-			$(this).css('color', '#ff0000');
+			$(this).css('color', '#ff0000').css('text-decoration', 'none');
 		}
 	});
 }
@@ -120,4 +121,22 @@ function job_updateSelectedAsksField(ask_id, ask_require, ask_star, mode) {
 
 function job_editJob() {
 	window.location = site_url + 'job/edit/' + $('#list_jobs').val();
+}
+
+function job_displaySelectedAsk(ask_id, require, rating) {
+	if(require == 0) $('#ask_' + ask_id).find('.job-ask-require').trigger('click');
+	$('#ask_' + ask_id).find('span[data-rating=' + rating + ']').trigger('click');
+}
+
+function job_registerAddAsk() {
+	$('.btn-add-ask').on('click', function() {
+		var dataJson = {'ask_name' : 'aaa'};
+		$.ajax({
+			url : site_url + 'job/add_ask',
+			data : dataJson,
+			success : function() {
+
+			}
+		});	
+	});
 }

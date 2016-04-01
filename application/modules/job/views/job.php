@@ -169,7 +169,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <br>
                                 <textarea class="form-control" rows="7" name="ask_desc" placeholder="Mô tả ASK"></textarea>
                                 <br>
-                                <button type="submit" class="btn btn-primary">Thêm ASK</button>
+                                <input type="button" class="btn btn-primary btn-add-ask" value="Thêm ASK">
                             </form>
                         </div>
                     </div>
@@ -296,5 +296,10 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 <script>
 $(function() {
     job_registerEvents();
+    <?php
+        foreach($linked_asks as $ask) {
+            echo 'job_displaySelectedAsk('.$ask['ask_id'].', '.$ask['require'].', '.$ask['rating'].');';
+        }
+    ?>
 });
 </script>
