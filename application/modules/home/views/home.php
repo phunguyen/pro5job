@@ -1,9 +1,20 @@
 <div class="heading">
 	<div class="container">
+	<br>
 		<div class="row">
-			<div class="col-md-12">
-				<h1>Có 1.200 Công việc đang tuyển và<br>450.237 Hồ Sơ ứng viên</h1>
+			<div class="col-sm-3">
+				<h4><span class="glyphicon glyphicon-heart"></span><strong> 12.200 Jobs đã đăng</strong></h4>
 			</div>
+			<div class="col-sm-3">
+				<h4><span class="glyphicon glyphicon-star"></span><strong> 1.115 Jobs đang tuyển</strong></h4>
+			</div>
+			<div class="col-sm-3">
+				<h4><span class="glyphicon glyphicon-user"></span><strong> 8.231 Profiles</strong></h4>
+			</div>
+			<div class="col-sm-3">
+				<h4><span class="glyphicon glyphicon-leaf"></span><strong> 11.251 ASKs</strong></h4>
+			</div>
+			
 		</div>
 	</div>
 </div>

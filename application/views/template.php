@@ -43,11 +43,9 @@
 	<div class="header-top">
 		<div class="container">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col">
 				<span class="glyphicon glyphicon-envelope"></span> <a href="mailto:pro5job.com@gmail.com">pro5job.com@gmail.com</a> &nbsp;
 				<span class="glyphicon glyphicon-phone"></span> 0905 673 613
-			</div>
-			<div class="col-md-6">
 				<div class="header-top-right">
 					<img src="<?php echo base_url();?>public/images/vi.png"> <a href="#">Tiếng Việt</a> |
 					<img src="<?php echo base_url();?>public/images/en.png"> <a href="#">English</a>
