@@ -262,7 +262,16 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <option>17-25 triệu</option>
                                 <option>Trên 25 triệu</option>
                             </select>
-                            <h4>Thời gian đăng tin tuyển dụng</h4>
+							<h4>Ngày bắt đầu tuyển</h4>
+                            <select class="form-control" id="jobkinhnghiem">
+                                <option>Hôm nay</option>
+                                <option>3 ngày nữa</option>
+                                <option>1 tuần nữa</option>
+                                <option>2 tuần nữa</option>
+                                <option>1 tháng nữa</option>
+                            </select>
+                            <br>
+                            <h4>Thời gian đăng tuyển</h4>
                             <select class="form-control" id="jobkinhnghiem">
                                 <option>1 tuần</option>
                                 <option>2 tuần</option>
