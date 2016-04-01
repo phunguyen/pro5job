@@ -61,9 +61,9 @@ function job_registerSelectAsk() {
 		var ask_require = $(this).closest('.job-ask').find('.job-ask-require').data('require');
 		$('#selected_ask_' + ask_id).show();
 		if(ask_require == 1) {
-			$('#selected_ask_' + ask_id).find('.selected-ask-require').show();
+			$('#selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'none').css('color', '#ff0000');
 		} else {
-			$('#selected_ask_' + ask_id).find('.selected-ask-require').hide();
+			$('#selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'line-through').css('color', 'gray');
 		}
 		var ask_star = $(this).data('rating');
 		job_updateSelectedAsksField(ask_id, ask_require, ask_star, 'add');

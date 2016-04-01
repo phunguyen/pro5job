@@ -71,7 +71,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
 	                        <h5>
 	                            <a class="remove-selected-ask">X</a> |
-                                <span class="selected-ask-require"><font color="#ff0000">Bắt buộc</font> |</span>
+                                <c class="selected-ask-require">Bắt buộc</c> |
 	                            <font color="#ffd700">
 	                            <span class="star-rating">
                                     <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
