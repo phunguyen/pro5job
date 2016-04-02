@@ -122,19 +122,19 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             <div class="col">
                 <h2>Tạo/Sửa Job</h2>
                 <hr>
-                <h4>Hãy chọn các Thái độ, Kỹ Năng, Kiến thức mà Công việc cần ở ứng viên</h4>
-                <h4>Càng cụ thể, chi tiết, sát với nhu cầu thực tế sẽ dễ lọc ra ứng viên phù hợp hơn</h4>
-                <h4>Nếu trong thư viên hệ thống không có, Bạn có thể bổ sung thêm với chức năng Thêm ASK ở dưới</h4>
+                Hãy chọn các ASK(Thái độ, Kỹ Năng, Kiến thức) mà Công việc cần ở các Ứng viên<br>
+                Càng cụ thể, chi tiết, sát với nhu cầu thực tế sẽ dễ lọc ra các Ứng viên phù hợp<br>
+                Nếu ASK bạn muốn không có trong thư viện, Hãy bổ sung bằng chức năng Thêm ASK ở dưới
             </div>
         </div>
     </div>
 </div>
-<hr>
+<hr><br>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <div>
-                <h3>Danh mục ASK</h3>
+                <span style="font-size: 24px">Danh mục ASK</span>
                 <hr>
             </div>
 
@@ -142,14 +142,12 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
         </div>
         <div class="col-md-3">
             <div>
-                <h3>
-                    ASK trong Danh mục
-                </h3>
+                <span style="font-size: 24px">ASK trong danh mục</span>					
+						<a title="Trợ giúp" data-toggle="popover" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
+						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. 
+						Click vào Bắt buộc để chọn ASK này là bắt buộc hay không đối với Công việc">
+						<span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
                 <hr>
-				Click vào 1 trong 5 ngôi sao để chọn ASK<br>
-				<strong>1 sao:</strong> chỉ biết; <strong>2 sao:</strong> làm được; <strong>3 sao:</strong> thành thạo;
-				<strong>4 sao:</strong> dạy lại; <strong>5 sao:</strong> sáng tạo
-				<hr>
                 <!-- list asks in selected cat -->
                 <?php buildAsksInCats($ask_cats, $list_asks); ?>
 
@@ -179,7 +177,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             </div>
         </div>
         <div class="col-md-4">
-            <h3>ASK đã chọn</h3>
+            <span style="font-size: 24px">ASK đã chọn</span>
             <hr>
             <?php buildSelectedCats($ask_cats, $list_asks); ?>
         </div>
@@ -197,8 +195,8 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 <input type="hidden" id="selected_asks_rating" name="selected_asks_rating" value="">
 
                 <!-- FORM -->
-                <h3>Thông tin Job
-                </h3>
+                <span style="font-size: 24px">Thông tin Job</span>
+                
                 <hr>
                 <button type="submit" class="btn btn-primary">Lưu Job</button>
                 <button type="button" class="btn btn-success">Xem Job</button>
