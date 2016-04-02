@@ -100,7 +100,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             <div class="col-md-3">
                 <h4>Danh sách Jobs</h4>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <select class="form-control" id="list_jobs">
                     <?php
                         foreach($list_jobs as $job) {
@@ -111,9 +111,10 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                     ?>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="button" value="Sửa Job" class="btn btn-primary" onclick="job_editJob();"> &nbsp;&nbsp;
-                <input type="button" value="Tạo mới Job" class="btn btn-success">
+				<input type="button" value="Xóa Job" class="btn btn-danger"> &nbsp;&nbsp;
+                <input type="button" value="Tạo mới Job" class="btn btn-success">				
             </div>
         </div>
         <hr>
