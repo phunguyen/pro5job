@@ -32,7 +32,7 @@ function buildAsksInCats($ask_cats, $list_asks) {
                             <span class="glyphicon glyphicon-star-empty" data-rating="4"></span>
                             <span class="glyphicon glyphicon-star-empty" data-rating="5"></span>
                             </font> |
-                            <a title="'.$ask['ask_name'].'" data-toggle="popover" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
+                            <a title="'.$ask['ask_name'].'" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="'.$ask['description'].'">'.$ask['ask_name'].'</a>
                         </h5>
                     </li>';
             }
@@ -112,9 +112,9 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 </select>
             </div>
             <div class="col-md-4">
-                <input type="button" value="Sửa Job" class="btn btn-primary" onclick="job_editJob();"> &nbsp;&nbsp;
-				<input type="button" value="Xóa Job" class="btn btn-danger"> &nbsp;&nbsp;
-                <input type="button" value="Tạo mới Job" class="btn btn-success">				
+                <input type="button" value="Sửa Job" class="btn btn-primary edit-job"> &nbsp;&nbsp;
+				<input type="button" value="Xóa Job" class="btn btn-danger delete-job"> &nbsp;&nbsp;
+                <input type="button" value="Tạo mới Job" class="btn btn-success new-job">				
             </div>
         </div>
         <hr>
@@ -143,7 +143,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
         <div class="col-md-3">
             <div>
                 <span style="font-size: 24px">ASK trong danh mục</span>					
-						<a title="Trợ giúp" data-toggle="popover" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
+						<a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
 						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. 
 						Click vào Bắt buộc để chọn ASK này là bắt buộc hay không đối với Công việc">
 						<span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
@@ -164,9 +164,9 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                         <div class="panel-body">
                             <?php echo form_open("job/add_ask"); ?>
                                 <input type="hidden" id="selected_cat_id" name="selected_cat_id" value="">
-                                <input type="text" class="form-control" name="ask_name" placeholder="Tên ASK">
+                                <input type="text" class="form-control" id="new_ask_name" placeholder="Tên ASK">
                                 <br>
-                                <textarea class="form-control" rows="7" name="ask_desc" placeholder="Mô tả ASK"></textarea>
+                                <textarea class="form-control" rows="7" id="new_ask_desc" placeholder="Mô tả ASK"></textarea>
                                 <br>
                                 <input type="button" class="btn btn-primary btn-add-ask" value="Thêm ASK">
                             </form>
@@ -216,7 +216,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
                             <h4>Địa điểm làm việc</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_location" name="jobsub_location">
                                 <option>Chọn Tỉnh/Thành</option>
                                 <option>Hà Nội</option>
                                 <option>Tp HCM</option>
@@ -225,7 +225,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <option>Bắc Ninh</option>
                             </select>
                             <h4>Số năm kinh nghiệm</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_experience" name="jobsub_experience">
                                 <option>Không yêu cầu</option>
                                 <option>1 năm</option>
                                 <option>2 năm</option>
@@ -234,13 +234,13 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <option>5 năm trở lên</option>
                             </select>
                             <h4>Yêu cầu giới tính</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_gender" name="jobsub_gender">
                                 <option>Không yêu cầu</option>
                                 <option>Nam</option>
                                 <option>Nữ</option>
                             </select>
                             <h4>Bằng cấp tối thiểu</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_graduation" name="jobsub_graduation">
                                 <option>Không yêu cầu</option>
                                 <option>Tốt nghiệp THCS</option>
                                 <option>Tốt nghiệp THPT</option>
@@ -251,7 +251,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <option>Tiến sỹ</option>
                             </select>
                             <h4>Mức lương dự kiến</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_salary" name="jobsub_salary">
                                 <option>Thỏa thuận</option>
                                 <option>1-3 triệu</option>
                                 <option>3-5 triệu</option>
@@ -262,7 +262,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 <option>Trên 25 triệu</option>
                             </select>
 							<h4>Ngày bắt đầu tuyển</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_startdate" name="jobsub_startdate">
                                 <option>Hôm nay</option>
                                 <option>3 ngày nữa</option>
                                 <option>1 tuần nữa</option>
@@ -271,7 +271,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                             </select>
                             <br>
                             <h4>Thời gian đăng tuyển</h4>
-                            <select class="form-control" id="jobkinhnghiem">
+                            <select class="form-control" id="jobsub_duration" name="jobsub_duration">
                                 <option>1 tuần</option>
                                 <option>2 tuần</option>
                                 <option>1 tháng</option>
@@ -296,6 +296,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 $(function() {
     job_registerEvents();
     <?php
+        if(isset($linked_asks))
         foreach($linked_asks as $ask) {
             echo 'job_displaySelectedAsk('.$ask['ask_id'].', '.$ask['require'].', '.$ask['rating'].');';
         }

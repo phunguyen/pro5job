@@ -39,6 +39,8 @@ class Job extends MX_Controller{
 			$data['job_name'] = $this->input->post('job_name');
 			$data['job_contact'] = $this->input->post('job_contact');
 			$data['user_id'] = $this->ion_auth->get_user_id();
+			$data['subdata'] = json_encode($_POST);
+			// echo '<pre>';print_r($data);exit;
 			$this->mjob->update($id, $data);
 
 			// link ask
@@ -65,8 +67,18 @@ class Job extends MX_Controller{
         $this->template->render();
 	}
 
+	public function delete($id) {
+		if(!$id || empty($id))
+		{
+			redirect('job', 'refresh');
+		}
+
+		$this->mjob->delete($id);
+		redirect('job','refresh');
+	}
+
 	public function add_ask() {
-		echo '<pre>';print_r($_REQUEST);echo '</pre>';
-		// Modules::run('ask/job_add_ask', $_POST);
+		// echo '<pre>';print_r($_REQUEST);echo '</pre>';
+		Modules::run('ask/job_add_ask', $_REQUEST);
 	}
 }

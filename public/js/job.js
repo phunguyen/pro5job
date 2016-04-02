@@ -4,6 +4,7 @@ function job_registerEvents() {
 	job_registerRemoveSelectedAsk();
 	job_registerAskRequire();
 	job_registerAddAsk();
+	job_registerJobActions();
 
 	// display first ASK Category
 	$('.job-cat:first').trigger('click');
@@ -119,10 +120,6 @@ function job_updateSelectedAsksField(ask_id, ask_require, ask_star, mode) {
 	$('#selected_asks_rating').val(aSelectedAsksRating.join(';'));
 }
 
-function job_editJob() {
-	window.location = site_url + 'job/edit/' + $('#list_jobs').val();
-}
-
 function job_displaySelectedAsk(ask_id, require, rating) {
 	if(require == 0) $('#ask_' + ask_id).find('.job-ask-require').trigger('click');
 	$('#ask_' + ask_id).find('span[data-rating=' + rating + ']').trigger('click');
@@ -130,13 +127,31 @@ function job_displaySelectedAsk(ask_id, require, rating) {
 
 function job_registerAddAsk() {
 	$('.btn-add-ask').on('click', function() {
-		var dataJson = {'ask_name' : 'aaa'};
+		var new_ask_name = $('#new_ask_name').val();
+		var new_ask_desc = $('#new_ask_desc').val();
+		var selected_cat_id = $('#selected_cat_id').val();
+		var newAsk = '<li class="job-ask" data-ask-id="8" id="ask_8"><h5><c class="job-ask-require" data-require="1">Bắt buộc</c> | <font color="#ffd700" class="star-rating"><span class="glyphicon glyphicon-star-empty" data-rating="1"></span> <span class="glyphicon glyphicon-star-empty" data-rating="2"></span> <span class="glyphicon glyphicon-star-empty" data-rating="3"></span> <span class="glyphicon glyphicon-star-empty" data-rating="4"></span> <span class="glyphicon glyphicon-star-empty" data-rating="5"></span></font> | <a title="" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="l' + new_ask_desc + '" data-original-title="' + new_ask_name + '">' + new_ask_name + '</a></h5></li>';
+		var dataJson = {'ask_name' : new_ask_name, 'ask_desc' : new_ask_desc, 'selected_cat_id' : selected_cat_id};
 		$.ajax({
 			url : site_url + 'job/add_ask',
 			data : dataJson,
 			success : function() {
-
+				$('.job-cat-asks[data-cat-id=' + selected_cat_id + ']').find('ul').append(newAsk).find('[data-toggle="popover"]').popover();
+				$('#new_ask_name').val('');
+				$('#new_ask_desc').val('');
 			}
 		});	
+	});
+}
+
+function job_registerJobActions() {
+	$('.delete-job').on('click', function() {
+		window.location = site_url + 'job/delete/' + $('#list_jobs').val();
+	});
+	$('.edit-job').on('click', function() {
+		window.location = site_url + 'job/edit/' + $('#list_jobs').val();
+	});
+	$('.new-job').on('click', function() {
+		window.location = site_url + 'job';
 	});
 }
