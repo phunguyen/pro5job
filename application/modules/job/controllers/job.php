@@ -56,12 +56,15 @@ class Job extends MX_Controller{
 			redirect('job', 'refresh');
 		}
 
-		// view
+		// data
 		$data['ask_cats'] = $this->mjob->get_ask_cats();
 		$data['list_asks'] = $this->mjob->get_asks();
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
 		$data['job_data'] = $this->mjob->read($id);
 		$data['linked_asks'] = $this->mjob->get_linked_asks($id);
+		$data['sub_data'] = json_decode($data['job_data']['subdata'], true);
+
+		// view
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);
         $this->template->render();
