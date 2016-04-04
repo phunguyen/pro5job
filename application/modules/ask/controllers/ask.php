@@ -74,6 +74,6 @@ class Ask extends MX_Controller {
 		$ask_data['ask_name_en'] = '';
 		$ask_data['description_en'] = '';
 		$data['ask_cat_id'] = $params['selected_cat_id'];
-		$this->mask->create($data);
+		return $this->mask->create($data);
 	}
 }

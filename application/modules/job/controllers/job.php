@@ -82,6 +82,6 @@ class Job extends MX_Controller{
 
 	public function add_ask() {
 		// echo '<pre>';print_r($_REQUEST);echo '</pre>';
-		Modules::run('ask/job_add_ask', $_REQUEST);
+		echo Modules::run('ask/job_add_ask', $_REQUEST);
 	}
 }

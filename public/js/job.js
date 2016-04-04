@@ -58,7 +58,7 @@ function job_registerSelectCat() {
 }
 
 function job_registerSelectAsk() {
-	$('.job-ask .glyphicon').on('click', function() {
+	$('.job-ask .glyphicon').on('click', function() {console.log('aaa');
 		var ask_id = $(this).closest('.job-ask').data('ask-id');
 		var ask_require = $(this).closest('.job-ask').find('.job-ask-require').data('require');
 		$('#selected_ask_' + ask_id).show();
@@ -130,17 +130,20 @@ function job_registerAddAsk() {
 		var new_ask_name = $('#new_ask_name').val();
 		var new_ask_desc = $('#new_ask_desc').val();
 		var selected_cat_id = $('#selected_cat_id').val();
-		var newAsk = '<li class="job-ask" data-ask-id="8" id="ask_8"><h5><c class="job-ask-require" data-require="1">Bắt buộc</c> | <font color="#ffd700" class="star-rating"><span class="glyphicon glyphicon-star-empty" data-rating="1"></span> <span class="glyphicon glyphicon-star-empty" data-rating="2"></span> <span class="glyphicon glyphicon-star-empty" data-rating="3"></span> <span class="glyphicon glyphicon-star-empty" data-rating="4"></span> <span class="glyphicon glyphicon-star-empty" data-rating="5"></span></font> | <a title="" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="l' + new_ask_desc + '" data-original-title="' + new_ask_name + '">' + new_ask_name + '</a></h5></li>';
 		var dataJson = {'ask_name' : new_ask_name, 'ask_desc' : new_ask_desc, 'selected_cat_id' : selected_cat_id};
 		$.ajax({
 			url : site_url + 'job/add_ask',
 			data : dataJson,
-			success : function() {
+			success : function(new_ask_id) {
+				var newAsk = '<li class="job-ask" data-ask-id="' + new_ask_id + '" id="ask_' + new_ask_id + '"><h5><c class="job-ask-require" data-require="1">Bắt buộc</c> | <font color="#ffd700" class="star-rating"><span class="glyphicon glyphicon-star-empty" data-rating="1"></span> <span class="glyphicon glyphicon-star-empty" data-rating="2"></span> <span class="glyphicon glyphicon-star-empty" data-rating="3"></span> <span class="glyphicon glyphicon-star-empty" data-rating="4"></span> <span class="glyphicon glyphicon-star-empty" data-rating="5"></span></font> | <a title="" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="' + new_ask_desc + '" data-original-title="' + new_ask_name + '">' + new_ask_name + '</a></h5></li>';
+				var newSelectedAsk = '<li id="selected_ask_' + new_ask_id + '" style="display: none;" class="selected-ask" data-ask-id="' + new_ask_id + '"><h5><a class="remove-selected-ask">X</a> |<c class="selected-ask-require"> Bắt buộc</c> | <font color="#ffd700"><span class="star-rating"><span class="glyphicon glyphicon-star-empty" data-rating="1"></span> <span class="glyphicon glyphicon-star-empty" data-rating="2"></span> <span class="glyphicon glyphicon-star-empty" data-rating="3"></span> <span class="glyphicon glyphicon-star-empty" data-rating="4"></span> <span class="glyphicon glyphicon-star-empty" data-rating="5"></span><input type="hidden" name="whatever" class="rating-value" value="3"></span></font> | <a title="' + new_ask_name + '" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="' + new_ask_desc + '">' + new_ask_name + '</a></h5></li>';
 				$('.job-cat-asks[data-cat-id=' + selected_cat_id + ']').find('ul').append(newAsk).find('[data-toggle="popover"]').popover();
+				$('#selected_cat_' + selected_cat_id).next('ul').find('ul').append(newSelectedAsk).find('[data-toggle="popover"]').popover();
 				$('#new_ask_name').val('');
 				$('#new_ask_desc').val('');
+				job_registerSelectAsk();
 			}
-		});	
+		});
 	});
 }
 
