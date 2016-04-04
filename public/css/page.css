@@ -224,3 +224,12 @@ img.screenshot {
   cursor: pointer;
 }
 /* job end */
+
+/* profile start */
+.profile-cat {
+    cursor: pointer;
+}
+.profile-cat:hover {
+    color: #428bca;
+}
+/* profile end */

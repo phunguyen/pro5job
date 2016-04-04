@@ -68,7 +68,7 @@ class Ask extends MX_Controller {
 		redirect('ask','refresh');
 	}
 
-	public function job_add_ask($params) {
+	public function add_ask($params) {
 		$data['ask_name'] = $params['ask_name'];
 		$data['description'] = $params['ask_desc'];
 		$ask_data['ask_name_en'] = '';
