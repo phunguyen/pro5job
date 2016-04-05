@@ -97,16 +97,17 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 				<div class="col-md-3">
 				<h4>Danh sách Profile</h4>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-5">
 				<select class="form-control" id="profiles">
 					<option>Nguyễn Văn A</option>
 					<option>Trần Văn B</option>
 					<option>Lê Thị C</option>
 				</select>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 				<input type="submit" value="Sửa Profile" class="btn btn-primary"> &nbsp;&nbsp;
-						<input type="submit" value="Tạo mới Profile" class="btn btn-success">
+				<input type="button" value="Xóa Profile" class="btn btn-danger delete-profile"> &nbsp;&nbsp;
+				<input type="submit" value="Tạo mới Profile" class="btn btn-success">
 				</div>
 			</div>
 			<hr>
@@ -122,30 +123,34 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 		</div>
 	</div>
 	<hr>
+	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2">
 				<div >
-					<h3 style="text-align: left">Danh mục ASK</h3>
+					<span style="font-size: 24px">Danh mục ASK</span>
 					<hr>
 				</div>
 				<?php buildAskCats($ask_cats); ?>
 			</div>
 			<div class="col-md-3">
 				<div>
-						<h3>ASK trong Danh mục:</h3>
-						<hr>
+						<span style="font-size: 24px">ASK trong danh mục</span>					
+						<a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
+						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. ">
+						<span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
+                <hr>
 						<?php buildAsksInCats($ask_cats, $list_asks); ?>
 				</div>
 			</div>
 			<div class="col-md-3">
-				<h3 style="text-align: left">ASK đã chọn</h3>
+				<span style="font-size: 24px">ASK đã chọn</span>
 				<hr>
 				<?php buildSelectedCats($ask_cats, $list_asks); ?>
 			</div>
 			<div class="col-md-4">
 
-					<h3>Thông tin Profile</h3>
+					<span style="font-size: 24px">Thông tin Profile</span>
 
 						<hr>
 						<input type="submit" value="Lưu Profile" class="btn btn-primary"> &nbsp;&nbsp;
