@@ -17,6 +17,7 @@ $baseUrl = base_url();
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="<?php echo $baseUrl;?>setting"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
 					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-bullhorn"></span> Users</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
