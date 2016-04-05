@@ -23,8 +23,6 @@ function buildAsksInCats($ask_cats, $list_asks) {
             if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
                 echo '<li class="profile-ask" data-ask-id="'.$ask['ask_id'].'" id="ask_'.$ask['ask_id'].'">
                         <h5>
-                            <c class="profile-ask-require" data-require="1">Bắt buộc</c>
-                            |
                             <font color="#ffd700" class="star-rating">
                             <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
                             <span class="glyphicon glyphicon-star-empty" data-rating="2"></span>
@@ -71,7 +69,6 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
 	                        <h5>
 	                            <a class="remove-selected-ask">X</a> |
-                                <c class="selected-ask-require">Bắt buộc</c> |
 	                            <font color="#ffd700">
 	                            <span class="star-rating">
                                     <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>
@@ -138,229 +135,13 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 				<div>
 						<h3>ASK trong Danh mục:</h3>
 						<hr>
-						<h4>Kỹ năng nghề | Lập trình</h4>
-
-							<ul>
-								<li>
-								<h5>
-
-									<font color="#ffd700">
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span></font> |
-									<a title="Kỹ năng lập trình Web PHP" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng lập trình PHP">Lập trình PHP</a>
-								</h5>
-								</li>
-								<li>
-								<h5>
-
-									<font color="#ffd700">
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span></font> |
-									<a title="Kỹ năng Cắt PSD thành HTML" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng Cắt PSD thành HTML">Cắt PSD thành HTML</a>
-								</h5>
-								</li>
-								<li>
-								<h5>
-
-									<font color="#ffd700">
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span></font> | Thiết kế Web
-								</h5>
-								</li>
-								<li>
-								<h5>
-
-									<font color="#ffd700">
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span>
-									<span class="glyphicon glyphicon-star-empty"></span></font> | Lập trình ASP.net
-								</h5>
-								</li>
-							</ul>
-						<hr>
-
-
-
+						<?php buildAsksInCats($ask_cats, $list_asks); ?>
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div>
-					<h3 style="text-align: left">ASK đã chọn</h3>
-						<hr>
-						<h4 style="text-align: left">Thái độ</h4>
-
-							<h5 style="text-align: left">Với Công việc</h5>
-							<ul class="nav">
-
-								<ul>
-									<li>
-									<h5>
-									<a>X</a> |
-									<font color="#ffd700">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span></font> |
-										Nhiệt tình
-									</h5>
-									</li>
-									<li>
-									<h5>
-									<a>X</a> |
-									<font color="#ffd700">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span></font> |
-										<a title="Chăm chỉ" data-toggle="popover"
-										data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Thái độ chăm chỉ">Chăm chỉ</a>
-									</h5>
-									</li>
-								</ul>
-
-				</div>
-				<div>
-						<h4 style="text-align: left">Kỹ năng</h4>
-
-							<h5 style="text-align: left">Kỹ năng mềm</h5>
-							<ul class="nav">
-								<li>Giao tiếp
-								<ul>
-									<li>
-									<h5>
-									<a>X</a> |
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Thuyết phục khách hàng
-									</h5>
-									</li>
-									<li>
-									<h5>
-									<a>X</a> |
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												<a title="Kỹ năng bán hàng tại cửa hàng" data-toggle="popover"
-												data-placement="bottom" data-content="Đây là nội dung mô tả, định nghĩa chi tiết về Kỹ năng bán hàng tại cửa hàng">Bán hàng cửa hàng </a>
-									</h5>
-									</li>
-								</ul>
-								</li>
-								<li>Thuyết trình
-								<ul>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Giới thiệu sản phẩm
-									</h5>
-									</li>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Hướng dẫn sử dụng
-									</h5>
-									</li>
-								</ul>
-								</li>
-							</ul>
-							<h5 style="text-align: left">Kỹ năng nghề</h5>
-							<ul class="nav">
-								<li>Lập trình
-								<ul>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Lập trình PHP
-									</h5>
-									</li>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Cắt PSD thành HTML
-									</h5>
-									</li>
-								</ul>
-								</li>
-								<li>Thiết kế
-								<ul>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Thiết kế Web
-									</h5>
-									</li>
-									<li>
-									<h5>
-									<a>X</a>
-									<font color="#ffd700">
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-												<span class="glyphicon glyphicon-star-empty"></span></font> |
-												Thiết kế Logo
-									</h5>
-									</li>
-								</ul>
-								</li>
-							</ul>
-
-				</div>
-				<div>
-						<h4 style="text-align: left">Kiến thức</h4>
-
-
-				</div>
+				<h3 style="text-align: left">ASK đã chọn</h3>
+				<hr>
+				<?php buildSelectedCats($ask_cats, $list_asks); ?>
 			</div>
 			<div class="col-md-4">
 

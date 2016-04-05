@@ -35,7 +35,7 @@ CREATE TABLE `asks` (
   PRIMARY KEY (`ask_id`),
   KEY `ask_cat_id` (`ask_cat_id`),
   CONSTRAINT `asks_ibfk_1` FOREIGN KEY (`ask_cat_id`) REFERENCES `asks_cats` (`ask_cat_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `asks` (
 
 LOCK TABLES `asks` WRITE;
 /*!40000 ALTER TABLE `asks` DISABLE KEYS */;
-INSERT INTO `asks` VALUES (3,'Thuyết trình',10,'Là kỹ năng đứng trước đám đông để trình về 1 chủ đề nào đó, làm cho người nghe hiểu, nắm bắt vấn đề, và thuyết phục người nghe','Presentation','Skill to present with many people',NULL,NULL,NULL),(4,'Đàm phán',10,'Kỹ năng thuyết phục người khác để đạt được mục đích đề ra của mình','Negotiation','Skill to negotate other people',NULL,NULL,NULL),(5,'Giao tiếp',10,'Kỹ năng giao tiếp với mọi người xung quanh, làm cho mọi người yêu mến bản thân, tạo hình ảnh cho tổ chức','Communication','skill to communicate',NULL,NULL,NULL),(6,'Thiết kế Html với Bootstrap',14,'Kỹ năng thiết kế giao diện web với các công cụ bootstrap với tính năng responsive','Html Design with Bootstrap','Skill to design a html webpage with bootstrap',NULL,NULL,NULL),(7,'Lập trình PHP',11,'Kỹ năng lập trình web với ngôn ngữ PHP','PHP coding','skills to code in PHP language',NULL,NULL,NULL),(8,'Chăm chỉ',3,'làm việc nghiêm túc, hiệu quả và nhanh chóng','Hardworking',' taking their work seriously and doing it well and rapidly',NULL,NULL,NULL),(9,'Ham học hỏi',3,'Thái độ luôn muốn học hỏi để nâng cao kiến thức,  kỹ năng của bản thân,nhằm đáp ứng tốt hơn cho công việc.','Inquisitive','love to learn to improve ourself',NULL,NULL,NULL),(10,'Thân ái',6,'Thái độ hòa nhã, thân ái giúp đỡ đồng nghiệp','Friendly','fun, caring, ready to help others',NULL,NULL,NULL),(11,'Nuôi bò Úc',17,'Các kiến thức liên quan đến việc chăm sóc bò Úc','Australian Cows Feeding','Knowledge to feed Australian cows',NULL,NULL,NULL),(12,'Thiết kế logo',18,'Kỹ năng thiết kế logo cho công ty, tổ chức','Logo Design','Skill to design logo',NULL,NULL,NULL);
+INSERT INTO `asks` VALUES (3,'Thuyết trình',10,'Là kỹ năng đứng trước đám đông để trình về 1 chủ đề nào đó, làm cho người nghe hiểu, nắm bắt vấn đề, và thuyết phục người nghe','Presentation','Skill to present with many people',NULL,NULL,NULL),(4,'Đàm phán',10,'Kỹ năng thuyết phục người khác để đạt được mục đích đề ra của mình','Negotiation','Skill to negotate other people',NULL,NULL,NULL),(5,'Giao tiếp',10,'Kỹ năng giao tiếp với mọi người xung quanh, làm cho mọi người yêu mến bản thân, tạo hình ảnh cho tổ chức','Communication','skill to communicate',NULL,NULL,NULL),(6,'Thiết kế Html với Bootstrap',14,'Kỹ năng thiết kế giao diện web với các công cụ bootstrap với tính năng responsive','Html Design with Bootstrap','Skill to design a html webpage with bootstrap',NULL,NULL,NULL),(7,'Lập trình PHP',11,'Kỹ năng lập trình web với ngôn ngữ PHP','PHP coding','skills to code in PHP language',NULL,NULL,NULL),(8,'Chăm chỉ',3,'làm việc nghiêm túc, hiệu quả và nhanh chóng','Hardworking',' taking their work seriously and doing it well and rapidly',NULL,NULL,NULL),(9,'Ham học hỏi',3,'Thái độ luôn muốn học hỏi để nâng cao kiến thức,  kỹ năng của bản thân,nhằm đáp ứng tốt hơn cho công việc.','Inquisitive','love to learn to improve ourself',NULL,NULL,NULL),(10,'Thân ái',6,'Thái độ hòa nhã, thân ái giúp đỡ đồng nghiệp','Friendly','fun, caring, ready to help others',NULL,NULL,NULL),(11,'Nuôi bò Úc',17,'Các kiến thức liên quan đến việc chăm sóc bò Úc','Australian Cows Feeding','Knowledge to feed Australian cows',NULL,NULL,NULL),(12,'Thiết kế logo',18,'Kỹ năng thiết kế logo cho công ty, tổ chức','Logo Design','Skill to design logo',NULL,NULL,NULL),(13,'Nhiệt tình',3,'Luôn nhiệt tình trong công việc',NULL,NULL,NULL,NULL,NULL),(14,'Tận tụy',3,'Tận tụy trong công việc',NULL,NULL,NULL,NULL,NULL),(15,'Chủ động',3,'Chủ động hỏi đồng nghiệp',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `asks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,6 +104,32 @@ INSERT INTO `groups` VALUES (1,'admin','Administrator'),(2,'editor','Editor'),(3
 UNLOCK TABLES;
 
 --
+-- Table structure for table `job_ask_rel`
+--
+
+DROP TABLE IF EXISTS `job_ask_rel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_ask_rel` (
+  `job_id` int(10) NOT NULL,
+  `ask_id` int(10) NOT NULL,
+  `require` tinyint(1) DEFAULT NULL,
+  `rating` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`job_id`,`ask_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_ask_rel`
+--
+
+LOCK TABLES `job_ask_rel` WRITE;
+/*!40000 ALTER TABLE `job_ask_rel` DISABLE KEYS */;
+INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1);
+/*!40000 ALTER TABLE `job_ask_rel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -115,6 +141,7 @@ CREATE TABLE `jobs` (
   `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `job_contact` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `user_id` int(10) DEFAULT NULL,
+  `subdata` text,
   PRIMARY KEY (`job_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -125,7 +152,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader',3),(2,'Giám đốc điều hành','Giám đốc điều hành',3),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3);
+INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader',3,'{\"selected_asks\":\";8;9;10\",\"selected_asks_require\":\";0;1;0\",\"selected_asks_rating\":\";3;5;1\",\"job_name\":\"Team Leader\",\"job_contact\":\"Team Leader\",\"jobsub_location\":\"Tp HCM\",\"jobsub_experience\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_gender\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_graduation\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_salary\":\"Tho\\u1ea3 thu\\u1eadn\",\"jobsub_startdate\":\"H\\u00f4m nay\",\"jobsub_duration\":\"1 tu\\u1ea7n\",\"jobsub_desc\":\"\",\"jobsub_phucloi\":\"\",\"jobsub_other\":\"\"}'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,NULL);
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +179,58 @@ CREATE TABLE `login_attempts` (
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profile_ask_rel`
+--
+
+DROP TABLE IF EXISTS `profile_ask_rel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profile_ask_rel` (
+  `profile_id` int(10) NOT NULL,
+  `ask_id` int(10) NOT NULL,
+  `rating` int(1) DEFAULT NULL,
+  PRIMARY KEY (`profile_id`,`ask_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profile_ask_rel`
+--
+
+LOCK TABLES `profile_ask_rel` WRITE;
+/*!40000 ALTER TABLE `profile_ask_rel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profile_ask_rel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profiles`
+--
+
+DROP TABLE IF EXISTS `profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profiles` (
+  `profile_id` int(10) NOT NULL,
+  `profile_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `profile_contact` text COLLATE utf8_unicode_ci,
+  `profile_birthdate` date DEFAULT NULL,
+  `profile_gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subdata` text COLLATE utf8_unicode_ci,
+  `user_id` int(5) DEFAULT NULL,
+  PRIMARY KEY (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profiles`
+--
+
+LOCK TABLES `profiles` WRITE;
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -189,7 +268,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1458117749,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1458630929,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1458552145,1,'User','Profile','UP','222');
+INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1458117749,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1459822180,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1459822215,1,'User','Profile','UP','222');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-22 15:34:08
+-- Dump completed on 2016-04-05  9:52:49
