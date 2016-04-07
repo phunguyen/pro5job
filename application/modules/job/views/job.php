@@ -114,7 +114,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             <div class="col-md-4">
                 <input type="button" value="Sửa Job" class="btn btn-primary edit-job"> &nbsp;&nbsp;
 				<input type="button" value="Xóa Job" class="btn btn-danger delete-job"> &nbsp;&nbsp;
-                <input type="button" value="Tạo mới Job" class="btn btn-success new-job">				
+                <input type="button" value="Tạo mới Job" class="btn btn-success new-job">
             </div>
         </div>
         <hr>
@@ -142,9 +142,9 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
         </div>
         <div class="col-md-3">
             <div>
-                <span style="font-size: 24px">ASK trong danh mục</span>					
-						<a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
-						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. 
+                <span style="font-size: 24px">ASK trong danh mục</span>
+						<a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK;
+						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo.
 						Click vào Bắt buộc để chọn ASK này là bắt buộc hay không đối với Công việc">
 						<span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
                 <hr>
@@ -196,7 +196,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 
                 <!-- FORM -->
                 <span style="font-size: 24px">Thông tin Job</span>
-                
+
                 <hr>
                 <button type="submit" class="btn btn-primary">Lưu Job</button>
                 <button type="button" class="btn btn-success">Xem Job</button>
@@ -222,7 +222,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('Hà Nội', 'Tp HCM', 'Dà Nẵng', 'An Giang', 'Bắc Ninh');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_location']) && $loc == $sub_data['jobsub_location']) echo ' selected';
+                                        if(isset($job_data['location']) && $loc == $job_data['location']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
@@ -233,7 +233,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('Không yêu cầu', '1 năm', '2 năm', '3 năm', '4 năm', '5 năm trở lên');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_location']) && $loc == $sub_data['jobsub_experience']) echo ' selected';
+                                        if(isset($job_data['experience']) && $loc == $job_data['experience']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
@@ -244,19 +244,19 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('Không yêu cầu', 'Nam', 'Nữ');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_gender']) && $loc == $sub_data['jobsub_gender']) echo ' selected';
+                                        if(isset($job_data['gender']) && $loc == $job_data['gender']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
                             </select>
                             <h4>Bằng cấp tối thiểu</h4>
                             <select class="form-control" id="jobsub_graduation" name="jobsub_graduation">
+                                <option value="">Không yêu cầu</option>
                                 <?php
-                                    $aLocations = array('Không yêu cầu', 'Tốt nghiệp THCS', 'Tốt nghiệp THPT', 'Trung cấp', 'Cao đẳng', 'Đại học', 'Thạc sỹ', 'Tiến sỹ');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_graduation']) && $loc == $sub_data['jobsub_graduation']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($graduations as $g) {
+                                        echo '<option value="'.$g['code'].'"';
+                                        if(isset($job_data['graduation']) && $g['code'] == $job_data['graduation']) echo ' selected';
+                                        echo '>'.$g['name'].'</option>';
                                     }
                                 ?>
                             </select>
@@ -266,7 +266,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('Thoả thuận', '1-3 triệu', '3-5 triệu', '5-8 triệu', '8-12 triệu', '12-17 triệu', '17-25 triệu', 'Trên 25 triệu');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_salary']) && $loc == $sub_data['jobsub_salary']) echo ' selected';
+                                        if(isset($job_data['salary']) && $loc == $job_data['salary']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
@@ -277,7 +277,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('Hôm nay', '3 ngày nữa', '1 tuần nữa', '2 tuần nữa', '1 tháng nữa');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_startdate']) && $loc == $sub_data['jobsub_startdate']) echo ' selected';
+                                        if(isset($job_data['startdate']) && $loc == $job_data['startdate']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
@@ -289,17 +289,17 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                     $aLocations = array('1 tuần', '2 tuần', '1 tháng', '2 tháng', '3 tháng', 'Thường xuyên tuyển');
                                     foreach($aLocations as $loc) {
                                         echo '<option value="'.$loc.'"';
-                                        if(isset($sub_data['jobsub_duration']) && $loc == $sub_data['jobsub_duration']) echo ' selected';
+                                        if(isset($job_data['duration']) && $loc == $job_data['duration']) echo ' selected';
                                         echo '>'.$loc.'</option>';
                                     }
                                 ?>
                             </select>
                             <br>
-                            <textarea class="form-control" rows="7" id="jobsub_desc" name="jobsub_desc" placeholder="Mô tả thêm về Công việc"><?php if(isset($sub_data['jobsub_desc'])) echo $sub_data['jobsub_desc']; ?></textarea>
+                            <textarea class="form-control" rows="7" id="jobsub_description" name="jobsub_description" placeholder="Mô tả thêm về Công việc"><?php if(isset($job_data['description'])) echo $job_data['description']; ?></textarea>
                             <br>
-                            <textarea class="form-control" rows="7" id="jobsub_phucloi" name="jobsub_phucloi" placeholder="Quyền lợi được hưởng"><?php if(isset($sub_data['jobsub_phucloi'])) echo $sub_data['jobsub_phucloi']; ?></textarea>
+                            <textarea class="form-control" rows="7" id="jobsub_interest" name="jobsub_interest" placeholder="Quyền lợi được hưởng"><?php if(isset($job_data['interest'])) echo $job_data['interest']; ?></textarea>
                             <br>
-                            <textarea class="form-control" rows="7" id="jobsub_other" name="jobsub_other" placeholder="Thông tin bổ sung khác"><?php if(isset($sub_data['jobsub_other'])) echo $sub_data['jobsub_other']; ?></textarea>
+                            <textarea class="form-control" rows="7" id="jobsub_other" name="jobsub_other" placeholder="Thông tin bổ sung khác"><?php if(isset($job_data['other'])) echo $job_data['other']; ?></textarea>
                         </div>
                     </div>
                 </div>

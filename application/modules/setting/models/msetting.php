@@ -1,17 +1,34 @@
 <?php
-class Mnews extends CI_Model{
-	protected $_table = "news";
-	public function __construct(){
+class Msetting extends CI_Model {
+	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 	}
-	
-	public function listall(){
-		return $this->db->get($this->_table)->result_array();
+
+	public function list_all($type) {
+		$query = "SELECT * FROM {$type}";
+		$res = $this->db->query($query);
+		return $res->result_array();
 	}
-	public function get_late_news($limit){
-		$this->db->select("news_title");
-		$this->db->limit($limit);
-		return $this->db->get($this->_table)->result_array();
+
+	public function create($type, $data) {
+		$this->db->insert($type, $data);
+        return $this->db->insert_id();
+	}
+
+	public function read($type, $id) {
+		$query = "SELECT * FROM {$type} WHERE id = '$id'";
+		$result = $this->db->query($query);
+		return $result->row_array();
+	}
+
+	public function update($type, $id, $data) {
+		$this->db->where('id', $id);
+		$this->db->update($type, $data);
+	}
+
+	public function delete($type, $id) {
+		$this->db->where('id', $id);
+		$this->db->delete($type);
 	}
 }

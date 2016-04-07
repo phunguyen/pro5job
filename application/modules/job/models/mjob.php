@@ -60,4 +60,10 @@ class Mjob extends CI_Model{
 		$query = "SELECT * FROM job_ask_rel WHERE job_id = $job_id";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function get_sub_values($type) {
+		$query = "SELECT * FROM sub_values WHERE `type` = '{$type}'";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
 }

@@ -35,7 +35,7 @@ CREATE TABLE `asks` (
   PRIMARY KEY (`ask_id`),
   KEY `ask_cat_id` (`ask_cat_id`),
   CONSTRAINT `asks_ibfk_1` FOREIGN KEY (`ask_cat_id`) REFERENCES `asks_cats` (`ask_cat_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `asks` (
 
 LOCK TABLES `asks` WRITE;
 /*!40000 ALTER TABLE `asks` DISABLE KEYS */;
-INSERT INTO `asks` VALUES (3,'Thuyết trình',10,'Là kỹ năng đứng trước đám đông để trình về 1 chủ đề nào đó, làm cho người nghe hiểu, nắm bắt vấn đề, và thuyết phục người nghe','Presentation','Skill to present with many people',NULL,NULL,NULL),(4,'Đàm phán',10,'Kỹ năng thuyết phục người khác để đạt được mục đích đề ra của mình','Negotiation','Skill to negotate other people',NULL,NULL,NULL),(5,'Giao tiếp',10,'Kỹ năng giao tiếp với mọi người xung quanh, làm cho mọi người yêu mến bản thân, tạo hình ảnh cho tổ chức','Communication','skill to communicate',NULL,NULL,NULL),(6,'Thiết kế Html với Bootstrap',14,'Kỹ năng thiết kế giao diện web với các công cụ bootstrap với tính năng responsive','Html Design with Bootstrap','Skill to design a html webpage with bootstrap',NULL,NULL,NULL),(7,'Lập trình PHP',11,'Kỹ năng lập trình web với ngôn ngữ PHP','PHP coding','skills to code in PHP language',NULL,NULL,NULL),(8,'Chăm chỉ',3,'làm việc nghiêm túc, hiệu quả và nhanh chóng','Hardworking',' taking their work seriously and doing it well and rapidly',NULL,NULL,NULL),(9,'Ham học hỏi',3,'Thái độ luôn muốn học hỏi để nâng cao kiến thức,  kỹ năng của bản thân,nhằm đáp ứng tốt hơn cho công việc.','Inquisitive','love to learn to improve ourself',NULL,NULL,NULL),(10,'Thân ái',6,'Thái độ hòa nhã, thân ái giúp đỡ đồng nghiệp','Friendly','fun, caring, ready to help others',NULL,NULL,NULL),(11,'Nuôi bò Úc',17,'Các kiến thức liên quan đến việc chăm sóc bò Úc','Australian Cows Feeding','Knowledge to feed Australian cows',NULL,NULL,NULL),(12,'Thiết kế logo',18,'Kỹ năng thiết kế logo cho công ty, tổ chức','Logo Design','Skill to design logo',NULL,NULL,NULL),(13,'Nhiệt tình',3,'Luôn nhiệt tình trong công việc',NULL,NULL,NULL,NULL,NULL),(14,'Tận tụy',3,'Tận tụy trong công việc',NULL,NULL,NULL,NULL,NULL),(15,'Chủ động',3,'Chủ động hỏi đồng nghiệp',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `asks` VALUES (3,'Thuyết trình',10,'Là kỹ năng đứng trước đám đông để trình về 1 chủ đề nào đó, làm cho người nghe hiểu, nắm bắt vấn đề, và thuyết phục người nghe','Presentation','Skill to present with many people',NULL,NULL,NULL),(4,'Đàm phán',10,'Kỹ năng thuyết phục người khác để đạt được mục đích đề ra của mình','Negotiation','Skill to negotate other people',NULL,NULL,NULL),(5,'Giao tiếp',10,'Kỹ năng giao tiếp với mọi người xung quanh, làm cho mọi người yêu mến bản thân, tạo hình ảnh cho tổ chức','Communication','skill to communicate',NULL,NULL,NULL),(6,'Thiết kế Html với Bootstrap',14,'Kỹ năng thiết kế giao diện web với các công cụ bootstrap với tính năng responsive','Html Design with Bootstrap','Skill to design a html webpage with bootstrap',NULL,NULL,NULL),(7,'Lập trình PHP',11,'Kỹ năng lập trình web với ngôn ngữ PHP','PHP coding','skills to code in PHP language',NULL,NULL,NULL),(8,'Chăm chỉ',3,'làm việc nghiêm túc, hiệu quả và nhanh chóng','Hardworking',' taking their work seriously and doing it well and rapidly',NULL,NULL,NULL),(9,'Ham học hỏi',3,'Thái độ luôn muốn học hỏi để nâng cao kiến thức,  kỹ năng của bản thân,nhằm đáp ứng tốt hơn cho công việc.','Inquisitive','love to learn to improve ourself',NULL,NULL,NULL),(10,'Thân ái',6,'Thái độ hòa nhã, thân ái giúp đỡ đồng nghiệp','Friendly','fun, caring, ready to help others',NULL,NULL,NULL),(11,'Nuôi bò Úc',17,'Các kiến thức liên quan đến việc chăm sóc bò Úc','Australian Cows Feeding','Knowledge to feed Australian cows',NULL,NULL,NULL),(12,'Thiết kế logo',18,'Kỹ năng thiết kế logo cho công ty, tổ chức','Logo Design','Skill to design logo',NULL,NULL,NULL),(13,'Nhiệt tình',3,'Luôn nhiệt tình trong công việc',NULL,NULL,NULL,NULL,NULL),(14,'Tận tụy',3,'Tận tụy trong công việc',NULL,NULL,NULL,NULL,NULL),(15,'Chủ động',3,'Chủ động hỏi đồng nghiệp',NULL,NULL,NULL,NULL,NULL),(16,'Chuyên nghiệp',7,'Thái độ chuyên nghiệp với đối tác',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `asks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `asks_cats` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`ask_cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `asks_cats` (
 
 LOCK TABLES `asks_cats` WRITE;
 /*!40000 ALTER TABLE `asks_cats` DISABLE KEYS */;
-INSERT INTO `asks_cats` VALUES (1,'Thái độ','chứa các danh mục con và các ask liên quan đến Thái độ của cá nhân đối với công việc',0,'Attitude','contains sub-categories and asks related to attitude',NULL,NULL),(2,'Kỹ năng','Chứa các danh mục con và các ask liên quan đến Kỹ năng tích lũy được của cá nhân',0,'Skills','contains sub-categories related to skills',NULL,NULL),(3,'Với Công việc','Chứa các ask liên quan đến Thái độ của cá nhân đối với công việc',1,'With Jobs','contains ask related to attitude with jobs',NULL,NULL),(5,'Kiến thức','Chứa các danh mục con và các ask liên quan đến Kiến thức của cá nhân',0,'Knowledge','contains sub-categories related to knowledge',NULL,NULL),(6,'Với Đồng nghiệp','chứa các ask liên quan đến thái độ của cá nhân với đồng nghiệp',1,'With Colleagues','containers ask ralated to attitude with colleagues',NULL,NULL),(7,'Với Đối tác','Thái độ của cá nhân với Đối tác',1,'With Partners','attitude with partners',NULL,NULL),(8,'Với Đối tác','Thái độ của cá nhân với Đối tác',1,'With Partners','attitude with partners',NULL,NULL),(9,'Với Cộng đồng','Thái độ của cá nhân với Cộng đồng chung',1,'With Community','attitude with community',NULL,NULL),(10,'Kỹ năng mềm','Các kỹ năng mềm dùng chung cho mọi ngành nghề',2,'Soft Skills','Soft skills is the cluster of personality traits, social graces, communication, language, personal habits, interpersonal skills, managing people, leadership, etc',NULL,NULL),(11,'Kỹ năng nghề','Kỹ năng cứng liên quan các nghề nghiệp cụ thể',2,'Job Skills','Skills in a specific Job',NULL,NULL),(12,'Toán phổ thông','Các kiến thức cơ bản về Toán phổ thông trình độ 12/12',5,'School Maths','Knowledge ralated to school maths',NULL,NULL),(13,'Thiết kế website','Các kỹ năng thiết kế giao diện người dùng cho website',11,'Web Design','skills to design web user interface',NULL,NULL),(14,'Lập trình web','Kỹ năng lập trình thực hiện các chức năng của ứng dụng web',11,'Web Coding','code to implement web apps',NULL,NULL),(16,'Kiến thức nghề','Kiến thức liên quan các nghề nghiệp cụ thể ',5,'Job Knowledge','Knowledge related to Jobs',NULL,NULL),(17,'Nông nghiệp','Các kiến thức liên quan lĩnh vực nông nghiệp',16,'Agriculture','Knowledge related to Agriculture',NULL,NULL),(18,'Thiết kế đồ họa','Các kỹ năng thiết kế các hình ảnh như logo, nhận dạng thương hiệu',11,'Designer','Skills to design logo and something like that',NULL,NULL),(19,'Thiết kế đồ họa','Các kỹ năng thiết kế các hình ảnh như logo, nhận dạng thương hiệu',11,'Designer','Skills to design logo and something like that',NULL,NULL);
+INSERT INTO `asks_cats` VALUES (1,'Thái độ','chứa các danh mục con và các ask liên quan đến Thái độ của cá nhân đối với công việc',0,'Attitude','contains sub-categories and asks related to attitude',NULL,NULL),(2,'Kỹ năng','Chứa các danh mục con và các ask liên quan đến Kỹ năng tích lũy được của cá nhân',0,'Skills','contains sub-categories related to skills',NULL,NULL),(3,'Với Công việc','Chứa các ask liên quan đến Thái độ của cá nhân đối với công việc',1,'With Jobs','contains ask related to attitude with jobs',NULL,NULL),(5,'Kiến thức','Chứa các danh mục con và các ask liên quan đến Kiến thức của cá nhân',0,'Knowledge','contains sub-categories related to knowledge',NULL,NULL),(6,'Với Đồng nghiệp','chứa các ask liên quan đến thái độ của cá nhân với đồng nghiệp',1,'With Colleagues','containers ask ralated to attitude with colleagues',NULL,NULL),(7,'Với Đối tác','Thái độ của cá nhân với Đối tác',1,'With Partners','attitude with partners',NULL,NULL),(9,'Với Cộng đồng','Thái độ của cá nhân với Cộng đồng chung',1,'With Community','attitude with community',NULL,NULL),(10,'Kỹ năng mềm','Các kỹ năng mềm dùng chung cho mọi ngành nghề',2,'Soft Skills','Soft skills is the cluster of personality traits, social graces, communication, language, personal habits, interpersonal skills, managing people, leadership, etc',NULL,NULL),(11,'Kỹ năng nghề','Kỹ năng cứng liên quan các nghề nghiệp cụ thể',2,'Job Skills','Skills in a specific Job',NULL,NULL),(12,'Toán phổ thông','Các kiến thức cơ bản về Toán phổ thông trình độ 12/12',5,'School Maths','Knowledge ralated to school maths',NULL,NULL),(13,'Thiết kế website','Các kỹ năng thiết kế giao diện người dùng cho website',11,'Web Design','skills to design web user interface',NULL,NULL),(14,'Lập trình web','Kỹ năng lập trình thực hiện các chức năng của ứng dụng web',11,'Web Coding','code to implement web apps',NULL,NULL),(16,'Kiến thức nghề','Kiến thức liên quan các nghề nghiệp cụ thể ',5,'Job Knowledge','Knowledge related to Jobs',NULL,NULL),(17,'Nông nghiệp','Các kiến thức liên quan lĩnh vực nông nghiệp',16,'Agriculture','Knowledge related to Agriculture',NULL,NULL),(18,'Thiết kế đồ họa','Các kỹ năng thiết kế các hình ảnh như logo, nhận dạng thương hiệu',11,'Designer','Skills to design logo and something like that',NULL,NULL);
 /*!40000 ALTER TABLE `asks_cats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `job_ask_rel` (
 
 LOCK TABLES `job_ask_rel` WRITE;
 /*!40000 ALTER TABLE `job_ask_rel` DISABLE KEYS */;
-INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1);
+INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1),(1,11,1,4),(1,15,1,3),(1,16,1,2),(5,8,1,3);
 /*!40000 ALTER TABLE `job_ask_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,9 +141,18 @@ CREATE TABLE `jobs` (
   `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `job_contact` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `user_id` int(10) DEFAULT NULL,
-  `subdata` text,
+  `location` varchar(255) DEFAULT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `graduation` varchar(255) DEFAULT NULL,
+  `salary` varchar(255) DEFAULT NULL,
+  `startdate` varchar(255) DEFAULT NULL,
+  `duration` varchar(255) DEFAULT NULL,
+  `description` text,
+  `interest` text,
+  `other` text,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +161,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader',3,'{\"selected_asks\":\";8;9;10\",\"selected_asks_require\":\";0;1;0\",\"selected_asks_rating\":\";3;5;1\",\"job_name\":\"Team Leader\",\"job_contact\":\"Team Leader\",\"jobsub_location\":\"Tp HCM\",\"jobsub_experience\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_gender\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_graduation\":\"Kh\\u00f4ng y\\u00eau c\\u1ea7u\",\"jobsub_salary\":\"Tho\\u1ea3 thu\\u1eadn\",\"jobsub_startdate\":\"H\\u00f4m nay\",\"jobsub_duration\":\"1 tu\\u1ea7n\",\"jobsub_desc\":\"\",\"jobsub_phucloi\":\"\",\"jobsub_other\":\"\"}'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,NULL);
+INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader 111',3,'An Giang','Không yêu c?u','Nam','tot-nghiep-thpt','Tho? thu?n','Hôm nay','2 tháng','111','222','333'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Tech Leader','Tech Leader',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,6 +243,32 @@ LOCK TABLES `profiles` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sub_values`
+--
+
+DROP TABLE IF EXISTS `sub_values`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sub_values` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_values`
+--
+
+LOCK TABLES `sub_values` WRITE;
+/*!40000 ALTER TABLE `sub_values` DISABLE KEYS */;
+INSERT INTO `sub_values` VALUES (1,'tot-nghiep-thcs','Tá»‘t nghiá»‡p THCS','graduation'),(2,'tot-nghiep-thpt','Tá»‘t nghiá»‡p THPT','graduation'),(3,'trung-cap','Trung cáº¥p','graduation'),(4,'cao-dang','Cao Ä‘áº³ng','graduation'),(5,'dai-hoc','Äáº¡i há»c','graduation'),(6,'thac-sy','Tháº¡c sá»¹','graduation'),(7,'tien-sy','Tiáº¿n sá»¹','graduation');
+/*!40000 ALTER TABLE `sub_values` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -268,7 +303,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1458117749,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1459822180,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1459822215,1,'User','Profile','UP','222');
+INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1459924090,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1460019619,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1459822215,1,'User','Profile','UP','222');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-05  9:52:49
+-- Dump completed on 2016-04-07 16:49:44
