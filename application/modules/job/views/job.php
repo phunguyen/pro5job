@@ -217,41 +217,36 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                         <div class="panel-body">
                             <h4>Địa điểm làm việc</h4>
                             <select class="form-control" id="jobsub_location" name="jobsub_location">
-                                <option>Chọn Tỉnh/Thành</option>
                                 <?php
-                                    $aLocations = array('Hà Nội', 'Tp HCM', 'Dà Nẵng', 'An Giang', 'Bắc Ninh');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['location']) && $loc == $job_data['location']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($locations as $l) {
+                                        echo '<option value="'.$l['code'].'"';
+                                        if(isset($job_data['location']) && $l['code'] == $job_data['location']) echo ' selected';
+                                        echo '>'.$l['name'].'</option>';
                                     }
                                 ?>
                             </select>
                             <h4>Số năm kinh nghiệm</h4>
                             <select class="form-control" id="jobsub_experience" name="jobsub_experience">
                                 <?php
-                                    $aLocations = array('Không yêu cầu', '1 năm', '2 năm', '3 năm', '4 năm', '5 năm trở lên');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['experience']) && $loc == $job_data['experience']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($experiences as $e) {
+                                        echo '<option value="'.$e['code'].'"';
+                                        if(isset($job_data['experience']) && $e['code'] == $job_data['experience']) echo ' selected';
+                                        echo '>'.$e['name'].'</option>';
                                     }
                                 ?>
                             </select>
                             <h4>Yêu cầu giới tính</h4>
                             <select class="form-control" id="jobsub_gender" name="jobsub_gender">
                                 <?php
-                                    $aLocations = array('Không yêu cầu', 'Nam', 'Nữ');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['gender']) && $loc == $job_data['gender']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($genders as $g) {
+                                        echo '<option value="'.$g['code'].'"';
+                                        if(isset($job_data['gender']) && $g['code'] == $job_data['gender']) echo ' selected';
+                                        echo '>'.$g['name'].'</option>';
                                     }
                                 ?>
                             </select>
                             <h4>Bằng cấp tối thiểu</h4>
                             <select class="form-control" id="jobsub_graduation" name="jobsub_graduation">
-                                <option value="">Không yêu cầu</option>
                                 <?php
                                     foreach($graduations as $g) {
                                         echo '<option value="'.$g['code'].'"';
@@ -263,22 +258,20 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                             <h4>Mức lương dự kiến</h4>
                             <select class="form-control" id="jobsub_salary" name="jobsub_salary">
                                 <?php
-                                    $aLocations = array('Thoả thuận', '1-3 triệu', '3-5 triệu', '5-8 triệu', '8-12 triệu', '12-17 triệu', '17-25 triệu', 'Trên 25 triệu');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['salary']) && $loc == $job_data['salary']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($salaries as $s) {
+                                        echo '<option value="'.$s['code'].'"';
+                                        if(isset($job_data['salary']) && $s['code'] == $job_data['salary']) echo ' selected';
+                                        echo '>'.$s['name'].'</option>';
                                     }
                                 ?>
                             </select>
 							<h4>Ngày bắt đầu tuyển</h4>
                             <select class="form-control" id="jobsub_startdate" name="jobsub_startdate">
                                 <?php
-                                    $aLocations = array('Hôm nay', '3 ngày nữa', '1 tuần nữa', '2 tuần nữa', '1 tháng nữa');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['startdate']) && $loc == $job_data['startdate']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($startdates as $s) {
+                                        echo '<option value="'.$s['code'].'"';
+                                        if(isset($job_data['startdate']) && $s['code'] == $job_data['startdate']) echo ' selected';
+                                        echo '>'.$s['name'].'</option>';
                                     }
                                 ?>
                             </select>
@@ -286,11 +279,10 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                             <h4>Thời gian đăng tuyển</h4>
                             <select class="form-control" id="jobsub_duration" name="jobsub_duration">
                                 <?php
-                                    $aLocations = array('1 tuần', '2 tuần', '1 tháng', '2 tháng', '3 tháng', 'Thường xuyên tuyển');
-                                    foreach($aLocations as $loc) {
-                                        echo '<option value="'.$loc.'"';
-                                        if(isset($job_data['duration']) && $loc == $job_data['duration']) echo ' selected';
-                                        echo '>'.$loc.'</option>';
+                                    foreach($durations as $d) {
+                                        echo '<option value="'.$d['code'].'"';
+                                        if(isset($job_data['duration']) && $d['code'] == $job_data['duration']) echo ' selected';
+                                        echo '>'.$d['name'].'</option>';
                                     }
                                 ?>
                             </select>
