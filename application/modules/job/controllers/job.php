@@ -12,6 +12,13 @@ class Job extends MX_Controller{
 		$data['ask_cats'] = $this->mjob->get_ask_cats();
 		$data['list_asks'] = $this->mjob->get_asks();
 		$data['list_jobs'] = $this->mjob->list_jobs($this->ion_auth->get_user_id());
+		$data['locations'] = $this->mjob->get_sub_values('location');
+		$data['experiences'] = $this->mjob->get_sub_values('experience');
+		$data['genders'] = $this->mjob->get_sub_values('gender');
+		$data['graduations'] = $this->mjob->get_sub_values('graduation');
+		$data['salaries'] = $this->mjob->get_sub_values('salary');
+		$data['startdates'] = $this->mjob->get_sub_values('startdate');
+		$data['durations'] = $this->mjob->get_sub_values('duration');
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "job", $data);
         $this->template->render();
@@ -21,7 +28,16 @@ class Job extends MX_Controller{
 		$data['job_name'] = $this->input->post('job_name');
 		$data['job_contact'] = $this->input->post('job_contact');
 		$data['user_id'] = $this->ion_auth->get_user_id();
-		$data['subdata'] = json_encode($_POST);
+		$data['location'] = $this->input->post('jobsub_location');
+		$data['experience'] = $this->input->post('jobsub_experience');
+		$data['gender'] = $this->input->post('jobsub_gender');
+		$data['graduation'] = $this->input->post('jobsub_graduation');
+		$data['salary'] = $this->input->post('jobsub_salary');
+		$data['startdate'] = $this->input->post('jobsub_startdate');
+		$data['duration'] = $this->input->post('jobsub_duration');
+		$data['description'] = $this->input->post('jobsub_description');
+		$data['interest'] = $this->input->post('jobsub_interest');
+		$data['other'] = $this->input->post('jobsub_other');
 		if($data['job_name'] != '') {
 			$new_id = $this->mjob->create($data);
 
