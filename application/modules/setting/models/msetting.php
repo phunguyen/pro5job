@@ -7,7 +7,7 @@ class Msetting extends CI_Model {
 	}
 
 	public function list_all($type) {
-		$query = "SELECT * FROM sub_values WHERE `type` = '$type'";
+		$query = "SELECT * FROM {$this->_table} WHERE `type` = '$type'";
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
@@ -18,7 +18,7 @@ class Msetting extends CI_Model {
 	}
 
 	public function read($id) {
-		$query = "SELECT * FROM {$type} WHERE id = '$id'";
+		$query = "SELECT * FROM {$this->_table} WHERE id = '$id'";
 		$result = $this->db->query($query);
 		return $result->row_array();
 	}

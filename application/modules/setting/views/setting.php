@@ -1,16 +1,15 @@
+<?php echo form_open("setting/create");?>
 <div class="heading">
 	<div class="container">
 		<hr>
 		<div class="row">
 			<div class="col-md-3">
-			<form>
-				<select class="form-control" id="sub_value">
+				<select class="form-control" id="sub_value" name="sub_value">
 					<option value="location">Địa điểm</option>
 					<option value="experience">Năm kinh nghiệm</option>
 					<option value="graduation">Bằng cấp</option>
 					<option value="salary">Mức lương</option>
 				</select>
-			</form>
 			</div>
 			<div class="col-md-9">
 			</div>
@@ -25,10 +24,11 @@
 			<hr>
 			<div class="row">
 					<div class="col-md-8">
-						<input type="text" class="form-control" name="location" placeholder="Địa điểm làm việc">
+						<input type="text" class="form-control name" name="location_name" placeholder="Địa điểm làm việc" value="">
 					</div>
 					<div class="col-md-4">
-						<input type="submit" value="Thêm" class="btn btn-primary btn-block">
+						<input type="submit" value="Thêm" class="btn btn-primary btn-block btn-add">
+						<input type="button" value="Sửa" class="btn btn-primary btn-block btn-edit" style="display: none;">
 					</div>
 			</div>
 			<hr>
@@ -43,7 +43,7 @@
 					<?php
 						foreach($locations as $loc) {
 							echo '<tr>
-									<td><a href="#">Sửa </a>| <a href="#">Xóa</a></td>
+									<td data-id="'.$loc['id'].'"><a href="#" class="edit-value">Sửa </a>| <a href="#" class="delete-value">Xóa</a></td>
 									<td>'.$loc['name'].'</td>
 								</tr>';
 						}
@@ -57,7 +57,7 @@
 			<hr>
 				<div class="row">
 					<div class="col-md-8">
-						<input type="text" class="form-control" name="location" placeholder="Năm kinh nghiệm">
+						<input type="text" class="form-control" name="experience_name" placeholder="Năm kinh nghiệm">
 					</div>
 					<div class="col-md-4">
 						<input type="submit" value="Thêm" class="btn btn-primary btn-block">
@@ -89,7 +89,7 @@
 			<hr>
 				<div class="row">
 					<div class="col-md-8">
-						<input type="text" class="form-control" name="location" placeholder="Bằng cấp">
+						<input type="text" class="form-control" name="graduation_name" placeholder="Bằng cấp">
 					</div>
 					<div class="col-md-4">
 						<input type="submit" value="Thêm" class="btn btn-primary btn-block">
@@ -121,7 +121,7 @@
 			<hr>
 				<div class="row">
 					<div class="col-md-8">
-						<input type="text" class="form-control" name="location" placeholder="Mức lương">
+						<input type="text" class="form-control" name="salary_name" placeholder="Mức lương">
 					</div>
 					<div class="col-md-4">
 						<input type="submit" value="Thêm" class="btn btn-primary btn-block">
@@ -150,6 +150,7 @@
 		</div>
 	</div>
 </div>
+</form>
 <script>
 $(function() {
 	setting_registerEvents();
