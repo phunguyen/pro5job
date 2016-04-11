@@ -43,6 +43,8 @@ class Mjob extends CI_Model{
 	public function delete($id) {
 		$this->db->where('job_id', $id);
 		$this->db->delete($this->_table);
+		$query = "DELETE FROM job_ask_rel WHERE job_id = $id";
+		$this->db->query($query);
 	}
 
 	public function link_job_ask($job_id, $a_asks, $a_requires, $a_ratings) {
