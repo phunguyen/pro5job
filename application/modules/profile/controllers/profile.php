@@ -12,6 +12,11 @@ class Profile extends MX_Controller{
 		$data['ask_cats'] = $this->mprofile->get_ask_cats();
 		$data['list_asks'] = $this->mprofile->get_asks();
 		$data['list_profiles'] = $this->mprofile->list_profiles($this->ion_auth->get_user_id());
+		$data['locations'] = $this->mprofile->get_sub_values('location');
+		$data['experiences'] = $this->mprofile->get_sub_values('experience');
+		$data['genders'] = $this->mprofile->get_sub_values('gender');
+		$data['graduations'] = $this->mprofile->get_sub_values('graduation');
+		$data['salaries'] = $this->mprofile->get_sub_values('salary');
 		$this->template->write("title", "Công Việc");
         $this->template->write_view("content", "profile", $data);
         $this->template->render();
@@ -19,10 +24,26 @@ class Profile extends MX_Controller{
 
 	public function create() {
 		$data['profile_name'] = $this->input->post('profile_name');
+		$data['profile_birthdate'] = $this->input->post('profile_birthdate');
 		$data['profile_contact'] = $this->input->post('profile_contact');
 		$data['user_id'] = $this->ion_auth->get_user_id();
+		$data['location'] = $this->input->post('profilesub_location');
+		$data['experience'] = $this->input->post('profilesub_experience');
+		$data['profile_gender'] = $this->input->post('profilesub_gender');
+		$data['graduation'] = $this->input->post('profilesub_graduation');
+		$data['salary'] = $this->input->post('profilesub_salary');
+		$data['background'] = $this->input->post('profilesub_background');
+		$data['work_experience'] = $this->input->post('profilesub_work_experience');
+		$data['other'] = $this->input->post('profilesub_other');
 		if($data['profile_name'] != '') {
-			$this->mprofile->create($data);
+			$new_id = $this->mprofile->create($data);
+
+			// link ask
+			$selected_asks = $this->input->post('selected_asks');
+			$selected_asks = explode(';', $selected_asks);
+			$selected_asks_rating = $this->input->post('selected_asks_rating');
+			$selected_asks_rating = explode(';', $selected_asks_rating);
+			$this->mprofile->link_profile_ask($new_id, $selected_asks, $selected_asks_rating);
 		}
 		redirect('profile', 'refresh');
 	}
@@ -37,20 +58,26 @@ class Profile extends MX_Controller{
 		if (isset($_POST) && !empty($_POST)) {
 			// save profile
 			$data['profile_name'] = $this->input->post('profile_name');
+			$data['profile_birthdate'] = $this->input->post('profile_birthdate');
 			$data['profile_contact'] = $this->input->post('profile_contact');
 			$data['user_id'] = $this->ion_auth->get_user_id();
-			$data['subdata'] = json_encode($_POST);
+			$data['location'] = $this->input->post('profilesub_location');
+			$data['experience'] = $this->input->post('profilesub_experience');
+			$data['profile_gender'] = $this->input->post('profilesub_gender');
+			$data['graduation'] = $this->input->post('profilesub_graduation');
+			$data['salary'] = $this->input->post('profilesub_salary');
+			$data['background'] = $this->input->post('profilesub_background');
+			$data['work_experience'] = $this->input->post('profilesub_work_experience');
+			$data['other'] = $this->input->post('profilesub_other');
 			// echo '<pre>';print_r($data);exit;
 			$this->mprofile->update($id, $data);
 
 			// link ask
 			$selected_asks = $this->input->post('selected_asks');
 			$selected_asks = explode(';', $selected_asks);
-			$selected_asks_require = $this->input->post('selected_asks_require');
-			$selected_asks_require = explode(';', $selected_asks_require);
 			$selected_asks_rating = $this->input->post('selected_asks_rating');
 			$selected_asks_rating = explode(';', $selected_asks_rating);
-			$this->mprofile->link_profile_ask($id, $selected_asks, $selected_asks_require, $selected_asks_rating);
+			$this->mprofile->link_profile_ask($id, $selected_asks, $selected_asks_rating);
 
 			// redirect
 			redirect('profile', 'refresh');
@@ -62,7 +89,11 @@ class Profile extends MX_Controller{
 		$data['list_profiles'] = $this->mprofile->list_profiles($this->ion_auth->get_user_id());
 		$data['profile_data'] = $this->mprofile->read($id);
 		$data['linked_asks'] = $this->mprofile->get_linked_asks($id);
-		$data['sub_data'] = json_decode($data['profile_data']['subdata'], true);
+		$data['locations'] = $this->mprofile->get_sub_values('location');
+		$data['experiences'] = $this->mprofile->get_sub_values('experience');
+		$data['genders'] = $this->mprofile->get_sub_values('gender');
+		$data['graduations'] = $this->mprofile->get_sub_values('graduation');
+		$data['salaries'] = $this->mprofile->get_sub_values('salary');
 
 		// view
 		$this->template->write("title", "Công Việc");
@@ -78,10 +109,5 @@ class Profile extends MX_Controller{
 
 		$this->mprofile->delete($id);
 		redirect('profile','refresh');
-	}
-
-	public function add_ask() {
-		// echo '<pre>';print_r($_REQUEST);echo '</pre>';
-		echo Modules::run('ask/add_ask', $_REQUEST);
 	}
 }

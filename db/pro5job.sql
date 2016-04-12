@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2016 at 06:19 PM
+-- Generation Time: Apr 12, 2016 at 12:56 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
   `description` text,
   `interest` text,
   `other` text
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `jobs`
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 --
 
 CREATE TABLE IF NOT EXISTS `profiles` (
-  `profile_id` int(10) NOT NULL,
+`profile_id` int(10) NOT NULL,
   `profile_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `profile_contact` text COLLATE utf8_unicode_ci,
   `profile_birthdate` date DEFAULT NULL,
@@ -210,10 +210,18 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `experience` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `graduation` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `salary` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `study` text COLLATE utf8_unicode_ci NOT NULL,
-  `works` text COLLATE utf8_unicode_ci NOT NULL,
+  `background` text COLLATE utf8_unicode_ci NOT NULL,
+  `work_experience` text COLLATE utf8_unicode_ci NOT NULL,
   `other` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `profiles`
+--
+
+INSERT INTO `profiles` (`profile_id`, `profile_name`, `profile_contact`, `profile_birthdate`, `profile_gender`, `user_id`, `location`, `experience`, `graduation`, `salary`, `background`, `work_experience`, `other`) VALUES
+(1, 'Nguyen Van A', '11111', '0000-00-00', 'nu', 4, 'ha-tinh', '3-nam', 'dai-hoc', '1-3-trieu', '111', '222', '333'),
+(2, 'Tran Van B', '', '0000-00-00', 'khac', 4, 'ha-tinh', '1-nam', 'tot-nghiep-thcs', 'thoa-thuan', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -226,6 +234,17 @@ CREATE TABLE IF NOT EXISTS `profile_ask_rel` (
   `ask_id` int(10) NOT NULL,
   `rating` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `profile_ask_rel`
+--
+
+INSERT INTO `profile_ask_rel` (`profile_id`, `ask_id`, `rating`) VALUES
+(1, 8, 5),
+(1, 11, 1),
+(1, 13, 3),
+(2, 5, 5),
+(2, 14, 4);
 
 -- --------------------------------------------------------
 
@@ -308,10 +327,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1460387687, 1, 'User', 'Admin', 'ADMIN', '1112223333'),
+(1, '127.0.0.1', 'administrator', '$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1460453216, 1, 'User', 'Admin', 'ADMIN', '1112223333'),
 (2, '0.0.0.0', NULL, '$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G', NULL, 'editor@editor.com', NULL, NULL, NULL, NULL, 1453985671, 1458287426, 1, 'User', 'Editor', 'Citigo', '0985819644'),
-(3, '0.0.0.0', NULL, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', NULL, 'job@job.com', NULL, NULL, NULL, NULL, 1457017959, 1460387820, 1, 'User', 'Job', 'Boru', '111'),
-(4, '0.0.0.0', NULL, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', NULL, 'profile@profile.com', NULL, NULL, NULL, NULL, 1457595123, 1460387868, 1, 'User', 'Profile', 'UP', '222');
+(3, '0.0.0.0', NULL, '$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i', NULL, 'job@job.com', NULL, NULL, NULL, NULL, 1457017959, 1460454268, 1, 'User', 'Job', 'Boru', '111'),
+(4, '0.0.0.0', NULL, '$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm', NULL, 'profile@profile.com', NULL, NULL, NULL, NULL, 1457595123, 1460454417, 1, 'User', 'Profile', 'UP', '222');
 
 -- --------------------------------------------------------
 
@@ -428,12 +447,17 @@ MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-MODIFY `job_id` int(19) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `job_id` int(19) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
 MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `profiles`
+--
+ALTER TABLE `profiles`
+MODIFY `profile_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sub_values`
 --

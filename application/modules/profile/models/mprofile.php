@@ -43,14 +43,16 @@ class Mprofile extends CI_Model{
 	public function delete($id) {
 		$this->db->where('profile_id', $id);
 		$this->db->delete($this->_table);
+		$query = "DELETE FROM profile_ask_rel WHERE profile_id = $id";
+		$this->db->query($query);
 	}
 
-	public function link_profile_ask($profile_id, $a_asks, $a_requires, $a_ratings) {
+	public function link_profile_ask($profile_id, $a_asks, $a_ratings) {
 		$query = "DELETE FROM profile_ask_rel WHERE profile_id = $profile_id";
 		$this->db->query($query);
 		foreach ($a_asks as $i => $ask_id) {
 			if($ask_id != '') {
-				$query = "INSERT INTO profile_ask_rel VALUES ($profile_id, $ask_id, {$a_requires[$i]}, {$a_ratings[$i]})";
+				$query = "INSERT INTO profile_ask_rel VALUES ($profile_id, $ask_id, {$a_ratings[$i]})";
 				$this->db->query($query);
 			}
 		}
@@ -59,5 +61,11 @@ class Mprofile extends CI_Model{
 	function get_linked_asks($profile_id) {
 		$query = "SELECT * FROM profile_ask_rel WHERE profile_id = $profile_id";
 		return $this->db->query($query)->result_array();
+	}
+
+	public function get_sub_values($type) {
+		$query = "SELECT * FROM sub_values WHERE `type` = '{$type}'";
+		$res = $this->db->query($query);
+		return $res->result_array();
 	}
 }

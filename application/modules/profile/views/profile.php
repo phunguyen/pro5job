@@ -91,164 +91,168 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 }
 ?>
 <div class="heading">
-		<div class="container">
-			<hr>
-			<div class="row">
-				<div class="col-md-3">
-				<h4>Danh sách Profile</h4>
-				</div>
-				<div class="col-md-5">
-				<select class="form-control" id="profiles">
-					<option>Nguyễn Văn A</option>
-					<option>Trần Văn B</option>
-					<option>Lê Thị C</option>
-				</select>
-				</div>
-				<div class="col-md-4">
-				<input type="submit" value="Sửa Profile" class="btn btn-primary"> &nbsp;&nbsp;
-				<input type="button" value="Xóa Profile" class="btn btn-danger delete-profile"> &nbsp;&nbsp;
-				<input type="submit" value="Tạo mới Profile" class="btn btn-success">
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-			<div class="col">
-				<h2>Tạo/Sửa Profile</h2>
-				<hr>
-				<h4>Hãy chọn các Thái độ, Kỹ Năng, Kiến thức mà bạn có cùng với cấp độ 1-5 sao</h4>
-				<h4>Càng cụ thể, chi tiết, sát với thực tế sẽ giúp bạn dễ lọc ra các Job phù hợp</h4>
-			</div>
-			</div>
-
-		</div>
-	</div>
-	<hr>
-	<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2">
-				<div >
-					<span style="font-size: 24px">Danh mục ASK</span>
-					<hr>
-				</div>
-				<?php buildAskCats($ask_cats); ?>
-			</div>
-			<div class="col-md-3">
-				<div>
-						<span style="font-size: 24px">ASK trong danh mục</span>					
-						<a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
-						1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. ">
-						<span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Danh sách Profile</h4>
+            </div>
+            <div class="col-md-5">
+                <select class="form-control" id="list_profiles">
+                    <?php
+                        foreach($list_profiles as $profile) {
+                            echo '<option value="'.$profile['profile_id'].'"';
+                            if(isset($profile_data['profile_id']) && $profile_data['profile_id'] == $profile['profile_id']) echo ' selected="true"';
+                            echo '>'.$profile['profile_name'].'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Sửa Profile" class="btn btn-primary edit-profile"> &nbsp;&nbsp;
+                <input type="button" value="Xóa Profile" class="btn btn-danger delete-profile"> &nbsp;&nbsp;
+                <input type="submit" value="Tạo mới Profile" class="btn btn-success new-profile">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h2>Tạo/Sửa Profile</h2>
                 <hr>
-						<?php buildAsksInCats($ask_cats, $list_asks); ?>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<span style="font-size: 24px">ASK đã chọn</span>
-				<hr>
-				<?php buildSelectedCats($ask_cats, $list_asks); ?>
-			</div>
-			<div class="col-md-4">
-
-					<span style="font-size: 24px">Thông tin Profile</span>
-
-						<hr>
-						<input type="submit" value="Lưu Profile" class="btn btn-primary"> &nbsp;&nbsp;
-						<input type="submit" value="Xem Profile" class="btn btn-success">
-						<br><br>
-				<form>
-						<input type="text" class="form-control" id="profilename" placeholder="Họ và Tên">
-						<br>
-						<input type="text" class="form-control" id="profilebirth" placeholder="Ngày tháng năm sinh">
-
-						<br>
-										<select class="form-control" id="profilesex">
-											<option>Nam</option>
-											<option>Nữ</option>
-											<option>Khác</option>
-										</select>
-										<br>
-						<textarea class="form-control" rows="4" id="profilecontact" placeholder="Thông tin liên lạc: Số điện thoại, địa chỉ"></textarea>
-						<form>
-						<br>
-						<div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingTwo">
-								<h4 class="panel-title">
-									<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									Thông tin bổ sung cho Profile
-									</a>
-								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-								<div class="panel-body">
-									<form>
-
-									<h4>Địa điểm làm việc mong muốn</h4>
-									<select class="form-control" id="profileplace">
-										<option>Chọn Tỉnh/Thành</option>
-										<option>Hà Nội</option>
-										<option>Tp HCM</option>
-										<option>Đà Nẵng</option>
-										<option>An Giang</option>
-										<option>Bắc Ninh</option>
-									</select>
-										<h4>Số năm kinh nghiệm bạn có</h4>
-										<select class="form-control" id="profilekinhnghiem">
-											<option>Không có</option>
-											<option>1 năm</option>
-											<option>2 năm</option>
-											<option>3 năm</option>
-											<option>4 năm</option>
-											<option>5 năm trở lên</option>
-										</select>
-
-										<h4>Bằng cấp cao nhất bạn có</h4>
-										<select class="form-control" id="profilegrade">
-											<option>Không có</option>
-											<option>Tốt nghiệp THCS</option>
-											<option>Tốt nghiệp THPT</option>
-											<option>Trung cấp</option>
-											<option>Cao đẳng</option>
-											<option>Đại học</option>
-											<option>Thạc sỹ</option>
-											<option>Tiến sỹ</option>
-										</select>
-										<h4>Mức lương tối thiếu yêu cầu</h4>
-										<select class="form-control" id="profilesalary">
-											<option>Thỏa thuận</option>
-											<option>1-3 triệu</option>
-											<option>3-5 triệu</option>
-											<option>5-8 triệu</option>
-											<option>8-12 triệu</option>
-											<option>12-17 triệu</option>
-											<option>17-25 triệu</option>
-											<option>Trên 25 triệu</option>
-										</select>
-
-
-										<br>
-										<textarea class="form-control" rows="7" id="profilebackground" placeholder="Quá trình đào tạo"></textarea>
-										<br>
-										<textarea class="form-control" rows="7" id="profileexperience" placeholder="Kinh nghiệm làm việc"></textarea>
-										<br>
-										<textarea class="form-control" rows="7" id="profileother" placeholder="Thông tin bổ sung khác"></textarea>
-
-									</form>
-								</div>
-							</div>
-						</div>
-
-
-			</div>
-		</div>
-	</div>
+                <h4>Hãy chọn các Thái độ, Kỹ Năng, Kiến thức mà bạn có cùng với cấp độ 1-5 sao</h4>
+                <h4>Càng cụ thể, chi tiết, sát với thực tế sẽ giúp bạn dễ lọc ra các profile phù hợp</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div >
+                <span style="font-size: 24px">Danh mục ASK</span>
+                <hr>
+            </div>
+            <?php buildAskCats($ask_cats); ?>
+        </div>
+        <div class="col-md-3">
+            <div>
+                <span style="font-size: 24px">ASK trong danh mục</span>					
+                <a title="Trợ giúp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Click vào 1 trong 5 ngôi sao để chọn ASK; 
+                    1 sao: chỉ biết; 2 sao: làm được; 3 sao: thành thạo; 4 sao: dạy lại; 5 sao: sáng tạo. ">
+                <span style="font-size: 24px;" class="glyphicon glyphicon-question-sign"></span></a>
+                <hr>
+                <?php buildAsksInCats($ask_cats, $list_asks); ?>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <span style="font-size: 24px">ASK đã chọn</span>
+            <hr>
+            <?php buildSelectedCats($ask_cats, $list_asks); ?>
+        </div>
+        <div class="col-md-4">
+        <?php
+            if(isset($profile_data['profile_id']) && $profile_data['profile_id'] != '') {
+                echo form_open("profile/edit/".$profile_data['profile_id']);
+            } else {
+                echo form_open("profile/create");
+            }
+        ?>
+            <span style="font-size: 24px">Thông tin Profile</span>
+            <hr>
+            <!-- HIDDEN FIELDS -->
+            <input type="hidden" id="selected_asks" name="selected_asks" value="">
+            <input type="hidden" id="selected_asks_rating" name="selected_asks_rating" value="">
+            <input type="submit" value="Lưu Profile" class="btn btn-primary"> &nbsp;&nbsp;
+            <input type="submit" value="Xem Profile" class="btn btn-success">
+            <br><br>
+            <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="Họ và Tên" value="<?php echo(isset($profile_data['profile_name']) ? $profile_data['profile_name'] : ''); ?>">
+            <br>
+            <input type="text" class="form-control" id="profile_birthdate" name="profile_birthdate" placeholder="Ngày tháng năm sinh" value="<?php echo(isset($profile_data['profile_birthdate']) ? $profile_data['profile_birthdate'] : ''); ?>">
+            <br>
+            <select class="form-control" id="profilesub_gender" name="profilesub_gender">
+                <?php
+                    foreach($genders as $g) {
+                        echo '<option value="'.$g['code'].'"';
+                        if(isset($profile_data['profile_gender']) && $g['code'] == $profile_data['profile_gender']) echo ' selected';
+                        echo '>'.$g['name'].'</option>';
+                    }
+                ?>
+            </select>
+            <br>
+            <textarea class="form-control" rows="4" id="profile_contact" name="profile_contact" placeholder="Thông tin liên lạc: Số điện thoại, địa chỉ"><?php echo(isset($profile_data['profile_contact']) ? $profile_data['profile_contact'] : ''); ?></textarea>
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Thông tin bổ sung cho Profile
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+			            <h4>Địa điểm làm việc mong muốn</h4>
+			            <select class="form-control" id="profilesub_location" name="profilesub_location">
+                            <?php
+                                foreach($locations as $l) {
+                                    echo '<option value="'.$l['code'].'"';
+                                    if(isset($profile_data['location']) && $l['code'] == $profile_data['location']) echo ' selected';
+                                    echo '>'.$l['name'].'</option>';
+                                }
+                            ?>
+                        </select>
+			            <h4>Số năm kinh nghiệm bạn có</h4>
+			            <select class="form-control" id="profilesub_experience" name="profilesub_experience">
+                            <?php
+                                foreach($experiences as $e) {
+                                    echo '<option value="'.$e['code'].'"';
+                                    if(isset($profile_data['experience']) && $e['code'] == $profile_data['experience']) echo ' selected';
+                                    echo '>'.$e['name'].'</option>';
+                                }
+                            ?>
+                        </select>
+			            <h4>Bằng cấp cao nhất bạn có</h4>
+			            <select class="form-control" id="profilesub_graduation" name="profilesub_graduation">
+                            <?php
+                                foreach($graduations as $g) {
+                                    echo '<option value="'.$g['code'].'"';
+                                    if(isset($profile_data['graduation']) && $g['code'] == $profile_data['graduation']) echo ' selected';
+                                    echo '>'.$g['name'].'</option>';
+                                }
+                            ?>
+                        </select>
+			            <h4>Mức lương tối thiếu yêu cầu</h4>
+			            <select class="form-control" id="profilesub_salary" name="profilesub_salary">
+                            <?php
+                                foreach($salaries as $s) {
+                                    echo '<option value="'.$s['code'].'"';
+                                    if(isset($profile_data['salary']) && $s['code'] == $profile_data['salary']) echo ' selected';
+                                    echo '>'.$s['name'].'</option>';
+                                }
+                            ?>
+                        </select>
+			            <br>
+			            <textarea class="form-control" rows="7" id="profilesub_background" name="profilesub_background" placeholder="Quá trình đào tạo"><?php echo(isset($profile_data['background']) ? $profile_data['background'] : ''); ?></textarea>
+			            <br>
+			            <textarea class="form-control" rows="7" id="profilesub_work_experience" name="profilesub_work_experience" placeholder="Kinh nghiệm làm việc"><?php echo(isset($profile_data['work_experience']) ? $profile_data['work_experience'] : ''); ?></textarea>
+			            <br>
+			            <textarea class="form-control" rows="7" id="profilesub_other" name="profilesub_other" placeholder="Thông tin bổ sung khác"><?php echo(isset($profile_data['other']) ? $profile_data['other'] : ''); ?></textarea>
+        			</div>
+        		</div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 <script>
 $(function() {
     profile_registerEvents();
     <?php
         if(isset($linked_asks))
         foreach($linked_asks as $ask) {
-            echo 'profile_displaySelectedAsk('.$ask['ask_id'].', '.$ask['require'].', '.$ask['rating'].');';
+            echo 'profile_displaySelectedAsk('.$ask['ask_id'].', '.$ask['rating'].');';
         }
     ?>
 });
