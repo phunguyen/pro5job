@@ -4,6 +4,9 @@ function profile_registerEvents() {
 	profile_registerRemoveSelectedAsk();
 	profile_registerProfileActions();
 
+	// datepicker
+	$('#profile_birthdate').datepicker({format: "yyyy-mm-dd", autoclose: true, todayHighlight: true});
+
 	// display first ASK Category
 	$('.profile-cat:first').trigger('click');
 }
