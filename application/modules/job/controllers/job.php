@@ -111,6 +111,30 @@ class Job extends MX_Controller{
         $this->template->render();
 	}
 
+	public function view($id) {
+		if(!$id || empty($id))
+		{
+			redirect('job', 'refresh');
+		}
+
+		// data
+		$data['ask_cats'] = $this->mjob->get_ask_cats();
+		$data['list_asks'] = $this->mjob->get_asks();
+		$data['job_data'] = $this->mjob->read($id);
+		$data['job_data']['location'] = $this->mjob->get_sub_value('location', $data['job_data']['location']);
+		$data['job_data']['experience'] = $this->mjob->get_sub_value('experience', $data['job_data']['experience']);
+		$data['job_data']['gender'] = $this->mjob->get_sub_value('gender', $data['job_data']['gender']);
+		$data['job_data']['graduation'] = $this->mjob->get_sub_value('graduation', $data['job_data']['graduation']);
+		$data['job_data']['salary'] = $this->mjob->get_sub_value('salary', $data['job_data']['salary']);
+		$data['job_data']['startdate'] = $this->mjob->get_sub_value('startdate', $data['job_data']['startdate']);
+		$data['job_data']['duration'] = $this->mjob->get_sub_value('duration', $data['job_data']['duration']);
+		$data['linked_asks'] = $this->mjob->get_linked_asks($id);
+
+		// view
+        $this->load->view("view", $data);
+        // $this->template->render();
+	}
+
 	public function delete($id) {
 		if(!$id || empty($id))
 		{

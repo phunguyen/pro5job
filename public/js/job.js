@@ -8,6 +8,17 @@ function job_registerEvents() {
 
 	// display first ASK Category
 	$('.job-cat:first').trigger('click');
+
+	// view job
+	$('.view-job').on('click', function() {
+		var job_id = $('#list_jobs').val();
+		$.ajax({
+			url: site_url + 'job/view/' + job_id,
+			success: function(data) {
+				$('#modalViewJob').modal().html(data);
+			}
+		});
+	});
 }
 
 function job_registerAskRequire() {
