@@ -109,9 +109,10 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 </select>
             </div>
             <div class="col-md-4">
+				<input type="submit" value="Xem Profile" class="btn btn-success new-profile"> &nbsp;&nbsp;
                 <input type="submit" value="Sửa Profile" class="btn btn-primary edit-profile"> &nbsp;&nbsp;
-                <input type="button" value="Xóa Profile" class="btn btn-danger delete-profile"> &nbsp;&nbsp;
-                <input type="submit" value="Tạo mới Profile" class="btn btn-success new-profile">
+                <input type="button" value="Xóa Profile" class="btn btn-danger delete-profile">
+                
             </div>
         </div>
         <hr>
@@ -164,8 +165,9 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             <!-- HIDDEN FIELDS -->
             <input type="hidden" id="selected_asks" name="selected_asks" value="">
             <input type="hidden" id="selected_asks_rating" name="selected_asks_rating" value="">
-            <input type="submit" value="Lưu Profile" class="btn btn-primary"> &nbsp;&nbsp;
-            <input type="button" value="Xem Profile" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">
+			<input type="button" value="Tạo Profile" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg"> &nbsp;&nbsp;
+            <input type="submit" value="Lưu Profile" class="btn btn-primary">
+            
             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
