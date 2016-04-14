@@ -2,7 +2,7 @@
 function buildSelectedCats($ask_cats, $list_asks) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == 0) {
-			echo '<div><h4 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;display: ;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="0">'.$cat['ask_cat_name'].'</h4>';
+			echo '<div><h4 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="0">'.$cat['ask_cat_name'].'</h4>';
 	        buildSelectedChildCats($ask_cats, $cat['ask_cat_id'], 0, $list_asks);
 	        echo '</div>';
 	    }
@@ -11,10 +11,10 @@ function buildSelectedCats($ask_cats, $list_asks) {
 function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	foreach ($ask_cats as $cat) {
 		if($cat['ask_cat_parent'] == $cat_id) {
-			echo '<h5 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;padding-left: '.(10 * $level).'px;display: ;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="'.($level + 1).'">'.$cat['ask_cat_name'].'</h5><ul class="nav"><li><ul>';
+			echo '<h5 id="selected_cat_'.$cat['ask_cat_id'].'" style="text-align: left;padding-left: '.(10 * $level).'px;display: none;" class="job-selected-cat" data-cat-id="'.$cat['ask_cat_id'].'" data-level="'.($level + 1).'">'.$cat['ask_cat_name'].'</h5><ul class="nav"><li><ul>';
 			foreach ($list_asks as $ask) {
 	            if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
-	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: ;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
+	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
 	                        <h5>
 	                            <c class="selected-ask-require">Bắt buộc</c> |
 	                            <font color="#ffd700">
@@ -83,3 +83,12 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+<?php
+	if(isset($linked_asks)) {
+		foreach($linked_asks as $ask) {
+			echo 'job_viewSelectAsk('.$ask['ask_id'].','.$ask['rating'].','.$ask['require'].');';
+		}
+	}
+?>
+</script>

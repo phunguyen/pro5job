@@ -15,7 +15,7 @@ function job_registerEvents() {
 		$.ajax({
 			url: site_url + 'job/view/' + job_id,
 			success: function(data) {
-				$('#modalViewJob').modal().html(data);
+				$('#modalViewJob').modal().html(data).find('[data-toggle="popover"]').popover();
 			}
 		});
 	});
@@ -69,7 +69,7 @@ function job_registerSelectCat() {
 }
 
 function job_registerSelectAsk() {
-	$('.job-ask .glyphicon').on('click', function() {console.log('aaa');
+	$('.job-ask .glyphicon').on('click', function() {
 		var ask_id = $(this).closest('.job-ask').data('ask-id');
 		var ask_require = $(this).closest('.job-ask').find('.job-ask-require').data('require');
 		$('#selected_ask_' + ask_id).show();
@@ -172,5 +172,25 @@ function job_registerJobActions() {
 	});
 	$('.new-job').on('click', function() {
 		window.location = site_url + 'job';
+	});
+}
+
+function job_viewSelectAsk(ask_id, ask_star, ask_require) {
+	$('#modalViewJob #selected_ask_' + ask_id).show();
+	if(ask_require == 1) {
+		$('#modalViewJob #selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'none').css('color', '#ff0000');
+	} else {
+		$('#modalViewJob #selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'line-through').css('color', 'gray');
+	}
+	job_registerStarRating($('#modalViewJob #selected_ask_' + ask_id), ask_star);
+	var selected_cat = $('#modalViewJob #selected_ask_' + ask_id).closest('ul.nav').prev();
+	var current_level = selected_cat.data('level');
+	current_level--;
+	selected_cat.show();
+	selected_cat.prevAll('#modalViewJob .job-selected-cat').each(function() {
+		if($(this).data('level') == current_level) {
+			$(this).show();
+			current_level--;
+		}
 	});
 }

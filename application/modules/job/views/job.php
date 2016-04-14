@@ -112,7 +112,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 </select>
             </div>
             <div class="col-md-4">
-                <input type="button" value="Xem Job" class="btn btn-success new-job"> &nbsp;&nbsp;
+                <input type="button" value="Xem Job" class="btn btn-success view-job"> &nbsp;&nbsp;
 				<input type="button" value="Sửa Job" class="btn btn-primary edit-job"> &nbsp;&nbsp;
 				<input type="button" value="Xóa Job" class="btn btn-danger delete-job">
                 
@@ -199,7 +199,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 <span style="font-size: 24px">Thông tin Job</span>
 
                 <hr>
-				<button type="button" class="btn btn-success view-job">Tạo Job</button>
+				<button type="button" class="btn btn-success new-job">Tạo Job</button>
                 <button type="submit" class="btn btn-primary">Lưu Job</button>              
                 <!-- MODAL -->
 				<div id="modalViewJob" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
