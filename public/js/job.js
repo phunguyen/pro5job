@@ -113,18 +113,15 @@ function job_updateSelectedAsksField(ask_id, ask_require, ask_star, mode) {
 	var selected_asks_rating = $('#selected_asks_rating').val();
 	var aSelectedAsksRating = selected_asks_rating.split(';');
 	var pos = aSelectedAsks.indexOf(ask_id);
-	if(mode == 'remove') {
-		if(pos > -1) {
-			aSelectedAsks.splice(pos, 1);
-			aSelectedAsksRequire.splice(pos, 1);
-			aSelectedAsksRating.splice(pos, 1);
-		}
-	} else {
-		if(pos < 0) {
-			aSelectedAsks.push(ask_id);
-			aSelectedAsksRequire.push(ask_require);
-			aSelectedAsksRating.push(ask_star);
-		}
+	if(pos > -1) {
+		aSelectedAsks.splice(pos, 1);
+		aSelectedAsksRequire.splice(pos, 1);
+		aSelectedAsksRating.splice(pos, 1);
+	}
+	if(mode != 'remove') {
+		aSelectedAsks.push(ask_id);
+		aSelectedAsksRequire.push(ask_require);
+		aSelectedAsksRating.push(ask_star);
 	}
 	$('#selected_asks').val(aSelectedAsks.join(';'));
 	$('#selected_asks_require').val(aSelectedAsksRequire.join(';'));
