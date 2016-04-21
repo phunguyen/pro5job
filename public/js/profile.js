@@ -9,6 +9,17 @@ function profile_registerEvents() {
 
 	// display first ASK Category
 	$('.profile-cat:first').trigger('click');
+
+	// view job
+	$('.view-profile').on('click', function() {
+		var profile_id = $('#list_profiles').val();
+		$.ajax({
+			url: site_url + 'profile/view/' + profile_id,
+			success: function(data) {
+				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
+	});
 }
 
 function profile_registerStarRating($objParent, curRating) {
@@ -111,5 +122,20 @@ function profile_registerProfileActions() {
 	});
 	$('.new-profile').on('click', function() {
 		window.location = site_url + 'profile';
+	});
+}
+
+function profile_viewSelectAsk(ask_id, ask_star) {
+	$('#modalViewProfile #selected_ask_' + ask_id).show();
+	profile_registerStarRating($('#modalViewProfile #selected_ask_' + ask_id), ask_star);
+	var selected_cat = $('#modalViewProfile #selected_ask_' + ask_id).closest('ul.nav').prev();
+	var current_level = selected_cat.data('level');
+	current_level--;
+	selected_cat.show();
+	selected_cat.prevAll('#modalViewProfile .job-selected-cat').each(function() {
+		if($(this).data('level') == current_level) {
+			$(this).show();
+			current_level--;
+		}
 	});
 }

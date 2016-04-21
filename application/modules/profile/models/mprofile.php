@@ -68,4 +68,10 @@ class Mprofile extends CI_Model{
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
+
+	public function get_sub_value($type, $code) {
+		$query = "SELECT * FROM sub_values WHERE `type` = '{$type}' AND `code` = '{$code}'";
+		$res = $this->db->query($query);
+		return $res->row_array();
+	}
 }

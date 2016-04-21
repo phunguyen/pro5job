@@ -110,4 +110,26 @@ class Profile extends MX_Controller{
 		$this->mprofile->delete($id);
 		redirect('profile','refresh');
 	}
+
+	public function view($id) {
+		if(!$id || empty($id))
+		{
+			redirect('profile', 'refresh');
+		}
+
+		// data
+		$data['ask_cats'] = $this->mprofile->get_ask_cats();
+		$data['list_asks'] = $this->mprofile->get_asks();
+		$data['profile_data'] = $this->mprofile->read($id);
+		$data['profile_data']['location'] = $this->mprofile->get_sub_value('location', $data['profile_data']['location']);
+		$data['profile_data']['experience'] = $this->mprofile->get_sub_value('experience', $data['profile_data']['experience']);
+		$data['profile_data']['profile_gender'] = $this->mprofile->get_sub_value('gender', $data['profile_data']['profile_gender']);
+		$data['profile_data']['graduation'] = $this->mprofile->get_sub_value('graduation', $data['profile_data']['graduation']);
+		$data['profile_data']['salary'] = $this->mprofile->get_sub_value('salary', $data['profile_data']['salary']);
+		$data['linked_asks'] = $this->mprofile->get_linked_asks($id);
+
+		// view
+        $this->load->view("view", $data);
+        // $this->template->render();
+	}
 }

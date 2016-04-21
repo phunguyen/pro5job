@@ -109,8 +109,8 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 </select>
             </div>
             <div class="col-md-4">
-				<input type="submit" value="Xem Profile" class="btn btn-success new-profile"> &nbsp;&nbsp;
-                <input type="submit" value="Sửa Profile" class="btn btn-primary edit-profile"> &nbsp;&nbsp;
+				<input type="button" value="Xem Profile" class="btn btn-success view-profile"> &nbsp;&nbsp;
+                <input type="button" value="Sửa Profile" class="btn btn-primary edit-profile"> &nbsp;&nbsp;
                 <input type="button" value="Xóa Profile" class="btn btn-danger delete-profile">
                 
             </div>
@@ -165,58 +165,13 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
             <!-- HIDDEN FIELDS -->
             <input type="hidden" id="selected_asks" name="selected_asks" value="">
             <input type="hidden" id="selected_asks_rating" name="selected_asks_rating" value="">
-			<input type="button" value="Tạo Profile" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg"> &nbsp;&nbsp;
+			<input type="button" value="Tạo Profile" class="btn btn-success new-profile"> &nbsp;&nbsp;
             <input type="submit" value="Lưu Profile" class="btn btn-primary">
-            
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<span style="font-size: 24px">Nguyen Van A</span>
-							
-						</div>
-						<div class="modal-body">
-						<div class="row">
-							<div class="col-md-7">
-								<span style="font-size: 20px">ASK của Profile</span>
-								<hr>
-								Hiển thị giống hệt như cột 3, Nhưng không có nút X đầu mỗi ASK để xóa <br>
-								Khi bấm vào nút Xem Job, Nếu Job chưa được lưu thì lưu luôn trước khi hiển thị giống như đã bấm vào nút Lưu Job.
-								
-							</div>
-							<div class="col-md-5">
-								<strong>Thông tin Liên hệ</strong><br>
-								View Contact ở đây<br><br>
-								<strong>Địa điểm làm việc</strong><br>
-								Hà Nội<br><br>
-								<strong>Số năm kinh nghiệm</strong><br>
-								3 năm<br><br>
-								<strong>Yêu cầu giới tính</strong><br>
-								Không yêu cầu<br><br>
-								<strong>Bằng cấp tối thiểu</strong><br>
-								Đại học<br><br>
-								<strong>Mức lương dự kiến</strong><br>
-								5-8 triệu<br><br>
-								<strong>Ngày bắt đầu tuyển</strong><br>
-								18/5/2016<br><br>
-								<strong>Thời gian tuyển</strong><br>
-								1 tháng<br><br>
-								<strong>Mô tả thêm về công việc</strong><br>
-								View nội dung mô tả thêm công việc ở đây<br><br>
-								<strong>Quyền lợi được hưởng</strong><br>
-								View nội dung quyền lợi đc hưởng ở đây<br><br>
-								<strong>Thông tin bổ sung khác</strong><br>
-								View nội dung thông tin bổ sung khác ở đây<br><br>
-							</div>
-						</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
+            <!-- MODAL -->
+            <div id="modalViewProfile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <!-- CONTENT -->
+            </div>
+            <!-- MODAL END -->
             <br><br>
             <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="Họ và Tên" value="<?php echo(isset($profile_data['profile_name']) ? $profile_data['profile_name'] : ''); ?>">
             <br>
