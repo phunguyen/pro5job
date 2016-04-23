@@ -16,7 +16,6 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 	            if($ask['ask_cat_id'] == $cat['ask_cat_id']) {
 	                echo '<li id="selected_ask_'.$ask['ask_id'].'" style="display: none;" class="selected-ask" data-ask-id="'.$ask['ask_id'].'">
 	                        <h5>
-	                            <c class="selected-ask-require">Bắt buộc</c> |
 	                            <font color="#ffd700">
 	                            <span class="star-rating">
                                     <span class="glyphicon glyphicon-star-empty" data-rating="1"></span>

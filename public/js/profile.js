@@ -82,7 +82,7 @@ function profile_registerSelectAsk() {
 function profile_registerRemoveSelectedAsk() {
 	$('.remove-selected-ask').on('click', function() {
 		var ask_id = $(this).closest('.selected-ask').data('ask-id');
-		profile_updateSelectedAsksField(ask_id, '', '', 'remove');
+		profile_updateSelectedAsksField(ask_id, '', 'remove');
 		$(this).closest('.selected-ask').hide();
 	});
 }
