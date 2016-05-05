@@ -6,6 +6,9 @@ function job_registerEvents() {
 	job_registerAddAsk();
 	job_registerJobActions();
 
+	// date fields
+	$('.date-field').datepicker({format: "yyyy-mm-dd", autoclose: true, todayHighlight: true});
+
 	// display first ASK Category
 	$('.job-cat:first').trigger('click');
 

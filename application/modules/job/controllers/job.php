@@ -38,6 +38,8 @@ class Job extends MX_Controller{
 		$data['description'] = $this->input->post('jobsub_description');
 		$data['interest'] = $this->input->post('jobsub_interest');
 		$data['other'] = $this->input->post('jobsub_other');
+		$data['createdtime'] = date('Y-m-d H:i:s');
+		$data['modifiedtime'] = date('Y-m-d H:i:s');
 		if($data['job_name'] != '') {
 			$new_id = $this->mjob->create($data);
 
@@ -75,6 +77,7 @@ class Job extends MX_Controller{
 			$data['description'] = $this->input->post('jobsub_description');
 			$data['interest'] = $this->input->post('jobsub_interest');
 			$data['other'] = $this->input->post('jobsub_other');
+			$data['modifiedtime'] = date('Y-m-d H:i:s');
 			// echo '<pre>';print_r($data);exit;
 			$this->mjob->update($id, $data);
 
@@ -126,8 +129,8 @@ class Job extends MX_Controller{
 		$data['job_data']['gender'] = $this->mjob->get_sub_value('gender', $data['job_data']['gender']);
 		$data['job_data']['graduation'] = $this->mjob->get_sub_value('graduation', $data['job_data']['graduation']);
 		$data['job_data']['salary'] = $this->mjob->get_sub_value('salary', $data['job_data']['salary']);
-		$data['job_data']['startdate'] = $this->mjob->get_sub_value('startdate', $data['job_data']['startdate']);
-		$data['job_data']['duration'] = $this->mjob->get_sub_value('duration', $data['job_data']['duration']);
+		// $data['job_data']['startdate'] = $this->mjob->get_sub_value('startdate', $data['job_data']['startdate']);
+		// $data['job_data']['duration'] = $this->mjob->get_sub_value('duration', $data['job_data']['duration']);
 		$data['linked_asks'] = $this->mjob->get_linked_asks($id);
 
 		// view

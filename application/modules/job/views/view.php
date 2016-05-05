@@ -43,7 +43,6 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 			<span style="font-size: 24px"><?php echo $job_data['job_name']; ?></span>
-			
 		</div>
 		<div class="modal-body">
 		<div class="row">
@@ -66,9 +65,9 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 				<strong>Mức lương dự kiến</strong><br>
 				<?php echo $job_data['salary']['name']; ?><br><br>
 				<strong>Ngày bắt đầu tuyển</strong><br>
-				18/5/2016<br><br>
-				<strong>Thời gian tuyển</strong><br>
-				<?php echo $job_data['duration']['name']; ?><br><br>
+				<?php echo $job_data['startdate']; ?><br><br>
+				<strong>Ngày hết hạn</strong><br>
+				<?php echo $job_data['duration']; ?><br><br>
 				<strong>Mô tả thêm về công việc</strong><br>
 				<?php echo $job_data['description']; ?><br><br>
 				<strong>Quyền lợi được hưởng</strong><br>

@@ -115,7 +115,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                 <input type="button" value="Xem Job" class="btn btn-success view-job"> &nbsp;&nbsp;
 				<input type="button" value="Sửa Job" class="btn btn-primary edit-job"> &nbsp;&nbsp;
 				<input type="button" value="Xóa Job" class="btn btn-danger delete-job">
-                
+
             </div>
         </div>
         <hr>
@@ -200,7 +200,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 
                 <hr>
 				<button type="button" class="btn btn-success new-job">Tạo Job</button>
-                <button type="submit" class="btn btn-primary">Lưu Job</button>              
+                <button type="submit" class="btn btn-primary">Lưu Job</button>
                 <!-- MODAL -->
 				<div id="modalViewJob" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 					<!-- CONTENT -->
@@ -273,7 +273,8 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                 ?>
                             </select>
 							<h4>Ngày bắt đầu tuyển</h4>
-                            <select class="form-control" id="jobsub_startdate" name="jobsub_startdate">
+                            <input type="text" class="form-control date-field" id="jobsub_startdate" name="jobsub_startdate" placeholder="Ngày bắt đầu tuyển" value="<?php echo(isset($job_data['startdate']) ? $job_data['startdate'] : ''); ?>">
+                            <!-- <select class="form-control" id="jobsub_startdate" name="jobsub_startdate">
                                 <?php
                                     foreach($startdates as $s) {
                                         echo '<option value="'.$s['code'].'"';
@@ -281,10 +282,11 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                         echo '>'.$s['name'].'</option>';
                                     }
                                 ?>
-                            </select>
+                            </select> -->
                             <br>
-                            <h4>Thời gian đăng tuyển</h4>
-                            <select class="form-control" id="jobsub_duration" name="jobsub_duration">
+                            <h4>Ngày hết hạn</h4>
+                            <input type="text" class="form-control date-field" id="jobsub_duration" name="jobsub_duration" placeholder="Ngày hết hạn" value="<?php echo(isset($job_data['duration']) ? $job_data['duration'] : ''); ?>">
+                            <!-- <select class="form-control" id="jobsub_duration" name="jobsub_duration">
                                 <?php
                                     foreach($durations as $d) {
                                         echo '<option value="'.$d['code'].'"';
@@ -292,7 +294,7 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
                                         echo '>'.$d['name'].'</option>';
                                     }
                                 ?>
-                            </select>
+                            </select> -->
                             <br>
                             <textarea class="form-control" rows="7" id="jobsub_description" name="jobsub_description" placeholder="Mô tả thêm về Công việc"><?php if(isset($job_data['description'])) echo $job_data['description']; ?></textarea>
                             <br>

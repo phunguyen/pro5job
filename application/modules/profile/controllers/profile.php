@@ -35,6 +35,8 @@ class Profile extends MX_Controller{
 		$data['background'] = $this->input->post('profilesub_background');
 		$data['work_experience'] = $this->input->post('profilesub_work_experience');
 		$data['other'] = $this->input->post('profilesub_other');
+		$data['createdtime'] = date('Y-m-d H:i:s');
+		$data['modifiedtime'] = date('Y-m-d H:i:s');
 		if($data['profile_name'] != '') {
 			$new_id = $this->mprofile->create($data);
 
@@ -69,6 +71,7 @@ class Profile extends MX_Controller{
 			$data['background'] = $this->input->post('profilesub_background');
 			$data['work_experience'] = $this->input->post('profilesub_work_experience');
 			$data['other'] = $this->input->post('profilesub_other');
+			$data['modifiedtime'] = date('Y-m-d H:i:s');
 			// echo '<pre>';print_r($data);exit;
 			$this->mprofile->update($id, $data);
 

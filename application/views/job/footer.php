@@ -46,4 +46,5 @@
 		</div>
 	</div>
 </footer>
+<script src="<?php echo base_url();?>public/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url();?>public/js/job.js"></script>
