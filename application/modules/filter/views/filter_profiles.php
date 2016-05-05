@@ -7,10 +7,12 @@
 				</div>
 				<div class="col-md-8">
 				<select class="form-control" id="jobs">
-											<option>Trường phòng nhân sự</option>
-											<option>Giám đốc kỹ thuật</option>
-											<option>Nhân viên kinh doanh</option>
-										</select>
+				<?php
+					foreach ($list_jobs as $job) {
+						echo '<option value="'.$job['job_id'].'">'.$job['job_name'].'</option>';
+					}
+				?>
+				</select>
 				</div>
 
 			</div>
@@ -43,54 +45,46 @@
 								</div>
 							</div>
 							<h5>Địa điểm muốn làm việc</h5>
-									<select class="form-control" id="jobkinhnghiem">
-										<option>Tỉnh/Thành</option>
-										<option>Hà Nội</option>
-										<option>Tp HCM</option>
-										<option>Đà Nẵng</option>
-										<option>An Giang</option>
-										<option>Bắc Ninh</option>
-									</select>
+							<select class="form-control" id="jobkinhnghiem">
+								<option>Tỉnh/Thành</option>
+								<?php
+									foreach ($locations as $loc) {
+										echo '<option value="'.$loc['code'].'">'.$loc['name'].'</option>';
+									}
+								?>
+							</select>
 							<h5>Số năm kinh nghiệm</h5>
-									<select class="form-control" id="jobkinhnghiem">
-										<option>Không yêu cầu</option>
-										<option>1 năm</option>
-										<option>2 năm</option>
-										<option>3 năm</option>
-										<option>4 năm</option>
-										<option>5 năm trở lên</option>
-									</select>
-
-
-										<h5>Giới tính</h5>
-										<select class="form-control" id="jobkinhnghiem">
-
-											<option>Không yêu cầu</option>
-											<option>Nam</option>
-											<option>Nữ</option>
-										</select>
-										<h5>Bằng cấp cao nhất</h5>
-										<select class="form-control" id="jobkinhnghiem">
-											<option>Không yêu cầu</option>
-											<option>Tốt nghiệp THCS</option>
-											<option>Tốt nghiệp THPT</option>
-											<option>Trung cấp</option>
-											<option>Cao đẳng</option>
-											<option>Đại học</option>
-											<option>Thạc sỹ</option>
-											<option>Tiến sỹ</option>
-										</select>
-										<h5>Mức lương yêu cầu</h5>
-										<select class="form-control" id="jobkinhnghiem">
-											<option>Thỏa thuận</option>
-											<option>1-3 triệu</option>
-											<option>3-5 triệu</option>
-											<option>5-8 triệu</option>
-											<option>8-12 triệu</option>
-											<option>12-17 triệu</option>
-											<option>17-25 triệu</option>
-											<option>Trên 25 triệu</option>
-										</select>
+							<select class="form-control" id="jobkinhnghiem">
+								<?php
+									foreach ($experiences as $exp) {
+										echo '<option value="'.$exp['code'].'">'.$exp['name'].'</option>';
+									}
+								?>
+							</select>
+							<h5>Giới tính</h5>
+							<select class="form-control" id="jobkinhnghiem">
+								<?php
+									foreach ($genders as $gen) {
+										echo '<option value="'.$gen['code'].'">'.$gen['name'].'</option>';
+									}
+								?>
+							</select>
+							<h5>Bằng cấp cao nhất</h5>
+							<select class="form-control" id="jobkinhnghiem">
+								<?php
+									foreach ($graduations as $gra) {
+										echo '<option value="'.$gra['code'].'">'.$gra['name'].'</option>';
+									}
+								?>
+							</select>
+							<h5>Mức lương yêu cầu</h5>
+							<select class="form-control" id="jobkinhnghiem">
+								<?php
+									foreach ($salaries as $sal) {
+										echo '<option value="'.$sal['code'].'">'.$sal['name'].'</option>';
+									}
+								?>
+							</select>
 						</form>
 					</div>
 				<hr>
