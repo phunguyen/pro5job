@@ -19,6 +19,56 @@ function profile_registerEvents() {
 				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
 			}
 		});
+	});	
+}
+
+function profile_removeJobs() {
+	$('.remove-job').off('click');
+	$('.remove-job').on('click', function() {
+		var $job_data = $(this).closest('li').find('a');
+		var job_content = '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
+		$('#list_jobs').append(job_content);
+		$('[data-toggle="popover"]').popover();
+		profile_registerSelectJobs();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_registerSelectJobs() {
+	$('.select-job').off('click');
+	$('.select-job').on('click', function() {
+		var $job_data = $(this).closest('li').find('a');
+		var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a></h5></li>';
+		$('#list_selected_jobs').append(selected_job_content);
+		$('[data-toggle="popover"]').popover();
+		profile_removeJobs();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_registerFilterJobs() {
+	// filter
+	$('.filter-select').on('change', function() {
+		var params = {};
+		$('.filter-select').each(function() {
+			if($(this).val() != '') {
+				params[$(this).attr('id')] = $(this).val();
+			}
+		});
+		$.ajax({
+			url: site_url + 'filter/search/',
+			data: params,
+			success: function(data) {
+				data = JSON.parse(data);
+				var list_jobs_content = '';
+				for(job of data) {
+					list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> | <c class="select-job">Chọn</c></h5></li>'
+				}
+				$('#list_jobs').html(list_jobs_content);
+				profile_registerSelectJobs();
+				$('[data-toggle="popover"]').popover();
+			}
+		});
 	});
 }
 

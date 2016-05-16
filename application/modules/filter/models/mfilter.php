@@ -17,4 +17,16 @@ class Mfilter extends CI_Model{
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
+
+	public function list_profiles($user_id) {
+		$query = "SELECT * FROM profiles WHERE user_id = $user_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
+
+	public function search_jobs($params) {
+		$query = "SELECT * FROM jobs";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
 }
