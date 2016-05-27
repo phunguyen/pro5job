@@ -19,6 +19,7 @@ $baseUrl = base_url();
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="<?php echo $baseUrl;?>setting"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
 					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-bullhorn"></span> Users</a></li>
+					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-comment"></span> Góp ý</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<span class="glyphicon glyphicon-user"></span> <?php echo $current_user->email; ?><span class="caret"></span>

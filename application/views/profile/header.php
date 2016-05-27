@@ -20,8 +20,10 @@ $baseUrl = base_url();
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="<?php echo $baseUrl;?>aboutus"><span class="glyphicon glyphicon-home"></span> Giới thiệu</a></li>
 					<li><a href="<?php echo $baseUrl;?>report"><span class="glyphicon glyphicon-stats"></span> Thống kê</a></li>
-					<li><a href="<?php echo $baseUrl;?>profile"><span class="glyphicon glyphicon-stats"></span> Profiles</a></li>
+					<li><a href="<?php echo $baseUrl;?>profile"><span class="glyphicon glyphicon-heart"></span> Profiles</a></li>
 					<li><a href="<?php echo $baseUrl;?>filter/jobs"><span class="glyphicon glyphicon-filter"></span> Lọc Jobs</a></li>
+					<li><a href="<?php echo $baseUrl;?>profile"><span class="glyphicon glyphicon-star"></span> Jobs</a></li>
+					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-comment"></span> Góp ý</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<span class="glyphicon glyphicon-user"></span> <?php echo $current_user->email; ?><span class="caret"></span>
