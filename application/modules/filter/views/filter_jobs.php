@@ -9,7 +9,7 @@
                 <h4>Chọn Profile để lọc</h4>
             </div>
             <div class="col-md-8">
-                <select class="form-control" id="profiles">
+                <select class="form-control filter-select" id="profiles">
             	<?php
             		foreach($list_profiles as $p) {
             			echo '<option value="'.$p['profile_id'].'">'.$p['profile_name'].'</option>';
@@ -39,7 +39,7 @@
                 <h5 style="text-align: left">Độ phù hợp</h5>
                 <form>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        <div id="match_percent" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                             60%
                         </div>
                     </div>
