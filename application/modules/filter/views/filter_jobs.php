@@ -9,7 +9,7 @@
                 <h4>Chọn Profile để lọc</h4>
             </div>
             <div class="col-md-8">
-                <select class="form-control filter-select" id="profiles">
+                <select class="form-control filter-select" id="filter_profile">
             	<?php
             		foreach($list_profiles as $p) {
             			echo '<option value="'.$p['profile_id'].'">'.$p['profile_name'].'</option>';

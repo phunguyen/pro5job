@@ -57,6 +57,16 @@ class Filter extends MX_Controller{
 			}
 		}
 		$search_result = $this->mfilter->search_jobs($search_params);
+		$search_result = $this->calculateMatch($_REQUEST['filter_profile'], $search_result);
 		echo json_encode($search_result);
+	}
+
+	public function calculateMatch($profile_id, $jobs) {
+		$profile_asks = $this->mfilter->get_profile_asks($profile_id);
+		foreach($jobs as $job) {
+			$job_asks = $this->mfilter->get_job_asks($job['job_id']);
+		}
+
+		return $jobs;
 	}
 }

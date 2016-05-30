@@ -36,4 +36,20 @@ class Mfilter extends CI_Model{
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
+
+	public function get_job_asks($job_id) {
+		$query = "SELECT * FROM job_ask_rel r
+			INNER JOIN asks a ON a.ask_id = r.ask_id
+			WHERE r.job_id = $job_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
+
+	public function get_profile_asks($profile_id) {
+		$query = "SELECT * FROM profile_ask_rel r
+			INNER JOIN asks a ON a.ask_id = r.ask_id
+			WHERE r.profile_id = $profile_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
 }
