@@ -43,7 +43,20 @@ class Filter extends MX_Controller{
 	}
 
 	public function search() {
-		$search_result = $this->mfilter->search_jobs($_REQUEST);
+		$search_mapping = array(
+			'filter_location' => 'location',
+			'filter_experience' => 'experience',
+			'filter_gender' => 'gender',
+			'filter_graduation' => 'graduation',
+			'filter_salary' => 'salary',
+		);
+		$search_params = array();
+		foreach($search_mapping as $pname => $fname) {
+			if(isset($_REQUEST[$pname])) {
+				$search_params[$fname] = $_REQUEST[$pname];
+			}
+		}
+		$search_result = $this->mfilter->search_jobs($search_params);
 		echo json_encode($search_result);
 	}
 }

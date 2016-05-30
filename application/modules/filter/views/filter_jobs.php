@@ -44,8 +44,8 @@
                         </div>
                     </div>
                     <h5>Địa điểm làm việc</h5>
-                    <select class="form-control filter-select" id="jobkinhnghiem">
-                        <option>Tỉnh/Thành</option>
+                    <select class="form-control filter-select" id="filter_location">
+                        <option value="">Tỉnh/Thành</option>
                         <?php
 							foreach ($locations as $loc) {
 								echo '<option value="'.$loc['code'].'">'.$loc['name'].'</option>';
@@ -53,8 +53,8 @@
 						?>
                     </select>
                     <h5>Số năm kinh nghiệm</h5>
-                    <select class="form-control filter-select" id="jobkinhnghiem">
-                        <option>Không yêu cầu</option>
+                    <select class="form-control filter-select" id="filter_experience">
+                        <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($experiences as $exp) {
 								echo '<option value="'.$exp['code'].'">'.$exp['name'].'</option>';
@@ -62,7 +62,8 @@
 						?>
                     </select>
                     <h5>Yêu cầu giới tính</h5>
-                    <select class="form-control filter-select" id="jobkinhnghiem">
+                    <select class="form-control filter-select" id="filter_gender">
+                        <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($genders as $gen) {
 								echo '<option value="'.$gen['code'].'">'.$gen['name'].'</option>';
@@ -70,8 +71,8 @@
 						?>
                     </select>
                     <h5>Bằng cấp tối thiểu</h5>
-                    <select class="form-control filter-select" id="jobkinhnghiem">
-                        <option>Không yêu cầu</option>
+                    <select class="form-control filter-select" id="filter_graduation">
+                        <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($graduations as $gra) {
 								echo '<option value="'.$gra['code'].'">'.$gra['name'].'</option>';
@@ -79,8 +80,8 @@
 						?>
                     </select>
                     <h5>Mức lương dự kiến</h5>
-                    <select class="form-control filter-select" id="jobkinhnghiem">
-                        <option>Thỏa thuận</option>
+                    <select class="form-control filter-select" id="filter_salary">
+                        <option value="">Thỏa thuận</option>
                         <?php
 							foreach ($salaries as $sal) {
 								echo '<option value="'.$sal['code'].'">'.$sal['name'].'</option>';

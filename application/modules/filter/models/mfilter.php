@@ -5,7 +5,7 @@ class Mfilter extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-	
+
 	public function get_sub_values($type) {
 		$query = "SELECT * FROM sub_values WHERE `type` = '{$type}'";
 		$res = $this->db->query($query);
@@ -25,7 +25,14 @@ class Mfilter extends CI_Model{
 	}
 
 	public function search_jobs($params) {
-		$query = "SELECT * FROM jobs";
+		$query = "SELECT * FROM jobs WHERE job_id > 0";
+		$where = "";
+		foreach($params as $pkey => $pvalue) {
+			if($pvalue != '') {
+				$where .= " AND {$pkey} LIKE '%{$pvalue}%'";
+			}
+		}
+		$query .= $where;
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
