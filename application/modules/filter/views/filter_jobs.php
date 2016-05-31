@@ -1,6 +1,15 @@
 <?php
 // echo '<pre>';print_r($list_profiles);echo '</pre>';
 ?>
+<style>
+#filter_matchSlider .slider-selection {
+    background: #BABABA;
+}
+.slider.slider-horizontal {
+    width: 185px;
+    height: 20px;
+}
+</style>
 <div class="heading">
     <div class="container">
         <hr>
@@ -38,10 +47,14 @@
                 <hr>
                 <h5 style="text-align: left">Độ phù hợp</h5>
                 <form>
-                    <div class="progress">
+                    <!-- <div class="progress">
                         <div id="match_percent" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                             60%
                         </div>
+                    </div> -->
+                    <div>
+                        <input id="filter_match" data-slider-id='filter_matchSlider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="50"/>&nbsp;&nbsp;&nbsp;<span id="filter_matchSliderVal" style="font-weight: bold;">50</span>%
+
                     </div>
                     <h5>Địa điểm làm việc</h5>
                     <select class="form-control filter-select" id="filter_location">

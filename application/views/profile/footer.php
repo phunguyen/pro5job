@@ -47,4 +47,5 @@
 	</div>
 </footer>
 <script src="<?php echo base_url();?>public/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url();?>public/js/bootstrap-slider.js"></script>
 <script src="<?php echo base_url();?>public/js/profile.js"></script>

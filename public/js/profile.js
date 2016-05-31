@@ -19,7 +19,7 @@ function profile_registerEvents() {
 				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
 			}
 		});
-	});	
+	});
 }
 
 function profile_removeJobs() {
@@ -69,6 +69,21 @@ function profile_registerFilterJobs() {
 				$('[data-toggle="popover"]').popover();
 			}
 		});
+	});
+
+	// match
+	$('#filter_match').slider({
+		formatter: function(value) {
+			return value + '%';
+		}
+	});
+	$("#filter_match").on("slide", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+	});
+	$("#filter_match").on("slideStop", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+		console.log(slideEvt.value);
+		// do search
 	});
 }
 
