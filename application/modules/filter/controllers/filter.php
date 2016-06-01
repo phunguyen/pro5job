@@ -57,16 +57,61 @@ class Filter extends MX_Controller{
 			}
 		}
 		$search_result = $this->mfilter->search_jobs($search_params);
-		$search_result = $this->calculateMatch($_REQUEST['filter_profile'], $search_result);
+		$search_result = $this->calculateMatch($_REQUEST['filter_profile'], $search_result, $_REQUEST['filter_match']);
 		echo json_encode($search_result);
 	}
 
-	public function calculateMatch($profile_id, $jobs) {
+	public function calculateMatch($profile_id, $jobs, $filter_match_point) {
+		// get profile's asks
 		$profile_asks = $this->mfilter->get_profile_asks($profile_id);
-		foreach($jobs as $job) {
+		$profile_asks_new = array();
+		foreach($profile_asks as $pa) {
+			$profile_asks_new[$pa['ask_id']] = $pa;
+		}
+		// calculate match points
+		$jobs_result = array();
+		foreach($jobs as $ji => $job) {
 			$job_asks = $this->mfilter->get_job_asks($job['job_id']);
+			$count_asks = 0;
+			foreach($job_asks as $ja) {
+				if($ja['require'] == 1) {
+					if(isset($profile_asks_new[$ja['ask_id']])) {
+						if($ja['rating'] <= $profile_asks_new[$ja['ask_id']]['rating']) {
+							$count_asks++;
+						} else {
+							$count_asks = -1;
+						}
+					} else {
+						$count_asks = -1;
+					}
+				} else {
+					if(isset($profile_asks_new[$ja['ask_id']])) {
+						if($ja['rating'] <= $profile_asks_new[$ja['ask_id']]['rating']) {
+							$count_asks++;
+						}
+					}
+				}
+				if($count_asks == -1) break;
+			}
+			if($count_asks > 0) {
+				$match_point = $count_asks / count($job_asks) * 100;
+				if($match_point >= $filter_match_point) {
+					$job['match_point'] = $match_point;
+					$jobs_result[] = $job;
+				}
+			}
+		}
+		// order by match point
+		for($i = 0;$i < count($jobs_result) - 1;$i++) {
+			for($j = $i + 1;$j < count($jobs_result);$j++) {
+				if($jobs_result[$i]['match_point'] < $jobs_result[$j]['match_point']) {
+					$temp = $jobs_result[$i];
+					$jobs_result[$i] = $jobs_result[$j];
+					$jobs_result[$j] = $temp;
+				}
+			}
 		}
 
-		return $jobs;
+		return $jobs_result;
 	}
 }

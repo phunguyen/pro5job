@@ -49,26 +49,7 @@ function profile_registerSelectJobs() {
 function profile_registerFilterJobs() {
 	// filter
 	$('.filter-select').on('change', function() {
-		var params = {};
-		$('.filter-select').each(function() {
-			if($(this).val() != '') {
-				params[$(this).attr('id')] = $(this).val();
-			}
-		});
-		$.ajax({
-			url: site_url + 'filter/search/',
-			data: params,
-			success: function(data) {
-				data = JSON.parse(data);
-				var list_jobs_content = '';
-				for(job of data) {
-					list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> | <c class="select-job">Chọn</c></h5></li>'
-				}
-				$('#list_jobs').html(list_jobs_content);
-				profile_registerSelectJobs();
-				$('[data-toggle="popover"]').popover();
-			}
-		});
+		profile_filterJobs();
 	});
 
 	// match
@@ -82,8 +63,33 @@ function profile_registerFilterJobs() {
 	});
 	$("#filter_match").on("slideStop", function(slideEvt) {
 		$("#filter_matchSliderVal").text(slideEvt.value);
-		console.log(slideEvt.value);
+		// console.log(slideEvt.value);
 		// do search
+		profile_filterJobs();
+	});
+}
+
+function profile_filterJobs() {
+	var params = {};
+	$('.filter-select').each(function() {
+		if($(this).val() != '') {
+			params[$(this).attr('id')] = $(this).val();
+		}
+	});
+	params['filter_match'] = $('#filter_matchSliderVal').text();
+ 	$.ajax({
+		url: site_url + 'filter/search/',
+		data: params,
+		success: function(data) {
+			data = JSON.parse(data);
+			var list_jobs_content = '';
+			for(job of data) {
+				list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
+			}
+			$('#list_jobs').html(list_jobs_content);
+			profile_registerSelectJobs();
+			$('[data-toggle="popover"]').popover();
+		}
 	});
 }
 
