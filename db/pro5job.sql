@@ -79,6 +79,31 @@ INSERT INTO `asks_cats` VALUES (1,'Thái độ','chứa các danh mục con và 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `filters`
+--
+
+DROP TABLE IF EXISTS `filters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `filters` (
+  `filter_id` int(5) NOT NULL AUTO_INCREMENT,
+  `user_id` int(5) NOT NULL,
+  `filter_data` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`filter_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `filters`
+--
+
+LOCK TABLES `filters` WRITE;
+/*!40000 ALTER TABLE `filters` DISABLE KEYS */;
+INSERT INTO `filters` VALUES (1,4,'{\"filter_profile\":\"1\",\"filter_match\":\"60\",\"filter_id\":\"1\"}');
+/*!40000 ALTER TABLE `filters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `groups`
 --
 
@@ -163,7 +188,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader 111',3,'tp-hcm','2-nam','nu','cao-dang','1-3-trieu','2016-05-07','2016-05-27','111','222','333',NULL,'2016-05-05 11:17:01'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,'tp-hcm','1-nam','nam','tot-nghiep-thcs','thoa-thuan','hom-nay','1-tuan','','','',NULL,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Tech Leader','Tech Leader',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader 111',3,'tp-hcm','2-nam','nu','cao-dang','1-3-trieu','2016-05-07','2016-05-27','111','222','333',NULL,'2016-05-05 11:17:01'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,'tp-hcm','1-nam','nam','tot-nghiep-thcs','thoa-thuan','hom-nay','1-tuan','','','',NULL,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,'ha-noi',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,'ha-noi',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Tech Leader','Tech Leader',3,'nghe-an',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +301,7 @@ CREATE TABLE `sub_values` (
 
 LOCK TABLES `sub_values` WRITE;
 /*!40000 ALTER TABLE `sub_values` DISABLE KEYS */;
-INSERT INTO `sub_values` VALUES (1,'tot-nghiep-thcs','Tốt nghiệp THCS','graduation'),(2,'tot-nghiep-thpt','Tot nghiep THPT','graduation'),(3,'trung-cap','Trung cấp','graduation'),(4,'cao-dang','Cao dang','graduation'),(5,'dai-hoc','Dai hoc','graduation'),(6,'thac-sy','Thac sy','graduation'),(7,'tien-sy','Tien sy','graduation'),(8,'ha-noi','Hà Nội','location'),(10,'1-nam','1 năm','experience'),(11,'2-nam','2 năm','experience'),(12,'nam','Nam','gender'),(13,'nu','Nữ','gender'),(14,'thoa-thuan','Thoả Thuận','salary'),(15,'1-3-trieu','1-3 triệu','salary'),(16,'hom-nay','Hom nay','startdate'),(18,'1-tuan','1 tuần','duration'),(19,'2-tuan','2 tuần','duration'),(20,'nghệ-an','Nghệ An','location'),(21,'Đà-nẵng','Đà Nẵng','location'),(22,'ha-tinh','Hà Tĩnh','location'),(23,'tp-hcm','Tp HCM','location'),(24,'binh-duong','Bình Dương','location'),(26,'3-nam','3 năm','experience'),(28,'4-nam','4 năm','experience'),(30,'5-nam','5 năm','experience'),(31,'tren-5-nam','Trên 5 năm','experience'),(32,'3-5-trieu','3-5 triệu','salary'),(33,'1-tuan-nua','1 tuần nữa','startdate'),(35,'3-tuan','3 tuần','duration'),(36,'2-tuan-nua','2 tuần nữa','startdate'),(37,'khac','Khác','gender');
+INSERT INTO `sub_values` VALUES (1,'tot-nghiep-thcs','Tốt nghiệp THCS','graduation'),(2,'tot-nghiep-thpt','Tot nghiep THPT','graduation'),(3,'trung-cap','Trung cấp','graduation'),(4,'cao-dang','Cao dang','graduation'),(5,'dai-hoc','Dai hoc','graduation'),(6,'thac-sy','Thac sy','graduation'),(7,'tien-sy','Tien sy','graduation'),(8,'ha-noi','Hà Nội','location'),(10,'1-nam','1 năm','experience'),(11,'2-nam','2 năm','experience'),(12,'nam','Nam','gender'),(13,'nu','Nữ','gender'),(15,'1-3-trieu','1-3 triệu','salary'),(16,'hom-nay','Hom nay','startdate'),(18,'1-tuan','1 tuần','duration'),(19,'2-tuan','2 tuần','duration'),(20,'nghệ-an','Nghệ An','location'),(21,'Đà-nẵng','Đà Nẵng','location'),(22,'ha-tinh','Hà Tĩnh','location'),(23,'tp-hcm','Tp HCM','location'),(24,'binh-duong','Bình Dương','location'),(26,'3-nam','3 năm','experience'),(28,'4-nam','4 năm','experience'),(30,'5-nam','5 năm','experience'),(31,'tren-5-nam','Trên 5 năm','experience'),(32,'3-5-trieu','3-5 triệu','salary'),(33,'1-tuan-nua','1 tuần nữa','startdate'),(35,'3-tuan','3 tuần','duration'),(36,'2-tuan-nua','2 tuần nữa','startdate'),(37,'khac','Khác','gender');
 /*!40000 ALTER TABLE `sub_values` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +340,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1460453216,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1462432949,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1462440111,1,'User','Profile','UP','222');
+INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1464601252,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1464928325,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1464928362,1,'User','Profile','UP','222');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,4 +383,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-05 16:34:56
+-- Dump completed on 2016-06-03 14:35:23
