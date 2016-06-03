@@ -15,6 +15,10 @@ class Filter extends MX_Controller{
 	}
 
 	public function jobs() {
+		$user_id = $this->ion_auth->get_user_id();
+		$filter_data = $this->mfilter->get_filter_by_user($user_id);
+		$filter_data = json_decode($filter_data['filter_data'], true);
+		$data['filter_data'] = $filter_data;
 		$data['locations'] = $this->mfilter->get_sub_values('location');
 		$data['experiences'] = $this->mfilter->get_sub_values('experience');
 		$data['genders'] = $this->mfilter->get_sub_values('gender');
@@ -113,5 +117,26 @@ class Filter extends MX_Controller{
 		}
 
 		return $jobs_result;
+	}
+
+	public function viewjob($id) {
+		// get job detail
+		echo modules::run('job/view', $id);
+	}
+
+	public function save() {
+		$user_id = $this->ion_auth->get_user_id();
+		if(isset($_REQUEST['filter_id']) && $_REQUEST['filter_id'] > 0) {
+			$filter_id = $_REQUEST['filter_id'];
+			$data['user_id'] = $user_id;
+			$data['filter_data'] = json_encode($_REQUEST);
+			$this->mfilter->update($filter_id, $data);
+		} else {
+			$data['user_id'] = $user_id;
+			$data['filter_data'] = json_encode($_REQUEST);
+			$filter_id = $this->mfilter->create($data);
+		}
+
+		echo $filter_id;
 	}
 }

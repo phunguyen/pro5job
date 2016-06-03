@@ -55,15 +55,15 @@ function buildSelectedChildCats($ask_cats, $cat_id, $level, $list_asks) {
 				<strong>Thông tin Liên hệ</strong><br>
 				<?php echo $job_data['job_contact']; ?><br><br>
 				<strong>Địa điểm làm việc</strong><br>
-				<?php echo $job_data['location']['name']; ?><br><br>
+				<?php echo isset($job_data['location']['name']) ? $job_data['location']['name'] : ''; ?><br><br>
 				<strong>Số năm kinh nghiệm</strong><br>
-				<?php echo $job_data['experience']['name']; ?><br><br>
+				<?php echo isset($job_data['experience']['name']) ? $job_data['experience']['name'] : ''; ?><br><br>
 				<strong>Yêu cầu giới tính</strong><br>
-				<?php echo $job_data['gender']['name']; ?><br><br>
+				<?php echo isset($job_data['gender']['name']) ? $job_data['gender']['name'] : ''; ?><br><br>
 				<strong>Bằng cấp tối thiểu</strong><br>
-				<?php echo $job_data['graduation']['name']; ?><br><br>
+				<?php echo isset($job_data['graduation']['name']) ? $job_data['graduation']['name'] : ''; ?><br><br>
 				<strong>Mức lương dự kiến</strong><br>
-				<?php echo $job_data['salary']['name']; ?><br><br>
+				<?php echo isset($job_data['salary']['name']) ? $job_data['salary']['name'] : ''; ?><br><br>
 				<strong>Ngày bắt đầu tuyển</strong><br>
 				<?php echo $job_data['startdate']; ?><br><br>
 				<strong>Ngày hết hạn</strong><br>

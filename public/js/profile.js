@@ -22,77 +22,6 @@ function profile_registerEvents() {
 	});
 }
 
-function profile_removeJobs() {
-	$('.remove-job').off('click');
-	$('.remove-job').on('click', function() {
-		var $job_data = $(this).closest('li').find('a');
-		var job_content = '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
-		$('#list_jobs').append(job_content);
-		$('[data-toggle="popover"]').popover();
-		profile_registerSelectJobs();
-		$(this).closest('li').remove();
-	});
-}
-
-function profile_registerSelectJobs() {
-	$('.select-job').off('click');
-	$('.select-job').on('click', function() {
-		var $job_data = $(this).closest('li').find('a');
-		var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a></h5></li>';
-		$('#list_selected_jobs').append(selected_job_content);
-		$('[data-toggle="popover"]').popover();
-		profile_removeJobs();
-		$(this).closest('li').remove();
-	});
-}
-
-function profile_registerFilterJobs() {
-	// filter
-	$('.filter-select').on('change', function() {
-		profile_filterJobs();
-	});
-
-	// match
-	$('#filter_match').slider({
-		formatter: function(value) {
-			return value + '%';
-		}
-	});
-	$("#filter_match").on("slide", function(slideEvt) {
-		$("#filter_matchSliderVal").text(slideEvt.value);
-	});
-	$("#filter_match").on("slideStop", function(slideEvt) {
-		$("#filter_matchSliderVal").text(slideEvt.value);
-		// console.log(slideEvt.value);
-		// do search
-		profile_filterJobs();
-	});
-}
-
-function profile_filterJobs() {
-	var params = {};
-	$('.filter-select').each(function() {
-		if($(this).val() != '') {
-			params[$(this).attr('id')] = $(this).val();
-		}
-	});
-	params['filter_match'] = $('#filter_matchSliderVal').text();
- 	$.ajax({
-		url: site_url + 'filter/search/',
-		data: params,
-		success: function(data) {
-			data = JSON.parse(data);
-			var list_jobs_content = '';
-			for(job of data) {
-				list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
-			}
-			$('#list_jobs').html(list_jobs_content);
-			profile_registerSelectJobs();
-			$('[data-toggle="popover"]').popover();
-		}
-	});
-}
-
 function profile_registerStarRating($objParent, curRating) {
 	$objParent.find('.star-rating .glyphicon').on('click', function() {
 		var selRating = $(this).data('rating');
@@ -207,6 +136,162 @@ function profile_viewSelectAsk(ask_id, ask_star) {
 		if($(this).data('level') == current_level) {
 			$(this).show();
 			current_level--;
+		}
+	});
+}
+
+function profile_registerFilterJobs() {
+	// filter
+	$('.filter-select').on('change', function() {
+		profile_filterJobs();
+	});
+
+	// match
+	$('#filter_match').slider({
+		formatter: function(value) {
+			return value + '%';
+		}
+	});
+	$("#filter_match").on("slide", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+	});
+	$("#filter_match").on("slideStop", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+		// console.log(slideEvt.value);
+		// do search
+		profile_filterJobs();
+	});
+
+	// save filter
+	$('.save-filter').on('click', function() {
+		profile_saveFilter();
+	});
+
+	// first load
+	$("#filter_match").trigger("slideStop");
+}
+
+function profile_saveFilter() {
+	var params = {};
+	$('.filter-select').each(function() {
+		if($(this).val() != '') {
+			params[$(this).attr('id')] = $(this).val();
+		}
+	});
+	params['filter_match'] = $('#filter_matchSliderVal').text();
+	params['filter_id'] = $('#filter_id').val();
+ 	$.ajax({
+		url: site_url + 'filter/save/',
+		data: params,
+		success: function(filter_id) {
+			$('#filter_id').val(filter_id);
+			alert('Saved');
+		}
+	});
+}
+
+function profile_filterJobs() {
+	var params = {};
+	$('.filter-select').each(function() {
+		if($(this).val() != '') {
+			params[$(this).attr('id')] = $(this).val();
+		}
+	});
+	params['filter_match'] = $('#filter_matchSliderVal').text();
+ 	$.ajax({
+		url: site_url + 'filter/search/',
+		data: params,
+		success: function(data) {
+			data = JSON.parse(data);
+			var list_jobs_content = '';
+			for(job of data) {
+				// list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
+				list_jobs_content += '<li><h5><a class="filter-job-name" data-jobid="' + job.job_id + '" title="' + job.job_name + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
+			}
+			$('#list_jobs').html(list_jobs_content);
+			profile_registerSelectJobs();
+			profile_registerViewJobs();
+			// $('[data-toggle="popover"]').popover();
+		}
+	});
+}
+
+function profile_registerSelectJobs() {
+	$('.select-job').off('click');
+	$('.select-job').on('click', function() {
+		var $job_data = $(this).closest('li').find('a');
+		// var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a></h5></li>';
+		var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a class="filter-job-name" data-jobid="' + $job_data.data('jobid') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a></h5></li>';
+		$('#list_selected_jobs').append(selected_job_content);
+		profile_registerViewJobs();
+		// $('[data-toggle="popover"]').popover();
+		profile_removeJobs();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_removeJobs() {
+	$('.remove-job').off('click');
+	$('.remove-job').on('click', function() {
+		var $job_data = $(this).closest('li').find('a');
+		// var job_content = '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
+		var job_content = '<li><h5><a class="filter-job-name" data-jobid="' + $job_data.data('jobid') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
+		$('#list_jobs').append(job_content);
+		$('[data-toggle="popover"]').popover();
+		profile_registerSelectJobs();
+		profile_registerViewJobs();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_registerViewJobs() {
+	$('.filter-job-name').on('click', function() {
+		$.ajax({
+			url: site_url + 'filter/viewjob/' + $(this).data('jobid'),
+			success: function(data) {
+				$('#modalViewJob').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
+	});
+}
+
+function job_viewSelectAsk(ask_id, ask_star, ask_require) {
+	$('#modalViewJob #selected_ask_' + ask_id).show();
+	if(ask_require == 1) {
+		$('#modalViewJob #selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'none').css('color', '#ff0000');
+	} else {
+		$('#modalViewJob #selected_ask_' + ask_id).find('.selected-ask-require').css('text-decoration', 'line-through').css('color', 'gray');
+	}
+	job_registerStarRating($('#modalViewJob #selected_ask_' + ask_id), ask_star);
+	var selected_cat = $('#modalViewJob #selected_ask_' + ask_id).closest('ul.nav').prev();
+	var current_level = selected_cat.data('level');
+	current_level--;
+	selected_cat.show();
+	selected_cat.prevAll('#modalViewJob .job-selected-cat').each(function() {
+		if($(this).data('level') == current_level) {
+			$(this).show();
+			current_level--;
+		}
+	});
+}
+
+function job_registerStarRating($objParent, curRating) {
+	$objParent.find('.star-rating .glyphicon').on('click', function() {
+		var selRating = $(this).data('rating');
+		$objParent.find('input.rating-value').val(selRating);
+		$objParent.find('.star-rating .glyphicon').each(function() {
+	        if (parseInt(selRating) >= parseInt($(this).data('rating'))) {
+	            return $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+	        } else {
+	            return $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+	        }
+	    });
+	});
+
+	// set selected star rating
+	$objParent.find('.star-rating .glyphicon').each(function() {
+		if (parseInt(curRating) == parseInt($(this).data('rating'))) {
+			$(this).trigger('click');
 		}
 	});
 }

@@ -1,9 +1,36 @@
 <?php
 class Mfilter extends CI_Model{
-	protected $_table = "news";
+	protected $_table = "filters";
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+	}
+
+	public function create($data) {
+		$this->db->insert($this->_table, $data);
+        return $this->db->insert_id();
+	}
+
+	public function read($id) {
+		$query = "SELECT * FROM {$this->_table} WHERE filter_id = '$id'";
+		$result = $this->db->query($query);
+		return $result->row_array();
+	}
+
+	public function update($id, $data) {
+		$this->db->where('filter_id', $id);
+		$this->db->update($this->_table, $data);
+	}
+
+	public function delete($id) {
+		$this->db->where('filter_id', $id);
+		$this->db->delete($this->_table);
+	}
+
+	public function get_filter_by_user($user_id) {
+		$query = "SELECT * FROM filters WHERE `user_id` = '{$user_id}'";
+		$res = $this->db->query($query);
+		return $res->row_array();
 	}
 
 	public function get_sub_values($type) {

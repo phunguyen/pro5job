@@ -1,5 +1,5 @@
 <?php
-// echo '<pre>';print_r($list_profiles);echo '</pre>';
+// echo '<pre>';print_r($filter_data);echo '</pre>';
 ?>
 <style>
 #filter_matchSlider .slider-selection {
@@ -21,7 +21,9 @@
                 <select class="form-control filter-select" id="filter_profile">
             	<?php
             		foreach($list_profiles as $p) {
-            			echo '<option value="'.$p['profile_id'].'">'.$p['profile_name'].'</option>';
+            			echo '<option value="'.$p['profile_id'].'"';
+                        if(isset($filter_data['filter_profile']) && $filter_data['filter_profile'] == $p['profile_id']) echo ' selected="selected" ';
+                        echo '>'.$p['profile_name'].'</option>';
             		}
             	?>
                 </select>
@@ -53,7 +55,7 @@
                         </div>
                     </div> -->
                     <div>
-                        <input id="filter_match" data-slider-id='filter_matchSlider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="50"/>&nbsp;&nbsp;&nbsp;<span id="filter_matchSliderVal" style="font-weight: bold;">50</span>%
+                        <input id="filter_match" data-slider-id='filter_matchSlider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="<?php echo isset($filter_data['filter_match']) ? $filter_data['filter_match'] : 50; ?>"/>&nbsp;&nbsp;&nbsp;<span id="filter_matchSliderVal" style="font-weight: bold;"><?php echo isset($filter_data['filter_match']) ? $filter_data['filter_match'] : 50; ?></span>%
 
                     </div>
                     <h5>Địa điểm làm việc</h5>
@@ -61,7 +63,9 @@
                         <option value="">Tỉnh/Thành</option>
                         <?php
 							foreach ($locations as $loc) {
-								echo '<option value="'.$loc['code'].'">'.$loc['name'].'</option>';
+								echo '<option value="'.$loc['code'].'"';
+                                if(isset($filter_data['filter_location']) && $filter_data['filter_location'] == $loc['code']) echo ' selected="selected" ';
+                                echo '>'.$loc['name'].'</option>';
 							}
 						?>
                     </select>
@@ -70,7 +74,9 @@
                         <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($experiences as $exp) {
-								echo '<option value="'.$exp['code'].'">'.$exp['name'].'</option>';
+								echo '<option value="'.$exp['code'].'"';
+                                if(isset($filter_data['filter_experience']) && $filter_data['filter_experience'] == $exp['code']) echo ' selected="selected" ';
+                                echo '>'.$exp['name'].'</option>';
 							}
 						?>
                     </select>
@@ -79,7 +85,9 @@
                         <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($genders as $gen) {
-								echo '<option value="'.$gen['code'].'">'.$gen['name'].'</option>';
+								echo '<option value="'.$gen['code'].'"';
+                                if(isset($filter_data['filter_gender']) && $filter_data['filter_gender'] == $gen['code']) echo ' selected="selected" ';
+                                echo '>'.$gen['name'].'</option>';
 							}
 						?>
                     </select>
@@ -88,7 +96,9 @@
                         <option value="">Không yêu cầu</option>
                         <?php
 							foreach ($graduations as $gra) {
-								echo '<option value="'.$gra['code'].'">'.$gra['name'].'</option>';
+								echo '<option value="'.$gra['code'].'"';
+                                if(isset($filter_data['filter_graduation']) && $filter_data['filter_graduation'] == $gra['code']) echo ' selected="selected" ';
+                                echo '>'.$gra['name'].'</option>';
 							}
 						?>
                     </select>
@@ -97,7 +107,9 @@
                         <option value="">Thỏa thuận</option>
                         <?php
 							foreach ($salaries as $sal) {
-								echo '<option value="'.$sal['code'].'">'.$sal['name'].'</option>';
+								echo '<option value="'.$sal['code'].'"';
+                                if(isset($filter_data['filter_salary']) && $filter_data['filter_salary'] == $sal['code']) echo ' selected="selected" ';
+                                echo '>'.$sal['name'].'</option>';
 							}
 						?>
                     </select>
@@ -154,14 +166,16 @@
                     Không thông báo
                     </label>
                 </div>
-            </form>
-            <input type="submit" value="Lưu bộ lọc" class="btn btn-primary btn-block">
-            <br>
-            <form>
-                <input type="submit" value="Gửi thư Nhà tuyển dụng" class="btn btn-primary btn-block">
+                <input type="button" value="Lưu bộ lọc" class="btn btn-primary btn-block save-filter">
+                <input type="hidden" name="filter_id" id="filter_id" value="<?php echo isset($filter_data['filter_id']) ? $filter_data['filter_id'] : 0; ?>">
+                <br>
+                <input type="button" value="Gửi thư Nhà tuyển dụng" class="btn btn-primary btn-block">
             </form>
         </div>
     </div>
+</div>
+<div id="modalViewJob" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <!-- CONTENT -->
 </div>
 <script>
 $(function() {
