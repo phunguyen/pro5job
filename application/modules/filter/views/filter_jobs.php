@@ -140,7 +140,7 @@
         <div class="col-md-3">
             <h3 style="text-align: left">Tác vụ</h3>
             <hr>
-            <h5>Gửi thông báo về các Công việc mới phù hợp Bộ lọc này vào email của tôi</h5>
+            <h5>Gửi thông báo về các Job mới phù hợp Bộ lọc này vào email của tôi</h5>
             <form>
                 <div class="radio">
                     <label>
@@ -169,7 +169,7 @@
                 <input type="button" value="Lưu bộ lọc" class="btn btn-primary btn-block save-filter">
                 <input type="hidden" name="filter_id" id="filter_id" value="<?php echo isset($filter_data['filter_id']) ? $filter_data['filter_id'] : 0; ?>">
                 <br>
-                <input type="button" value="Gửi thư Nhà tuyển dụng" class="btn btn-primary btn-block">
+                <input type="button" value="Lưu các Job đã chọn" class="btn btn-primary btn-block">
             </form>
         </div>
     </div>

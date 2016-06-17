@@ -128,7 +128,7 @@
         <div class="col-md-3">
             <h3 style="text-align: left">Tác vụ</h3>
             <hr>
-            <h5>Gửi thông báo về các Ứng viên mới phù hợp Bộ lọc này vào email của tôi</h5>
+            <h5>Gửi thông báo về các Profile mới phù hợp Bộ lọc này vào email của tôi</h5>
             <form>
                 <div class="radio">
                     <label>
@@ -158,7 +158,7 @@
             <input type="submit" value="Lưu bộ lọc" class="btn btn-primary btn-block">
             <br>
             <form>
-                <input type="submit" value="Gửi thư Các ứng viên" class="btn btn-primary btn-block">
+                <input type="submit" value="Lưu các Profile đã chọn" class="btn btn-primary btn-block">
             </form>
         </div>
     </div>
