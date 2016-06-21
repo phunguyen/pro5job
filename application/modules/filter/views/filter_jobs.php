@@ -169,7 +169,7 @@
                 <input type="button" value="Lưu bộ lọc" class="btn btn-primary btn-block save-filter">
                 <input type="hidden" name="filter_id" id="filter_id" value="<?php echo isset($filter_data['filter_id']) ? $filter_data['filter_id'] : 0; ?>">
                 <br>
-                <input type="button" value="Lưu các Job đã chọn" class="btn btn-primary btn-block">
+                <input type="button" value="Lưu các Job đã chọn" class="btn btn-primary btn-block save-jobs">
             </form>
         </div>
     </div>

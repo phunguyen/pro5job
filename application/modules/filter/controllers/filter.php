@@ -62,7 +62,9 @@ class Filter extends MX_Controller{
 		}
 		$search_result = $this->mfilter->search_jobs($search_params);
 		$search_result = $this->calculateMatch($_REQUEST['filter_profile'], $search_result, $_REQUEST['filter_match']);
-		echo json_encode($search_result);
+		$data['search_result'] = $search_result;
+		$data['selected_jobs'] = $this->mfilter->get_profile_jobs($_REQUEST['filter_profile']);
+		echo json_encode($data);
 	}
 
 	public function calculateMatch($profile_id, $jobs, $filter_match_point) {
@@ -124,7 +126,7 @@ class Filter extends MX_Controller{
 		echo modules::run('job/view', $id);
 	}
 
-	public function save() {
+	public function savefilter() {
 		$user_id = $this->ion_auth->get_user_id();
 		if(isset($_REQUEST['filter_id']) && $_REQUEST['filter_id'] > 0) {
 			$filter_id = $_REQUEST['filter_id'];
@@ -138,5 +140,11 @@ class Filter extends MX_Controller{
 		}
 
 		echo $filter_id;
+	}
+
+	public function savejobs() {
+		$a_jobs = explode(';', $_REQUEST['selected_jobs']);
+		$profile_id = $_REQUEST['profile_id'];
+		$this->mfilter->link_profile_jobs($profile_id, $a_jobs);
 	}
 }

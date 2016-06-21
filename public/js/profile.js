@@ -143,6 +143,7 @@ function profile_viewSelectAsk(ask_id, ask_star) {
 function profile_registerFilterJobs() {
 	// filter
 	$('.filter-select').on('change', function() {
+		if($(this).attr('id') == 'filter_profile') $('#list_selected_jobs').html('');
 		profile_filterJobs();
 	});
 
@@ -167,6 +168,11 @@ function profile_registerFilterJobs() {
 		profile_saveFilter();
 	});
 
+	// save selected jobs
+	$('.save-jobs').on('click', function() {
+		profile_saveJobs();
+	});
+
 	// first load
 	$("#filter_match").trigger("slideStop");
 }
@@ -181,11 +187,25 @@ function profile_saveFilter() {
 	params['filter_match'] = $('#filter_matchSliderVal').text();
 	params['filter_id'] = $('#filter_id').val();
  	$.ajax({
-		url: site_url + 'filter/save/',
+		url: site_url + 'filter/savefilter/',
 		data: params,
 		success: function(filter_id) {
 			$('#filter_id').val(filter_id);
-			alert('Saved');
+			alert('Saved current filter');
+		}
+	});
+}
+
+function profile_saveJobs() {
+	var selected_jobs = '';
+	$('.selected-job').each(function() {
+		selected_jobs += $(this).data('jobid') + ';';
+	});
+ 	$.ajax({
+		url: site_url + 'filter/savejobs/',
+		data: {selected_jobs: selected_jobs, profile_id: $('#filter_profile').val()},
+		success: function(data) {
+			alert('Saved selected jobs');
 		}
 	});
 }
@@ -204,14 +224,17 @@ function profile_filterJobs() {
 		success: function(data) {
 			data = JSON.parse(data);
 			var list_jobs_content = '';
-			for(job of data) {
+			for(job of data.search_result) {
 				// list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
-				list_jobs_content += '<li><h5><a class="filter-job-name" data-jobid="' + job.job_id + '" title="' + job.job_name + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
+				list_jobs_content += '<li><h5><a class="filter-job-name" data-jobid="' + job.job_id + '" data-match-point="' + job.match_point + '" title="' + job.job_name + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
 			}
 			$('#list_jobs').html(list_jobs_content);
 			profile_registerSelectJobs();
 			profile_registerViewJobs();
 			// $('[data-toggle="popover"]').popover();
+			for(job of data.selected_jobs) {
+				$('a[data-jobid=' + job.job_id + ']').next().trigger('click');
+			}
 		}
 	});
 }
@@ -221,7 +244,7 @@ function profile_registerSelectJobs() {
 	$('.select-job').on('click', function() {
 		var $job_data = $(this).closest('li').find('a');
 		// var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a></h5></li>';
-		var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a class="filter-job-name" data-jobid="' + $job_data.data('jobid') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a></h5></li>';
+		var selected_job_content = '<li><h5><c class="remove-job">X</c>&nbsp;|&nbsp;<a class="selected-job" data-jobid="' + $job_data.data('jobid') + '" data-match-point="' + $job_data.data('match-point') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a> (' +  $job_data.data('match-point') + '%)</h5></li>';
 		$('#list_selected_jobs').append(selected_job_content);
 		profile_registerViewJobs();
 		// $('[data-toggle="popover"]').popover();
@@ -235,7 +258,7 @@ function profile_removeJobs() {
 	$('.remove-job').on('click', function() {
 		var $job_data = $(this).closest('li').find('a');
 		// var job_content = '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + $job_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $job_data.data('content') + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
-		var job_content = '<li><h5><a class="filter-job-name" data-jobid="' + $job_data.data('jobid') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a> | <c class="select-job">Chọn</c></h5></li>';
+		var job_content = '<li><h5><a class="filter-job-name" data-jobid="' + $job_data.data('jobid') + '" data-match-point="' + $job_data.data('match-point') + '" title="' + $job_data.text() + '">' + $job_data.text() + '</a> (' +  $job_data.data('match-point') + '%) | <c class="select-job">Chọn</c></h5></li>';
 		$('#list_jobs').append(job_content);
 		$('[data-toggle="popover"]').popover();
 		profile_registerSelectJobs();

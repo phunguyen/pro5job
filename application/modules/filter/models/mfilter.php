@@ -79,4 +79,21 @@ class Mfilter extends CI_Model{
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}
+
+	public function link_profile_jobs($profile_id, $a_jobs) {
+		$query = "DELETE FROM profile_job_rel WHERE profile_id = $profile_id";
+		$this->db->query($query);
+		foreach ($a_jobs as $i => $job_id) {
+			if($job_id != '') {
+				$query = "INSERT INTO profile_job_rel VALUES ($profile_id, $job_id)";
+				$this->db->query($query);
+			}
+		}
+	}
+
+	public function get_profile_jobs($profile_id) {
+		$query = "SELECT * FROM profile_job_rel WHERE profile_id = $profile_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
 }
