@@ -225,15 +225,17 @@ function profile_filterJobs() {
 			data = JSON.parse(data);
 			var list_jobs_content = '';
 			for(job of data.search_result) {
-				// list_jobs_content += '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + job.job_name + '" data-toggle="popover" data-placement="bottom" data-content="' + job.description + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
-				list_jobs_content += '<li><h5><a class="filter-job-name" data-jobid="' + job.job_id + '" data-match-point="' + job.match_point + '" title="' + job.job_name + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>'
+				if($('.selected-job[data-jobid=' + job.job_id + ']').length <= 0) {
+					list_jobs_content += '<li><h5><a class="filter-job-name" data-jobid="' + job.job_id + '" data-match-point="' + job.match_point + '" title="' + job.job_name + '">' + job.job_name + '</a> (' +  job.match_point + '%) | <c class="select-job">Chọn</c></h5></li>';
+				}
 			}
 			$('#list_jobs').html(list_jobs_content);
 			profile_registerSelectJobs();
 			profile_registerViewJobs();
-			// $('[data-toggle="popover"]').popover();
 			for(job of data.selected_jobs) {
-				$('a[data-jobid=' + job.job_id + ']').next().trigger('click');
+				if($('.selected-job[data-jobid=' + job.job_id + ']').length <= 0) {
+					$('a[data-jobid=' + job.job_id + ']').next().trigger('click');
+				}
 			}
 		}
 	});

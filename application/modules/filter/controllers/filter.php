@@ -46,6 +46,20 @@ class Filter extends MX_Controller{
         $this->template->render();
 	}
 
+	public function lists($type) {
+		if($type == '') {
+			redirect('/', 'refresh');
+		} elseif($type == 'profile') {
+			$data = '';
+			$this->template->write_view("content", "list_profiles", $data);
+		} else {
+			$data = '';
+        	$this->template->write_view("content", "list_jobs", $data);
+		}
+		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+        $this->template->render();
+	}
+
 	public function search() {
 		$search_mapping = array(
 			'filter_location' => 'location',
