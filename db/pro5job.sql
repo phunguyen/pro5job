@@ -99,7 +99,7 @@ CREATE TABLE `filters` (
 
 LOCK TABLES `filters` WRITE;
 /*!40000 ALTER TABLE `filters` DISABLE KEYS */;
-INSERT INTO `filters` VALUES (1,4,'{\"filter_profile\":\"1\",\"filter_match\":\"60\",\"filter_id\":\"1\"}');
+INSERT INTO `filters` VALUES (1,4,'{\"filter_profile\":\"1\",\"filter_match\":\"30\",\"filter_id\":\"1\"}');
 /*!40000 ALTER TABLE `filters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +152,29 @@ LOCK TABLES `job_ask_rel` WRITE;
 /*!40000 ALTER TABLE `job_ask_rel` DISABLE KEYS */;
 INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1),(1,11,1,4),(1,15,1,3),(1,16,1,2),(2,8,1,2),(2,14,0,5),(5,8,1,3);
 /*!40000 ALTER TABLE `job_ask_rel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_profile_rel`
+--
+
+DROP TABLE IF EXISTS `job_profile_rel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_profile_rel` (
+  `job_id` int(19) NOT NULL,
+  `profile_id` int(19) NOT NULL,
+  PRIMARY KEY (`job_id`,`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_profile_rel`
+--
+
+LOCK TABLES `job_profile_rel` WRITE;
+/*!40000 ALTER TABLE `job_profile_rel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_profile_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -240,6 +263,30 @@ LOCK TABLES `profile_ask_rel` WRITE;
 /*!40000 ALTER TABLE `profile_ask_rel` DISABLE KEYS */;
 INSERT INTO `profile_ask_rel` VALUES (1,8,5),(1,11,1),(1,13,3),(2,5,5),(2,14,4);
 /*!40000 ALTER TABLE `profile_ask_rel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profile_job_rel`
+--
+
+DROP TABLE IF EXISTS `profile_job_rel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profile_job_rel` (
+  `profile_id` int(19) NOT NULL,
+  `job_id` int(19) NOT NULL,
+  PRIMARY KEY (`profile_id`,`job_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profile_job_rel`
+--
+
+LOCK TABLES `profile_job_rel` WRITE;
+/*!40000 ALTER TABLE `profile_job_rel` DISABLE KEYS */;
+INSERT INTO `profile_job_rel` VALUES (1,5);
+/*!40000 ALTER TABLE `profile_job_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -340,7 +387,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1464601252,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1464928325,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1464928362,1,'User','Profile','UP','222');
+INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1464601252,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1464928325,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1466582711,1,'User','Profile','UP','222');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-03 14:35:23
+-- Dump completed on 2016-06-22 17:58:34
