@@ -9,7 +9,7 @@ class Filter extends MX_Controller{
 	}
 
 	public function index() {
-		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+		$this->template->write("title", "Pro5Job - Tuyển dụng, Tìm việc, Đào tạo");
         $this->template->write_view("content", "filter");
         $this->template->render();
 	}
@@ -27,7 +27,7 @@ class Filter extends MX_Controller{
 		$data['startdates'] = $this->mfilter->get_sub_values('startdate');
 		$data['durations'] = $this->mfilter->get_sub_values('duration');
 		$data['list_profiles'] = $this->mfilter->list_profiles($this->ion_auth->get_user_id());
-		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+		$this->template->write("title", "Pro5Job - Tuyển dụng, Tìm việc, Đào tạo");
         $this->template->write_view("content", "filter_jobs", $data);
         $this->template->render();
 	}
@@ -41,7 +41,7 @@ class Filter extends MX_Controller{
 		$data['startdates'] = $this->mfilter->get_sub_values('startdate');
 		$data['durations'] = $this->mfilter->get_sub_values('duration');
 		$data['list_jobs'] = $this->mfilter->list_jobs($this->ion_auth->get_user_id());
-		$this->template->write("title", "Tuyển dụng, Tìm việc, Đào tạo");
+		$this->template->write("title", "Pro5Job - Tuyển dụng, Tìm việc, Đào tạo");
         $this->template->write_view("content", "filter_profiles", $data);
         $this->template->render();
 	}

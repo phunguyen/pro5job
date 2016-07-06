@@ -94,13 +94,13 @@
                 <ul>
                     <li>
                         <h5>
-                            <a title="Nguyễn Văn A" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A</a> | 
+                            <a title="Nguyễn Văn A" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A</a> |
                             <c>Chọn</c>
                         </h5>
                     </li>
                     <li>
                         <h5>
-                            <a title="Trần Văn B" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Trần Văn B">Trần Văn B</a> | 
+                            <a title="Trần Văn B" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Trần Văn B">Trần Văn B</a> |
                             <c>Chọn</c>
                         </h5>
                     </li>

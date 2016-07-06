@@ -93,3 +93,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(function() {
+		loadManageJobs();
+	});
+</script>

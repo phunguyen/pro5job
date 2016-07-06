@@ -22,7 +22,7 @@ $baseUrl = base_url();
 					<li><a href="<?php echo $baseUrl;?>report"><span class="glyphicon glyphicon-stats"></span> Thống kê</a></li>
 					<li><a href="<?php echo $baseUrl;?>job"><span class="glyphicon glyphicon-star"></span> Jobs</a></li>
 					<li><a href="<?php echo $baseUrl;?>filter/profiles"><span class="glyphicon glyphicon-filter"></span> Lọc Profiles</a></li>
-					<li><a href="<?php echo $baseUrl;?>filter/lists/profile"><span class="glyphicon glyphicon-heart"></span> Profiles</a></li>
+					<li><a href="<?php echo $baseUrl;?>manage/profiles"><span class="glyphicon glyphicon-heart"></span> Profiles</a></li>
 					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-comment"></span> Góp ý</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
