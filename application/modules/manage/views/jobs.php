@@ -1,3 +1,6 @@
+<?php
+// echo '<pre>';print_r($list_profiles);echo '</pre>';
+?>
 <div class="heading">
 	<div class="container">
 		<hr>
@@ -6,11 +9,13 @@
 			<h4>Chọn Profile để quản lý Job</h4>
 			</div>
 			<div class="col-md-8">
-			<select class="form-control" id="profiles">
-										<option>Nguyễn Văn A</option>
-										<option>Trần Văn B</option>
-										<option>Lê Thị C</option>
-									</select>
+				<select class="form-control" id="profiles">
+				<?php
+					foreach ($list_profiles as $profile) {
+						echo '<option value='.$profile['profile_id'].'>'.$profile['profile_name'].'</option>';
+					}
+				?>
+				</select>
 			</div>
 
 		</div>
@@ -37,8 +42,8 @@
 						Jobs đã lọc
 					</h3>
 					<hr>
-						<ul>
-							<li>
+						<ul id="list_jobs_filtered">
+							<!-- <li>
 								<h5>
 									<input type="checkbox"> |
 									<a title="Phó giám đốc kỹ thuật" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật</a>
@@ -49,7 +54,7 @@
 									<input type="checkbox"> |
 									<a title="Trưởng phòng kinh doanh" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Trưởng phòng kinh doanh">Trưởng phòng kinh doanh</a>
 								</h5>
-							</li>
+							</li> -->
 						</ul>
 					<hr>
 
