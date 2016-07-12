@@ -16,9 +16,14 @@ function loadManageJobs() {
 				for(i = 0;i < list_jobs.length;i++) {
 					list_jobs_html += '<li><h5><input type="checkbox"> | <a data-content="' + list_jobs[i].description + '" data-placement="bottom" data-toggle="popover" title="" data-original-title="' + list_jobs[i].job_name + '">' + list_jobs[i].job_name + '</a></h5></li>';
 				}
-				$('#list_jobs_filtered').append(list_jobs_html);
+				$('#list_jobs_filtered').html(list_jobs_html);
 			}
 		});
 	});
 	$('#profiles').trigger('change');
+
+	// export to word file
+	$('.export-word').on('click', function() {
+		window.location = site_url + 'manage/export2word';
+	});
 }
