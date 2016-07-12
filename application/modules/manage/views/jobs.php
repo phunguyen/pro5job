@@ -87,14 +87,11 @@
 		</div>
 		<div class="col-md-4">
 		<h3 style="text-align: left">Tác vụ</h3>
-					<hr>
-					<h5>Với danh sách Job đã chọn ở bên, ta thực hiện các tác vụ</h5>
-
-					<input type="submit" value="Tạo danh sách Email liên hệ" class="btn btn-primary btn-block">
-					<br>
-			<form>
-				<input type="submit" value="Xuất Hồ sơ Job ra file Word" class="btn btn-primary btn-block">
-			</form>
+			<hr>
+			<h5>Với danh sách Job đã chọn ở bên, ta thực hiện các tác vụ</h5>
+			<input type="button" value="Tạo danh sách Email liên hệ" class="btn btn-primary btn-block">
+			<br>
+			<input type="button" value="Xuất Hồ sơ Job ra file Word" class="btn btn-primary btn-block export-word">
 		</div>
 	</div>
 </div>

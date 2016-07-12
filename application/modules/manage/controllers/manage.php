@@ -35,4 +35,45 @@ class Manage extends MX_Controller{
 			echo json_encode($data);
 		}
 	}
+
+	public function export2word() {
+		require_once APPPATH."/third_party/PHPWord.php";
+
+		// load templage
+		$PHPWord = new PHPWord();
+		$document = $PHPWord->loadTemplate(APPPATH."/third_party/Template.docx");
+
+		// merge values
+		$document->setValue('Value1', 'Sun');
+		$document->setValue('Value2', 'Mercury');
+		$document->setValue('Value3', 'Venus');
+		$document->setValue('Value4', 'Earth');
+		$document->setValue('Value5', 'Mars');
+		$document->setValue('Value6', 'Jupiter');
+		$document->setValue('Value7', 'Saturn');
+		$document->setValue('Value8', 'Uranus');
+		$document->setValue('Value9', 'Neptun');
+		$document->setValue('Value10', 'Pluto');
+		$document->setValue('weekday', date('l'));
+		$document->setValue('time', date('H:i'));
+
+		// export
+		$file_name = 'cv.docx';
+		$document->save($file_name);
+
+		// Download the file:
+	    header('Content-Description: File Transfer');
+	    header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment;filename='.$file_name);
+	    header('Content-Transfer-Encoding: binary');
+	    header('Expires: 0');
+	    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	    header('Pragma: public');
+	    header('Content-Length: ' . filesize($file_name));
+	    ob_clean();
+	    flush();
+	    $status = readfile($file_name);
+	    unlink($file_name);
+	    exit;
+	}
 }

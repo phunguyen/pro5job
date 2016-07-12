@@ -21,4 +21,9 @@ function loadManageJobs() {
 		});
 	});
 	$('#profiles').trigger('change');
+
+	// export to word file
+	$('.export-word').on('click', function() {
+		window.location = site_url + 'manage/export2word';
+	});
 }
