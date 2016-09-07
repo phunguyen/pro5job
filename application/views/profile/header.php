@@ -14,7 +14,7 @@ $baseUrl = base_url();
 					<span class="icon-bar"></span>
 				</button>
 				<a href="<?php echo $baseUrl;?>" class="navbar-brand">
-					<img src="<?php echo $baseUrl;?>public/images/logo.png" height="40">
+					<img src="<?php echo $baseUrl;?>public/images/logo.png" height="50">
 				</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
@@ -42,9 +42,9 @@ $baseUrl = base_url();
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary">Gửi góp ý</button>
 						</div>
-					</div>
+						</div>
       
-					</div>
+						</div>
 					</div>
 					
 					<li class="dropdown">
@@ -61,4 +61,5 @@ $baseUrl = base_url();
 			</div>
 		</div>
 	</nav>
+
 </header>
