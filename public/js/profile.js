@@ -270,7 +270,15 @@ function profile_removeJobs() {
 }
 
 function profile_registerViewJobs() {
-	$('.filter-job-name').on('click', function() {
+	$('.filter-job-name').off('click').on('click', function() {
+		$.ajax({
+			url: site_url + 'filter/viewjob/' + $(this).data('jobid'),
+			success: function(data) {
+				$('#modalViewJob').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
+	});
+	$('.selected-job').off('click').on('click', function() {
 		$.ajax({
 			url: site_url + 'filter/viewjob/' + $(this).data('jobid'),
 			success: function(data) {

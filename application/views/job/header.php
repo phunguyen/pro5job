@@ -23,7 +23,7 @@ $baseUrl = base_url();
 					<li><a href="<?php echo $baseUrl;?>job"><span class="glyphicon glyphicon-star"></span> Jobs</a></li>
 					<li><a href="<?php echo $baseUrl;?>filter/profiles"><span class="glyphicon glyphicon-filter"></span> Lọc Profiles</a></li>
 					<li><a href="<?php echo $baseUrl;?>manage/profiles"><span class="glyphicon glyphicon-heart"></span> Profiles</a></li>
-					<li><a href="<?php echo $baseUrl;?>auth"><span class="glyphicon glyphicon-comment"></span> Góp ý</a></li>
+					<li><a data-toggle="modal" data-target="#feedback_modal"><span class="glyphicon glyphicon-comment"></span> Góp ý</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<span class="glyphicon glyphicon-user"></span> <?php echo $current_user->email; ?><span class="caret"></span>
@@ -39,3 +39,22 @@ $baseUrl = base_url();
 		</div>
 	</nav>
 </header>
+
+<!-- feedback modal -->
+<div class="modal fade" id="feedback_modal" role="dialogtabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal">&times;</button>
+	            <span style="font-size: 24px">Góp ý</span>
+	        </div>
+	        <div class="modal-body">
+	            <textarea class="form-control" rows="7" id="feedback_content"></textarea>
+	        </div>
+	        <div class="modal-footer">
+	            <button type="button" class="btn btn-primary btn-feedback">Gửi góp ý</button>
+	        </div>
+	    </div>
+	</div>
+</div>

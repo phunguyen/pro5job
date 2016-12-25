@@ -8,8 +8,9 @@ class Feedback extends MX_Controller{
 	}
 
 	public function index() {
-		$this->template->write("title", "Giới thiệu về Pro5Job");
-        $this->template->write_view("content", "about_us");
+		$data['list_feedbacks'] = $this->mfeedback->listall();
+		$this->template->write("title", "Danh sách góp ý");
+        $this->template->write_view("content", "feedback", $data);
         $this->template->render();
 	}
 

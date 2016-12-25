@@ -38,50 +38,28 @@
 
 		<div class="col-md-4">
 			<div>
-					<h3>
-						Jobs đã lọc
-					</h3>
-					<hr>
-						<ul id="list_jobs_filtered">
-							<!-- <li>
-								<h5>
-									<input type="checkbox"> |
-									<a title="Phó giám đốc kỹ thuật" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật</a>
-								</h5>
-							</li>
-							<li>
-								<h5>
-									<input type="checkbox"> |
-									<a title="Trưởng phòng kinh doanh" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết Công việc Trưởng phòng kinh doanh">Trưởng phòng kinh doanh</a>
-								</h5>
-							</li> -->
-						</ul>
-					<hr>
-
-
+				<h3>
+					Jobs đã lọc
+				</h3>
+				<hr>
+				<ul id="list_jobs_filtered">
+				</ul>
+				<hr>
 			</div>
 		</div>
 		<div class="col-md-4">
-
 			<div>
-					<h3 style="text-align: left">Jobs quan tâm Profile này</h3>
-					<hr>
-
-						<ul>
-
-							<li>
-								<h5>
-								<input type="checkbox"> |
-									<a title="Phó giám đốc kỹ thuật" data-toggle="popover"
-									data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật </a>
-								</h5>
-
-							</li>
-
-						</ul>
-
-
-
+				<h3 style="text-align: left">Jobs quan tâm Profile này</h3>
+				<hr>
+				<ul id="list_jobs_profile">
+					<!-- <li>
+						<h5>
+						<input type="checkbox"> |
+							<a title="Phó giám đốc kỹ thuật" data-toggle="popover"
+							data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Công việc Phó giám đốc kỹ thuật">Phó giám đốc kỹ thuật </a>
+						</h5>
+					</li> -->
+				</ul>
 			</div>
 			<hr>
 		</div>
@@ -89,11 +67,14 @@
 		<h3 style="text-align: left">Tác vụ</h3>
 			<hr>
 			<h5>Với danh sách Job đã chọn ở bên, ta thực hiện các tác vụ</h5>
-			<input type="button" value="Tạo danh sách Email liên hệ" class="btn btn-primary btn-block">
+			<input type="button" value="Tạo danh sách Email liên hệ" class="btn btn-primary btn-block export-emails">
 			<br>
 			<input type="button" value="Xuất Hồ sơ Job ra file Word" class="btn btn-primary btn-block export-word">
 		</div>
 	</div>
+</div>
+<div id="modalViewJob" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <!-- CONTENT -->
 </div>
 <script type="text/javascript">
 	$(function() {

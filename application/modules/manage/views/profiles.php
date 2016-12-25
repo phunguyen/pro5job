@@ -6,11 +6,13 @@
 			<h4>Chọn Job để quản lý Profile</h4>
 			</div>
 			<div class="col-md-8">
-			<select class="form-control" id="jobs">
-										<option>Trường phòng nhân sự</option>
-										<option>Giám đốc kỹ thuật</option>
-										<option>Nhân viên kinh doanh</option>
-									</select>
+				<select class="form-control" id="jobs">
+					<?php
+						foreach($list_jobs as $job) {
+							echo '<option value="'.$job['job_id'].'">'.$job['job_name'].'</option>';
+						}
+					?>
+				</select>
 			</div>
 
 		</div>
@@ -92,3 +94,11 @@
 		</div>
 	</div>
 </div>
+<div id="modalViewJob" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <!-- CONTENT -->
+</div>
+<script type="text/javascript">
+	$(function() {
+		loadManageProfiles();
+	});
+</script>
