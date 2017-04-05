@@ -1,0 +1,8 @@
+
+    background-size: auto;
+    background-position: 0 0;
+    background-color: #3a5795;
+    border: 0;
+    border-bottom: 1px solid #133783;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .52);
+    min-width: 981px;
