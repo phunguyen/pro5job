@@ -1,17 +1,22 @@
 <?php
-class Mnews extends CI_Model{
-	protected $_table = "news";
+class Mreport extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-	
-	public function listall(){
-		return $this->db->get($this->_table)->result_array();
+
+	public function get_ask_cats() {
+		$query = "SELECT * FROM asks_cats";
+		$res = $this->db->query($query);
+		return $res->result_array();
 	}
-	public function get_late_news($limit){
-		$this->db->select("news_title");
-		$this->db->limit($limit);
-		return $this->db->get($this->_table)->result_array();
+
+	public function list_asks() {
+		$query = "SELECT a.*, COUNT(*) count_asks FROM asks a
+			LEFT JOIN job_ask_rel r ON r.ask_id = a.ask_id
+			WHERE r.job_id IS NOT NULL
+			GROUP BY a.ask_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
 	}
 }

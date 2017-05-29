@@ -1,17 +1,17 @@
 <?php
-class Mnews extends CI_Model{
-	protected $_table = "news";
-	public function __construct(){
+class Mhome extends CI_Model {
+	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 	}
-	
-	public function listall(){
-		return $this->db->get($this->_table)->result_array();
-	}
-	public function get_late_news($limit){
-		$this->db->select("news_title");
-		$this->db->limit($limit);
-		return $this->db->get($this->_table)->result_array();
+
+	public function count_records($table_name) {
+		if ($table_name == 'jobs_new') {
+			$query = "SELECT COUNT(*) count_records FROM jobs WHERE startdate <= DATE(NOW()) AND DATE(NOW()) <= duration";
+		} else {
+			$query = "SELECT count(*) count_records FROM {$table_name}";
+		}
+		$result = $this->db->query($query);
+		return $result->row_array();
 	}
 }

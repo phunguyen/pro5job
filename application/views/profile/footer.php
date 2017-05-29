@@ -50,3 +50,4 @@
 <script src="<?php echo base_url();?>public/js/bootstrap-slider.js"></script>
 <script src="<?php echo base_url();?>public/js/profile.js"></script>
 <script src="<?php echo base_url();?>public/js/manage.js"></script>
+<script src="<?php echo base_url();?>public/js/report.js"></script>
