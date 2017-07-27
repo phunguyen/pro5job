@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.39, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.20, for Win32 (x86)
 --
 -- Host: localhost    Database: pro5job
 -- ------------------------------------------------------
--- Server version	5.5.39
+-- Server version	5.6.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -79,6 +79,30 @@ INSERT INTO `asks_cats` VALUES (1,'Thái độ','chứa các danh mục con và 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `feedbacks`
+--
+
+DROP TABLE IF EXISTS `feedbacks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feedbacks` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `feedback_content` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+LOCK TABLES `feedbacks` WRITE;
+/*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
+INSERT INTO `feedbacks` VALUES (1,'test'),(2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor turpis, congue ut odio a, commodo congue sapien. Maecenas molestie nec diam sed pretium. Quisque posuere eget libero sit amet tempor. Sed et scelerisque magna. Ut consectetur nec nunc vitae dignissim. Quisque eu vestibulum nisi.'),(3,'Phasellus et pellentesque est, fermentum eleifend erat. Phasellus hendrerit tortor eu volutpat tincidunt. Duis mollis turpis sed nunc venenatis imperdiet. \nSuspendisse id venenatis nunc. Aliquam sed semper metus, eleifend condimentum elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed in condimentum dolor. \nVivamus purus turpis, bibendum in diam in, rhoncus maximus tellus. Sed non sagittis magna. Aenean tincidunt et lacus sit amet posuere. '),(4,'Cras condimentum, elit pretium dapibus fringilla, nunc quam dapibus turpis, sit amet venenatis dui ante nec arcu. \n\nPellentesque cursus lacinia augue eu auctor. Quisque eu eleifend eros. Mauris eget tellus at risus accumsan pulvinar eget sed augue. \n\nDonec quis nunc rhoncus, convallis justo vitae, ullamcorper lorem.'),(5,'asdfasdfads'),(6,'adfasfadsfasf');
+/*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `filters`
 --
 
@@ -150,7 +174,7 @@ CREATE TABLE `job_ask_rel` (
 
 LOCK TABLES `job_ask_rel` WRITE;
 /*!40000 ALTER TABLE `job_ask_rel` DISABLE KEYS */;
-INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1),(1,11,1,4),(1,15,1,3),(1,16,1,2),(2,8,1,2),(2,14,0,5),(5,8,1,3);
+INSERT INTO `job_ask_rel` VALUES (1,8,0,3),(1,9,1,5),(1,10,0,1),(1,11,1,4),(1,15,1,3),(1,16,1,2),(2,8,1,2),(4,13,1,3),(4,15,1,5),(5,8,1,3),(6,8,1,5),(6,13,0,4);
 /*!40000 ALTER TABLE `job_ask_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,6 +198,7 @@ CREATE TABLE `job_profile_rel` (
 
 LOCK TABLES `job_profile_rel` WRITE;
 /*!40000 ALTER TABLE `job_profile_rel` DISABLE KEYS */;
+INSERT INTO `job_profile_rel` VALUES (2,1);
 /*!40000 ALTER TABLE `job_profile_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +227,7 @@ CREATE TABLE `jobs` (
   `createdtime` datetime DEFAULT NULL,
   `modifiedtime` datetime DEFAULT NULL,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +236,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader 111',3,'tp-hcm','2-nam','nu','cao-dang','1-3-trieu','2016-05-07','2016-05-27','111','222','333',NULL,'2016-05-05 11:17:01'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,'tp-hcm','1-nam','nam','tot-nghiep-thcs','thoa-thuan','hom-nay','1-tuan','','','',NULL,NULL),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,'ha-noi',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,'ha-noi',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Tech Leader','Tech Leader',3,'nghe-an',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `jobs` VALUES (1,'Team Leader','Team Leader 111',3,'tp-hcm','2-nam','nu','cao-dang','1-3-trieu','2016-05-07','2016-05-27','111','222','333',NULL,'2016-05-05 11:17:01'),(2,'Giám đốc điều hành','Giám đốc điều hành',3,'tp-hcm','1-nam','nam','tot-nghiep-thcs','1-3-trieu','2016-05-07','2016-05-27','','','',NULL,'2017-05-29 18:32:22'),(3,'Nhân viên kinh doanh','Nhân viên kinh doanh',3,'ha-noi',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Trưởng phòng nhân sự','Trưởng phòng nhân sự',3,'ha-noi','1-nam','nam','tot-nghiep-thcs','1-3-trieu','','','','','',NULL,'2017-05-29 18:28:04'),(5,'Tech Leader','Tech Leader',3,'nghe-an',NULL,NULL,NULL,NULL,'2017-05-07','2017-07-07',NULL,NULL,NULL,NULL,NULL),(6,'Kế toán','',3,'ha-noi','1-nam','nam','tot-nghiep-thcs','1-3-trieu','2017-05-29','2017-07-29','','','','2017-05-29 17:38:25','2017-05-29 18:25:49');
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,6 +276,7 @@ CREATE TABLE `profile_ask_rel` (
   `profile_id` int(10) NOT NULL,
   `ask_id` int(10) NOT NULL,
   `rating` int(1) DEFAULT NULL,
+  `require` int(1) DEFAULT NULL,
   PRIMARY KEY (`profile_id`,`ask_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -261,7 +287,7 @@ CREATE TABLE `profile_ask_rel` (
 
 LOCK TABLES `profile_ask_rel` WRITE;
 /*!40000 ALTER TABLE `profile_ask_rel` DISABLE KEYS */;
-INSERT INTO `profile_ask_rel` VALUES (1,8,5),(1,11,1),(1,13,3),(2,5,5),(2,14,4);
+INSERT INTO `profile_ask_rel` VALUES (1,8,5,NULL),(1,11,1,NULL),(1,13,3,NULL),(2,5,5,NULL),(2,14,4,NULL);
 /*!40000 ALTER TABLE `profile_ask_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,7 +311,7 @@ CREATE TABLE `profile_job_rel` (
 
 LOCK TABLES `profile_job_rel` WRITE;
 /*!40000 ALTER TABLE `profile_job_rel` DISABLE KEYS */;
-INSERT INTO `profile_job_rel` VALUES (1,2),(1,5);
+INSERT INTO `profile_job_rel` VALUES (1,2);
 /*!40000 ALTER TABLE `profile_job_rel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,7 +413,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1464601252,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1458287426,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1464928325,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1468290421,1,'User','Profile','UP','222');
+INSERT INTO `users` VALUES (1,'127.0.0.1','administrator','$2y$08$7rolBCnUvDi/2mVd371M5.q7o83TU12P4ibMRn/ZJJ27yRcrq.3fq','','admin@admin.com','',NULL,NULL,NULL,1268889823,1491128887,1,'User','Admin','ADMIN','1112223333'),(2,'0.0.0.0',NULL,'$2y$08$uFWNFGTh4Jx4bZPUnmneHOtT0kA4I0SPObj0vNUvvYKTs4hq3.K2G',NULL,'editor@editor.com',NULL,NULL,NULL,NULL,1453985671,1482327960,1,'User','Editor','Citigo','0985819644'),(3,'0.0.0.0',NULL,'$2y$08$ZmmUwdf1XPOm/sNw2XLoM.Ot0fddxfcDwr9VIdhbi5QVgSumKVp2i',NULL,'job@job.com',NULL,NULL,NULL,NULL,1457017959,1501126157,1,'User','Job','Boru','111'),(4,'0.0.0.0',NULL,'$2y$08$A.iZFn1eHUOiVbEa18X0IOacUwr8JGZh47hjPE5Hd.q7ckm3R.nzm',NULL,'profile@profile.com',NULL,NULL,NULL,NULL,1457595123,1501126488,1,'User','Profile','UP','222');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-13 18:18:30
+-- Dump completed on 2017-07-27 13:51:50

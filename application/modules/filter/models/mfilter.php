@@ -64,6 +64,19 @@ class Mfilter extends CI_Model{
 		return $res->result_array();
 	}
 
+	public function search_profiles($params) {
+		$query = "SELECT * FROM profiles WHERE profile_id > 0";
+		$where = "";
+		foreach($params as $pkey => $pvalue) {
+			if($pvalue != '') {
+				$where .= " AND {$pkey} LIKE '%{$pvalue}%'";
+			}
+		}
+		$query .= $where;
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
+
 	public function get_job_asks($job_id) {
 		$query = "SELECT * FROM job_ask_rel r
 			INNER JOIN asks a ON a.ask_id = r.ask_id
@@ -93,6 +106,12 @@ class Mfilter extends CI_Model{
 
 	public function get_profile_jobs($profile_id) {
 		$query = "SELECT * FROM profile_job_rel WHERE profile_id = $profile_id";
+		$res = $this->db->query($query);
+		return $res->result_array();
+	}
+
+	public function get_job_profiles($job_id) {
+		$query = "SELECT * FROM job_profile_rel WHERE job_id = $job_id";
 		$res = $this->db->query($query);
 		return $res->result_array();
 	}

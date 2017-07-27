@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/css/bootstrap-slider.css">
 <?php
 $baseUrl = base_url();
 ?>

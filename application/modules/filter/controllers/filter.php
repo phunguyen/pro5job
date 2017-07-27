@@ -74,14 +74,23 @@ class Filter extends MX_Controller{
 				$search_params[$fname] = $_REQUEST[$pname];
 			}
 		}
-		$search_result = $this->mfilter->search_jobs($search_params);
-		$search_result = $this->calculateMatch($_REQUEST['filter_profile'], $search_result, $_REQUEST['filter_match']);
-		$data['search_result'] = $search_result;
-		$data['selected_jobs'] = $this->mfilter->get_profile_jobs($_REQUEST['filter_profile']);
+
+		// jobs in profile
+		if(isset($_REQUEST['filter_profile'])) {
+			$search_result = $this->mfilter->search_jobs($search_params);
+			$search_result = $this->calculateMatchProfile($_REQUEST['filter_profile'], $search_result, $_REQUEST['filter_match']);
+			$data['search_result'] = $search_result;
+			$data['selected_jobs'] = $this->mfilter->get_profile_jobs($_REQUEST['filter_profile']);
+		} else {
+			$search_result = $this->mfilter->search_profiles($search_params);
+			$search_result = $this->calculateMatchJob($_REQUEST['filter_job'], $search_result, $_REQUEST['filter_match']);
+			$data['search_result'] = $search_result;
+			$data['selected_profiles'] = $this->mfilter->get_job_profiles($_REQUEST['filter_job']);
+		}
 		echo json_encode($data);
 	}
 
-	public function calculateMatch($profile_id, $jobs, $filter_match_point) {
+	public function calculateMatchProfile($profile_id, $jobs, $filter_match_point) {
 		// get profile's asks
 		$profile_asks = $this->mfilter->get_profile_asks($profile_id);
 		$profile_asks_new = array();
@@ -114,7 +123,7 @@ class Filter extends MX_Controller{
 				if($count_asks == -1) break;
 			}
 			if($count_asks > 0) {
-				$match_point = $count_asks / count($job_asks) * 100;
+				$match_point = intval($count_asks / count($job_asks) * 100);
 				if($match_point >= $filter_match_point) {
 					$job['match_point'] = $match_point;
 					$jobs_result[] = $job;
@@ -135,9 +144,68 @@ class Filter extends MX_Controller{
 		return $jobs_result;
 	}
 
+	public function calculateMatchJob($job_id, $profiles, $filter_match_point) {
+		// get job's asks
+		$job_asks = $this->mfilter->get_job_asks($job_id);
+		$job_asks_new = array();
+		foreach($job_asks as $ja) {
+			$job_asks_new[$ja['ask_id']] = $ja;
+		}
+		// calculate match points
+		$profiles_result = array();
+		foreach($profiles as $ji => $profile) {
+			$profile_asks = $this->mfilter->get_profile_asks($profile['profile_id']);
+			$count_asks = 0;
+			foreach($profile_asks as $pa) {
+				if($pa['require'] == 1) {
+					if(isset($profile_asks_new[$pa['ask_id']])) {
+						if($pa['rating'] <= $job_asks_new[$pa['ask_id']]['rating']) {
+							$count_asks++;
+						} else {
+							$count_asks = -1;
+						}
+					} else {
+						$count_asks = -1;
+					}
+				} else {
+					if(isset($job_asks_new[$pa['ask_id']])) {
+						if($pa['rating'] <= $job_asks_new[$pa['ask_id']]['rating']) {
+							$count_asks++;
+						}
+					}
+				}
+				if($count_asks == -1) break;
+			}
+			if($count_asks > 0) {
+				$match_point = intval($count_asks / count($profile_asks) * 100);
+				if($match_point >= $filter_match_point) {
+					$profile['match_point'] = $match_point;
+					$profiles_result[] = $profile;
+				}
+			}
+		}
+		// order by match point
+		for($i = 0;$i < count($profiles_result) - 1;$i++) {
+			for($j = $i + 1;$j < count($profiles_result);$j++) {
+				if($profiles_result[$i]['match_point'] < $profiles_result[$j]['match_point']) {
+					$temp = $profiles_result[$i];
+					$profiles_result[$i] = $profiles_result[$j];
+					$profiles_result[$j] = $temp;
+				}
+			}
+		}
+
+		return $profiles_result;
+	}
+
 	public function viewjob($id) {
 		// get job detail
 		echo modules::run('job/view', $id);
+	}
+
+	public function viewprofile($id) {
+		// get job detail
+		echo modules::run('profile/view', $id);
 	}
 
 	public function savefilter() {
@@ -160,5 +228,11 @@ class Filter extends MX_Controller{
 		$a_jobs = explode(';', $_REQUEST['selected_jobs']);
 		$profile_id = $_REQUEST['profile_id'];
 		$this->mfilter->link_profile_jobs($profile_id, $a_jobs);
+	}
+
+	public function saveprofiles() {
+		$a_profiles = explode(';', $_REQUEST['selected_profiles']);
+		$job_id = $_REQUEST['job_id'];
+		$this->mfilter->link_job_profiles($job_id, $a_profiles);
 	}
 }

@@ -18,7 +18,7 @@ function job_registerEvents() {
 		$.ajax({
 			url: site_url + 'job/view/' + job_id,
 			success: function(data) {
-				$('#modalViewJob').modal().html(data).find('[data-toggle="popover"]').popover();
+				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
 			}
 		});
 	});
@@ -192,5 +192,153 @@ function job_viewSelectAsk(ask_id, ask_star, ask_require) {
 			$(this).show();
 			current_level--;
 		}
+	});
+}
+
+function profile_registerFilterProfiles() {
+	// filter
+	$('.filter-select').on('change', function() {
+		if($(this).attr('id') == 'filter_job') $('#list_selected_jobs').html('');
+		profile_filterProfiles();
+	});
+
+	// match
+	$('#filter_match').slider({
+		formatter: function(value) {
+			return value + '%';
+		}
+	});
+	$("#filter_match").on("slide", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+	});
+	$("#filter_match").on("slideStop", function(slideEvt) {
+		$("#filter_matchSliderVal").text(slideEvt.value);
+		// console.log(slideEvt.value);
+		// do search
+		profile_filterProfiles();
+	});
+
+	// save filter
+	$('.save-filter').on('click', function() {
+		profile_saveFilter();
+	});
+
+	// save selected jobs
+	$('.save-jobs').on('click', function() {
+		profile_saveJobs();
+	});
+
+	// first load
+	$("#filter_match").trigger("slideStop");
+}
+
+function profile_saveFilter() {
+	var params = {};
+	$('.filter-select').each(function() {
+		if($(this).val() != '') {
+			params[$(this).attr('id')] = $(this).val();
+		}
+	});
+	params['filter_match'] = $('#filter_matchSliderVal').text();
+	params['filter_id'] = $('#filter_id').val();
+ 	$.ajax({
+		url: site_url + 'filter/savefilter/',
+		data: params,
+		success: function(filter_id) {
+			$('#filter_id').val(filter_id);
+			alert('Saved current filter');
+		}
+	});
+}
+
+function profile_saveJobs() {
+	var selected_jobs = '';
+	$('.selected-job').each(function() {
+		selected_jobs += $(this).data('jobid') + ';';
+	});
+ 	$.ajax({
+		url: site_url + 'filter/savejobs/',
+		data: {selected_jobs: selected_jobs, profile_id: $('#filter_job').val()},
+		success: function(data) {
+			alert('Saved selected jobs');
+		}
+	});
+}
+
+function profile_filterProfiles() {
+	var params = {};
+	$('.filter-select').each(function() {
+		if($(this).val() != '') {
+			params[$(this).attr('id')] = $(this).val();
+		}
+	});
+	params['filter_match'] = $('#filter_matchSliderVal').text();
+ 	$.ajax({
+		url: site_url + 'filter/search/',
+		data: params,
+		success: function(data) {
+			data = JSON.parse(data);
+			var list_profiles_content = '';
+			for(profile of data.search_result) {
+				if($('.selected-profile[data-profileid=' + profile.profile_id + ']').length <= 0) {
+					list_profiles_content += '<li><h5><a class="filter-profile-name" data-profileid="' + profile.profile_id + '" data-match-point="' + profile.match_point + '" title="' + profile.profile_name + '">' + profile.profile_name + '</a> (' +  profile.match_point + '%) | <c class="select-profile">Chọn</c></h5></li>';
+				}
+			}
+			$('#list_profiles').html(list_profiles_content);
+			profile_registerSelectProfiles();
+			profile_registerViewProfiles();
+			for(profile of data.selected_profiles) {
+				if($('.selected-profile[data-profileid=' + profile.profile_id + ']').length <= 0) {
+					$('a[data-profileid=' + profile.profile_id + ']').next().trigger('click');
+				}
+			}
+		}
+	});
+}
+
+function profile_registerSelectProfiles() {
+	$('.select-profile').off('click');
+	$('.select-profile').on('click', function() {
+		var $profile_data = $(this).closest('li').find('a');
+		// var selected_profile_content = '<li><h5><c class="remove-profile">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $profile_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $profile_data.data('content') + '">' + $profile_data.text() + '</a></h5></li>';
+		var selected_profile_content = '<li><h5><c class="remove-profile">X</c>&nbsp;|&nbsp;<a class="selected-profile" data-profileid="' + $profile_data.data('profileid') + '" data-match-point="' + $profile_data.data('match-point') + '" title="' + $profile_data.text() + '">' + $profile_data.text() + '</a> (' +  $profile_data.data('match-point') + '%)</h5></li>';
+		$('#list_selected_profiles').append(selected_profile_content);
+		profile_registerViewProfiles();
+		// $('[data-toggle="popover"]').popover();
+		profile_removeProfiles();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_removeProfiles() {
+	$('.remove-profile').off('click');
+	$('.remove-profile').on('click', function() {
+		var $profile_data = $(this).closest('li').find('a');
+		// var profile_content = '<li><h5><a tabindex="0" role="button" data-trigger="focus" title="' + $profile_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $profile_data.data('content') + '">' + $profile_data.text() + '</a> | <c class="select-profile">Chọn</c></h5></li>';
+		var profile_content = '<li><h5><a class="filter-profile-name" data-profileid="' + $profile_data.data('profileid') + '" data-match-point="' + $profile_data.data('match-point') + '" title="' + $profile_data.text() + '">' + $profile_data.text() + '</a> (' +  $profile_data.data('match-point') + '%) | <c class="select-profile">Chọn</c></h5></li>';
+		$('#list_profiles').append(profile_content);
+		$('[data-toggle="popover"]').popover();
+		profile_registerSelectProfiles();
+		profile_registerViewProfiles();
+		$(this).closest('li').remove();
+	});
+}
+
+function profile_registerViewProfiles() {
+	$('.filter-profile-name').off('click').on('click', function() {
+		$.ajax({
+			url: site_url + 'filter/viewprofile/' + $(this).data('profileid'),
+			success: function(data) {
+				$('#modalViewprofile').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
+	});
+	$('.selected-profile').off('click').on('click', function() {
+		$.ajax({
+			url: site_url + 'filter/viewprofile/' + $(this).data('profileid'),
+			success: function(data) {
+				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
 	});
 }

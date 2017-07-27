@@ -2,13 +2,13 @@
 // echo '<pre>';print_r($filter_data);echo '</pre>';
 ?>
 <style>
-#filter_matchSlider .slider-selection {
-    background: #BABABA;
-}
-.slider.slider-horizontal {
-    width: 185px;
-    height: 20px;
-}
+    #filter_matchSlider .slider-selection {
+        background: #BABABA;
+    }
+    .slider.slider-horizontal {
+        width: 185px;
+        height: 20px;
+    }
 </style>
 <div class="heading">
     <div class="container">
