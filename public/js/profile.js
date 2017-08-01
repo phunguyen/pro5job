@@ -186,6 +186,7 @@ function profile_saveFilter() {
 	});
 	params['filter_match'] = $('#filter_matchSliderVal').text();
 	params['filter_id'] = $('#filter_id').val();
+	params['schedule_report'] = $('[name=schedule_report]:checked').val();
  	$.ajax({
 		url: site_url + 'filter/savefilter/',
 		data: params,

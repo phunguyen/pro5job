@@ -41,7 +41,7 @@
     </div>
 </div>
 <hr>
-<div class="container">
+<div class="container filter-profile">
     <div class="row">
         <div class="col-md-2">
             <div >
@@ -124,18 +124,6 @@
                 </h3>
                 <hr>
                 <ul id="list_profiles">
-                    <!-- <li>
-                        <h5>
-                            <a title="Nguyễn Văn A" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A</a> |
-                            <c>Chọn</c>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>
-                            <a title="Trần Văn B" data-toggle="popover" data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Trần Văn B">Trần Văn B</a> |
-                            <c>Chọn</c>
-                        </h5>
-                    </li> -->
                 </ul>
                 <hr>
             </div>
@@ -145,14 +133,6 @@
                 <h3 style="text-align: left">Profiles đã chọn</h3>
                 <hr>
                 <ul id="list_selected_profiles">
-                    <!-- <li>
-                        <h5>
-                            <c>X</c>
-                            |
-                            <a title="Nguyễn Văn A" data-toggle="popover"
-                                data-placement="bottom" data-content="Đây là nội dung mô tả chi tiết về Nguyễn Văn A">Nguyễn Văn A </a>
-                        </h5> -->
-                    </li>
                 </ul>
             </div>
             <hr>
@@ -164,33 +144,34 @@
             <form>
                 <div class="radio">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    <input type="radio" name="schedule_report" id="optionsRadios1" value="daily" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'daily') echo 'checked'; ?>>
                     Thông báo hàng ngày
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="radio" name="schedule_report" id="optionsRadios2" value="weekly" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'weekly') echo 'checked'; ?>>
                     Thông báo hàng tuần
                     </label>
                 </div>
                 <div class="radio disabled">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                    <input type="radio" name="schedule_report" id="optionsRadios3" value="monthly" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'monthly') echo 'checked'; ?>>
                     Thông báo hàng tháng
                     </label>
                 </div>
                 <div class="radio disabled">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+                    <input type="radio" name="schedule_report" id="optionsRadios4" value="none" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'none') echo 'checked'; ?>>
                     Không thông báo
                     </label>
                 </div>
             </form>
-            <input type="submit" value="Lưu bộ lọc" class="btn btn-primary btn-block">
+            <input type="submit" value="Lưu bộ lọc" class="btn btn-primary btn-block save-filter">
+            <input type="hidden" name="filter_id" id="filter_id" value="<?php echo isset($filter_data['filter_id']) ? $filter_data['filter_id'] : 0; ?>">
             <br>
             <form>
-                <input type="submit" value="Lưu các Profile đã chọn" class="btn btn-primary btn-block">
+                <input type="submit" value="Lưu các Profile đã chọn" class="btn btn-primary btn-block save-profiles">
             </form>
         </div>
     </div>
@@ -200,6 +181,6 @@
 </div>
 <script>
 $(function() {
-    profile_registerFilterProfiles();
+    job_registerFilterProfiles();
 });
 </script>

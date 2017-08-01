@@ -144,25 +144,25 @@
             <form>
                 <div class="radio">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    <input type="radio" name="schedule_report" id="optionsRadios1" value="daily" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'daily') echo 'checked'; ?>>
                     Thông báo hàng ngày
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="radio" name="schedule_report" id="optionsRadios2" value="weekly" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'weekly') echo 'checked'; ?>>
                     Thông báo hàng tuần
                     </label>
                 </div>
                 <div class="radio disabled">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                    <input type="radio" name="schedule_report" id="optionsRadios3" value="monthly" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'monthly') echo 'checked'; ?>>
                     Thông báo hàng tháng
                     </label>
                 </div>
                 <div class="radio disabled">
                     <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+                    <input type="radio" name="schedule_report" id="optionsRadios4" value="none" <?php if(isset($filter_data['schedule_report']) && $filter_data['schedule_report'] == 'none') echo 'checked'; ?>>
                     Không thông báo
                     </label>
                 </div>

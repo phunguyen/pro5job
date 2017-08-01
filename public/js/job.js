@@ -195,11 +195,11 @@ function job_viewSelectAsk(ask_id, ask_star, ask_require) {
 	});
 }
 
-function profile_registerFilterProfiles() {
+function job_registerFilterProfiles() {
 	// filter
 	$('.filter-select').on('change', function() {
 		if($(this).attr('id') == 'filter_job') $('#list_selected_jobs').html('');
-		profile_filterProfiles();
+		job_filterProfiles();
 	});
 
 	// match
@@ -215,24 +215,24 @@ function profile_registerFilterProfiles() {
 		$("#filter_matchSliderVal").text(slideEvt.value);
 		// console.log(slideEvt.value);
 		// do search
-		profile_filterProfiles();
+		job_filterProfiles();
 	});
 
 	// save filter
 	$('.save-filter').on('click', function() {
-		profile_saveFilter();
+		job_saveFilter();
 	});
 
 	// save selected jobs
-	$('.save-jobs').on('click', function() {
-		profile_saveJobs();
+	$('.save-profiles').on('click', function() {
+		job_saveProfiles();
 	});
 
 	// first load
 	$("#filter_match").trigger("slideStop");
 }
 
-function profile_saveFilter() {
+function job_saveFilter() {
 	var params = {};
 	$('.filter-select').each(function() {
 		if($(this).val() != '') {
@@ -241,6 +241,7 @@ function profile_saveFilter() {
 	});
 	params['filter_match'] = $('#filter_matchSliderVal').text();
 	params['filter_id'] = $('#filter_id').val();
+	params['schedule_report'] = $('[name=schedule_report]:checked').val();
  	$.ajax({
 		url: site_url + 'filter/savefilter/',
 		data: params,
@@ -251,21 +252,21 @@ function profile_saveFilter() {
 	});
 }
 
-function profile_saveJobs() {
-	var selected_jobs = '';
-	$('.selected-job').each(function() {
-		selected_jobs += $(this).data('jobid') + ';';
+function job_saveProfiles() {
+	var selected_profiles = '';
+	$('.selected-profile').each(function() {
+		selected_profiles += $(this).data('profileid') + ';';
 	});
  	$.ajax({
-		url: site_url + 'filter/savejobs/',
-		data: {selected_jobs: selected_jobs, profile_id: $('#filter_job').val()},
+		url: site_url + 'filter/saveprofiles/',
+		data: {selected_profiles: selected_profiles, job_id: $('#filter_job').val()},
 		success: function(data) {
-			alert('Saved selected jobs');
+			alert('Saved selected profiles');
 		}
 	});
 }
 
-function profile_filterProfiles() {
+function job_filterProfiles() {
 	var params = {};
 	$('.filter-select').each(function() {
 		if($(this).val() != '') {
@@ -285,8 +286,8 @@ function profile_filterProfiles() {
 				}
 			}
 			$('#list_profiles').html(list_profiles_content);
-			profile_registerSelectProfiles();
-			profile_registerViewProfiles();
+			job_registerSelectProfiles();
+			job_registerViewProfiles();
 			for(profile of data.selected_profiles) {
 				if($('.selected-profile[data-profileid=' + profile.profile_id + ']').length <= 0) {
 					$('a[data-profileid=' + profile.profile_id + ']').next().trigger('click');
@@ -296,21 +297,21 @@ function profile_filterProfiles() {
 	});
 }
 
-function profile_registerSelectProfiles() {
+function job_registerSelectProfiles() {
 	$('.select-profile').off('click');
 	$('.select-profile').on('click', function() {
 		var $profile_data = $(this).closest('li').find('a');
 		// var selected_profile_content = '<li><h5><c class="remove-profile">X</c>&nbsp;|&nbsp;<a tabindex="0" role="button" data-trigger="focus" title="' + $profile_data.text() + '" data-toggle="popover" data-placement="bottom" data-content="' + $profile_data.data('content') + '">' + $profile_data.text() + '</a></h5></li>';
 		var selected_profile_content = '<li><h5><c class="remove-profile">X</c>&nbsp;|&nbsp;<a class="selected-profile" data-profileid="' + $profile_data.data('profileid') + '" data-match-point="' + $profile_data.data('match-point') + '" title="' + $profile_data.text() + '">' + $profile_data.text() + '</a> (' +  $profile_data.data('match-point') + '%)</h5></li>';
 		$('#list_selected_profiles').append(selected_profile_content);
-		profile_registerViewProfiles();
+		job_registerViewProfiles();
 		// $('[data-toggle="popover"]').popover();
-		profile_removeProfiles();
+		job_removeProfiles();
 		$(this).closest('li').remove();
 	});
 }
 
-function profile_removeProfiles() {
+function job_removeProfiles() {
 	$('.remove-profile').off('click');
 	$('.remove-profile').on('click', function() {
 		var $profile_data = $(this).closest('li').find('a');
@@ -318,27 +319,63 @@ function profile_removeProfiles() {
 		var profile_content = '<li><h5><a class="filter-profile-name" data-profileid="' + $profile_data.data('profileid') + '" data-match-point="' + $profile_data.data('match-point') + '" title="' + $profile_data.text() + '">' + $profile_data.text() + '</a> (' +  $profile_data.data('match-point') + '%) | <c class="select-profile">Chọn</c></h5></li>';
 		$('#list_profiles').append(profile_content);
 		$('[data-toggle="popover"]').popover();
-		profile_registerSelectProfiles();
-		profile_registerViewProfiles();
+		job_registerSelectProfiles();
+		job_registerViewProfiles();
 		$(this).closest('li').remove();
 	});
 }
 
-function profile_registerViewProfiles() {
-	$('.filter-profile-name').off('click').on('click', function() {
-		$.ajax({
-			url: site_url + 'filter/viewprofile/' + $(this).data('profileid'),
-			success: function(data) {
-				$('#modalViewprofile').modal().html(data).find('[data-toggle="popover"]').popover();
-			}
-		});
-	});
-	$('.selected-profile').off('click').on('click', function() {
+function job_registerViewProfiles() {
+	$('.filter-profile .filter-profile-name').off('click').on('click', function() {
 		$.ajax({
 			url: site_url + 'filter/viewprofile/' + $(this).data('profileid'),
 			success: function(data) {
 				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
 			}
 		});
+	});
+	$('.filter-profile .selected-profile').off('click').on('click', function() {
+		$.ajax({
+			url: site_url + 'filter/viewprofile/' + $(this).data('profileid'),
+			success: function(data) {
+				$('#modalViewProfile').modal().html(data).find('[data-toggle="popover"]').popover();
+			}
+		});
+	});
+}
+
+function profile_viewSelectAsk(ask_id, ask_star) {
+	$('#modalViewProfile #selected_ask_' + ask_id).show();
+	profile_registerStarRating($('#modalViewProfile #selected_ask_' + ask_id), ask_star);
+	var selected_cat = $('#modalViewProfile #selected_ask_' + ask_id).closest('ul.nav').prev();
+	var current_level = selected_cat.data('level');
+	current_level--;
+	selected_cat.show();
+	selected_cat.prevAll('#modalViewProfile .job-selected-cat').each(function() {
+		if($(this).data('level') == current_level) {
+			$(this).show();
+			current_level--;
+		}
+	});
+}
+
+function profile_registerStarRating($objParent, curRating) {
+	$objParent.find('.star-rating .glyphicon').on('click', function() {
+		var selRating = $(this).data('rating');
+		$objParent.find('input.rating-value').val(selRating);
+		$objParent.find('.star-rating .glyphicon').each(function() {
+	        if (parseInt(selRating) >= parseInt($(this).data('rating'))) {
+	            return $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+	        } else {
+	            return $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+	        }
+	    });
+	});
+
+	// set selected star rating
+	$objParent.find('.star-rating .glyphicon').each(function() {
+		if (parseInt(curRating) == parseInt($(this).data('rating'))) {
+			$(this).trigger('click');
+		}
 	});
 }

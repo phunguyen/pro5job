@@ -16,8 +16,13 @@ class Filter extends MX_Controller{
 
 	public function jobs() {
 		$user_id = $this->ion_auth->get_user_id();
-		$filter_data = $this->mfilter->get_filter_by_user($user_id);
-		$filter_data = json_decode($filter_data['filter_data'], true);
+		$filter_res = $this->mfilter->get_filter_by_user($user_id);
+		if($filter_res) {
+			$filter_data = json_decode($filter_res['filter_data'], true);
+			$filter_data['filter_id'] = $filter_res['filter_id'];
+		} else {
+			$filter_data = array();
+		}
 		$data['filter_data'] = $filter_data;
 		$data['locations'] = $this->mfilter->get_sub_values('location');
 		$data['experiences'] = $this->mfilter->get_sub_values('experience');
@@ -33,6 +38,15 @@ class Filter extends MX_Controller{
 	}
 
 	public function profiles() {
+		$user_id = $this->ion_auth->get_user_id();
+		$filter_res = $this->mfilter->get_filter_by_user($user_id);
+		if($filter_res) {
+			$filter_data = json_decode($filter_res['filter_data'], true);
+			$filter_data['filter_id'] = $filter_res['filter_id'];
+		} else {
+			$filter_data = array();
+		}
+		$data['filter_data'] = $filter_data;
 		$data['locations'] = $this->mfilter->get_sub_values('location');
 		$data['experiences'] = $this->mfilter->get_sub_values('experience');
 		$data['genders'] = $this->mfilter->get_sub_values('gender');
